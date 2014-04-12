@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    * preAuthor:         BeiYuu ;
+    * blogAuthor :      Miantang
+    -->
+    <meta charset="utf-8" />
+    <title>About | Blog of Miantang</title>
+    <meta name="author" content="Miantang" />
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="Miantang's Blog" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="/css/default.css" type="text/css" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="/atom.xml" />
+    <script src="/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+</head>
+<body>
+
+    <div class="home-menu">
+        <div class="home-icon-con">
+            <a class="home-menu-icon" href="/">Miantang</a>
+            <a class="home-follow" href="#" title="Contact Me">+</a>
+        </div>
+        <div class="home-contact">
+            <a href="http://weibo.com/mt233/" target="_blank" style="margin-left:-5px;"><img src="http://www.weibo.com/favicon.ico" alt="" width="25"/></a>
+            <a href="http://www.douban.com/people/mt233/" target="_blank" style="text-align:center;"><img src="http://www.douban.com/favicon.ico" alt="" width="22"/></a>
+            <a href="http://instagram.com/mt233/" target="_blank" style="text-align:right"><img src="http://d36xtkk24g8jdx.cloudfront.net/bluebar/00c6602/images/ico/favicon.ico" alt="" width="22"/></a>
+        </div>
+    </div>
+
+    
+
+<div class="index-content about">
+    <div class="section">
+        <ul class="artical-cate">
+            <li  style="text-align:left"><a href="/"><span>Notes</span></a></li>
+            <li style="text-align:left"><a href="/mood"><span>Mood</span></a></li>
+            <li style="text-align:left"><a href="/relays"><span>Relays</span></a></li>
+            <li style="text-align:left"><a href="/tags.html"><span>Tags</span></a></li>
+            <li style="text-align:left" class="on"><a href="/about.html"><span>About</span></a></li>
+        </ul>
+<div class="cate-bar"><span id="cateBar"></span></div>
+          <div class="ui-grid-23 violet-post">
+                <div class="v-section-tit">
+                    <h4>A Little About Me.</h4>                
+                </div>
+                <div class="violet-post-det fn-clear">
+        
+            <section class="ui-grid-19 violet-post v-post-detail">
+                <article class="v-entry">
+                    <p><strong>博客：</strong>工作总结，梳理思路，沉淀自己；学习新技术，记录过程，也可以帮助和我一样的同学更快的学习，分享；记录工作轨迹与规划；记录人生的感悟。一起交流，一起分享，一起进步。GMail : <a href="mailto:antisaber@gmail.com" title="Mail to Miantang">antisaber@gmail.com</a></p>
+                    <h3>我眼中的优秀的技术人员</h3>
+                    <p>
+                    对技术充满热情<br/>
+                    编程是生活的一部分<br/>
+                    会在你的耳边谈论技术相关的话题，如果你有兴趣的话<br/>
+                    主动学习新技术<br/>
+                    对自己不能认同的技术，感到不适应，无法全身心投入<br/>
+                    聪明，对很多话题都感兴趣<br/>
+                    在大学之前就开始接触编程了<br/>
+                    有隐藏的冰山，自己完成的大项目<br/>
+                    对许多不相关的技术有了解
+                    </p>
+                </article><!-- //v-entry -->
+            </section><!-- //violet-post -->
+            </div>
+            </div>
+        <div class="aside">
+    </div>
+</div>
+</div>
+
+
+ 
+
+
+<script type="text/javascript">
+    $(function(){
+        function animateBar($item,noAni){
+            var spanLeft = $item.find('span').offset().left;
+            var conLeft = $item.parent().offset().left;
+            var left = spanLeft - conLeft;
+            var width = $item.find('span').width() + 8;
+
+            if(noAni){
+                $('#cateBar').css({left:left,width:width})
+            }else{
+                $('#cateBar').stop().animate({left:left,width:width},300)
+            }
+        }
+
+        var waitForFinalEvent = (function () {
+            var timers = {};
+            return function (callback, ms, uniqueId) {
+                if (!uniqueId) {
+                    uniqueId = "Don't call this twice without a uniqueId";
+                }
+                if (timers[uniqueId]) {
+                    clearTimeout (timers[uniqueId]);
+                }
+                timers[uniqueId] = setTimeout(callback, ms);
+            };
+        })();
+
+        $('.artical-cate li').mouseenter(function(){
+            animateBar($(this));
+        }).mouseleave(function(){
+            animateBar($('.artical-cate .on'));
+        });
+
+        $(window).resize(function(e){
+            waitForFinalEvent(function(){
+                animateBar($('.artical-cate .on'));
+            })
+        })
+        animateBar($('.artical-cate .on'),true);
+    });
+</script>
+
+    <script type="text/javascript">
+        $(function(){
+            $('.home-follow').click(function(e){
+                e.preventDefault();
+
+                if($('.home-contact').is(':visible')){
+                    $('.home-contact').slideUp(100);
+                }else{
+                    $('.home-contact').slideDown(100);
+                }
+            });
+        })
+    </script>
+</body>
+</html>
