@@ -52,28 +52,37 @@ $(document).ready(function(){
 
     //**评论的代码也删掉哦***
 
-    window.disqus_shortname = 'tangmian'; // required: replace example with your forum shortname
+ //    window.disqus_shortname = 'tangmian'; // required: replace example with your forum shortname
+ //    var duoshuoQuery = {short_name:"miantang"};
+ //    $('#disqus_container .comment').on('click',function(){
 
-    $('#disqus_container .comment').on('click',function(){
+       
 
-        $(this).html('加载中...');
+ //        var that = this;
 
-        var that = this;
+ // (function() {
+ //        var ds = document.createElement('script');
+ //        ds.type = 'text/javascript';ds.async = true;
+ //        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+ //        ds.charset = 'UTF-8';
+ //        (document.getElementsByTagName('head')[0] 
+ //         || document.getElementsByTagName('body')[0]).appendChild(ds);
+ //    })();
+ //    });
 
-        $.getScript('http://' + disqus_shortname + '.disqus.com/embed.js',function(){$(that).remove()});
 
-    });
+   // $('#disqus_container .comment').on('click',function(){
+
+   //      $(this).html('加载中...');
+
+   //      var that = this;
+
+   //      $.getScript('http://' + disqus_shortname + '.disqus.com/embed.js',function(){$(that).remove()});
+
+   //  });
 
     //**评论的代码也删掉哦***
-/*var duoshuoQuery = {short_name:"miantang"};
-    (function() {
-        var ds = document.createElement('script');
-        ds.type = 'text/javascript';ds.async = true;
-        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-        ds.charset = 'UTF-8';
-        (document.getElementsByTagName('head')[0] 
-         || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();*/
+
     //***********************
 
 
@@ -435,4 +444,3 @@ $(document).ready(function(){
     }
 
 });
-
