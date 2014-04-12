@@ -18,3 +18,8 @@ author :
   weibo : mt233
   baseurl : /
   linkurl : http://miantang.tk/
+
+  # comments :
+  #   provider : duoshuo
+  #   duoshuo : 
+  #     short_name : havee
