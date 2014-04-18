@@ -4,7 +4,7 @@
    <title>Blog of Miantang</title>
    <link href="http://miantang.github.io/blog/atom.xml" rel="self" type="application/atom+xml"/>
    <link href="http://miantang.github.io/blog" rel="alternate" type="text/html" />
-   <updated>2014-04-12T18:58:42+08:00</updated>
+   <updated>2014-04-18T22:56:33+08:00</updated>
    <id>http://miantang.github.io/blog</id>
    <author>
      <name>Miantang</name>
@@ -13,10 +13,56 @@
 
    
    <entry>
-     <title>Github的学习教程</title>
-     <link href="http://beiyuu.com/relays/whriting"/>
+     <title>解决goagent下youtube飞墙视频无法播放的记录</title>
+     <link href="http://beiyuu.com/notes/youtubejump"/>
+     <updated>2014-04-15T00:00:00+08:00</updated>
+     <id>http://beiyuu.com/notes/youtubejump</id>
+     <content type="html">&lt;p&gt;在&lt;a href=&quot;http://mooc.guokr.com/&quot;&gt;果壳MOOC学院&lt;/a&gt;fork了一些课程。觉得自己应该利用业余时间拓展一些知识。特别是英文授课的内容。&lt;/p&gt;
+
+&lt;p&gt;现今主要关注了CS方面、未来技能方面和English Writing方面的课程。国外各大名校的教授水平应该不低。&lt;/p&gt;
+
+&lt;p&gt;在&lt;a href=&quot;https://www.udacity.com/&quot;&gt;udacity&lt;/a&gt;和&lt;a href=&quot;https://www.edx.org/&quot;&gt;edX&lt;/a&gt;都需要使用youtube进行视频播放。  &lt;br/&gt;
+遇到一个问题： &lt;br/&gt;
+youtube网页能正常打开，但视频却是undefined无法播放。
+上goagent的谷歌code处查找到了相关的解决办法： &lt;br/&gt;
+SwitchySharp Options添加一条rule:&lt;em&gt;://&lt;/em&gt;.googlevideo.com/*。。
+Mission complete!&lt;/p&gt;
+
+&lt;p&gt;……&lt;/p&gt;
+</content>
+   </entry>
+   
+   <entry>
+     <title>一个Javascript程序员的源代码游戏</title>
+     <link href="http://beiyuu.com/relays/untrust"/>
+     <updated>2014-04-13T00:00:00+08:00</updated>
+     <id>http://beiyuu.com/relays/untrust</id>
+     <content type="html">&lt;p&gt;This is a A meta-JavaScript adventure game.&lt;/p&gt;
+
+&lt;p&gt;很有趣。只能在特定的行使用javascript修改源代码，使用自己的方法，把障碍物#或者隐形的Object(mine)移除。 &lt;br/&gt;
+使得绿色@(Player)能到达♢(exit)出口。 &lt;br/&gt;
+有相关的内部API使用。&lt;/p&gt;
+
+&lt;p&gt;虽然我暂时只玩到了第五关。。&lt;/p&gt;
+
+&lt;p&gt;以下是传送地址
+&lt;a href=&quot;http://alexnisnevich.github.io/untrusted/&quot;&gt;http://alexnisnevich.github.io/untrusted/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jayisgames.com/images/untrusted/untrusted.html&quot; title=&quot;http://jayisgames.com/images/untrusted/untrusted.html&quot;&gt;http://jayisgames.com/images/untrusted/untrusted.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt; 包括Github下的源代码  &lt;br/&gt;
+&lt;a href=&quot;https://github.com/AlexNisnevich/untrusted&quot; title=&quot;https://github.com/AlexNisnevich/untrusted&quot;&gt;https://github.com/AlexNisnevich/untrusted&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;iframe frameborder=&quot;0&quot; height=&quot;700&quot; marginheight=&quot;0px&quot; marginwidth=&quot;0px&quot; scrolling=&quot;no&quot; src=&quot;http://jayisgames.com/images/untrusted/untrusted.html&quot; width=&quot;1230&quot;&gt;&lt;/iframe&gt;&lt;/p&gt;
+
+</content>
+   </entry>
+   
+   <entry>
+     <title>理想的写作环境：Git+Github+Markdown+Jekyll</title>
+     <link href="http://beiyuu.com/relays/writing"/>
      <updated>2014-04-10T00:00:00+08:00</updated>
-     <id>http://beiyuu.com/relays/whriting</id>
+     <id>http://beiyuu.com/relays/writing</id>
      <content type="html">&lt;p&gt;理想的写作环境，受各类干扰小、清理废话及版本管理容易。曾花费较长时间寻找，最后还是到了。&lt;/p&gt;
 
 &lt;p&gt;2010年开始，采取Git+Github+Markdown+Jekyll，完成一些作品。暖色调灯光，黑暗的背景色，全屏的写作状态，很有氛围。&lt;/p&gt;
@@ -28,7 +74,7 @@
 
 &lt;h3&gt;背后理念&lt;/h3&gt;
 
-&lt;p&gt;http://zh-cn.whygitisbetterthanx.com/ &lt;br/&gt;
+&lt;p&gt;&lt;a href=&quot;http://zh-cn.whygitisbetterthanx.com/&quot;&gt;http://zh-cn.whygitisbetterthanx.com/&lt;/a&gt; &lt;br/&gt;
 Github
 让人不再担心备份与远程协作，一切提交，均有记录。&lt;/p&gt;
 
@@ -69,8 +115,8 @@ Markdown &lt;/a&gt;  &lt;br/&gt;
 &lt;/ul&gt;
 
 
-&lt;p&gt;&lt;em&gt;声明: 本文采用 BY-NC-SA授权。微信号Mindnote，欢迎订阅。扫码请点击&lt;/em&gt;
-&lt;em&gt;转载自http://www.yangzhiping.com/tech/writing-space.html&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;声明: 本文采用 BY-NC-SA授权。 *&lt;br/&gt;
+&lt;/em&gt;转载自http://www.yangzhiping.com/tech/writing-space.html*&lt;/p&gt;
 </content>
    </entry>
    
