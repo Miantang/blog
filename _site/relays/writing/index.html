@@ -6,7 +6,7 @@
     * blogAuthor :      Miantang
     -->
     <meta charset="utf-8" />
-    <title>Github+Jekyll博客环境的搭建遇到的问题 | Blog of Miantang</title>
+    <title>理想的写作环境：Git+Github+Markdown+Jekyll | Blog of Miantang</title>
     <meta name="author" content="Miantang" />
     <meta name="renderer" content="webkit">
     <meta name="description" content="Miantang's Blog" />
@@ -43,7 +43,7 @@
 
 <div id="content">
     <div class="entry">
-        <h1 class="entry-title"><a href="/notes/gent" title="Github+Jekyll博客环境的搭建遇到的问题">Github+Jekyll博客环境的搭建遇到的问题</a></h1>
+        <h1 class="entry-title"><a href="/relays/writing" title="理想的写作环境：Git+Github+Markdown+Jekyll">理想的写作环境：Git+Github+Markdown+Jekyll</a></h1>
         <p class="entry-date">2014-04-10</p>
           
         <h4 class="tag-name">Tags:</h4>
@@ -54,7 +54,7 @@
 
   
      
-    	<li><a href="#css-ref">css <span>3</span></a></li>
+    	<li><a href="#github-ref">github <span>3</span></a></li>
     
   
 
@@ -62,42 +62,49 @@
 <!-- <a href="/tags.html"> -->
          </ul>
           
-        <h1 id='githubjekyll'>github+jekyll博客环境的搭建遇到的问题</h1>
+        <p>理想的写作环境，受各类干扰小、清理废话及版本管理容易。曾花费较长时间寻找，最后还是到了。</p>
+
+<p>2010年开始，采取Git+Github+Markdown+Jekyll，完成一些作品。暖色调灯光，黑暗的背景色，全屏的写作状态，很有氛围。</p>
+
+<p>这种搭配，符合心理学原理，背后有着相应理念。分享如下：</p>
+
+<p>Git 让人不再担心写废，想到哪里，写到哪里。</p>
+
+<h3 id='id441'>背后理念</h3>
+
+<p><a href='http://zh-cn.whygitisbetterthanx.com/'>http://zh-cn.whygitisbetterthanx.com/</a> <br />Github 让人不再担心备份与远程协作，一切提交，均有记录。</p>
+
+<h3 id='id442'>补充介绍</h3>
+
+<p>购买一个Github的私人账户，用于托管个人&#8221;不适合公开&#8221;的项目。 零散的思考，随时写在Jekyll的_drafts目录下。当思考成熟，予以发布。较系统的思考，尤其需要远程协作，则参考Github中成功的开源图书项目，单独整理为Jekyll的子目录或独立项目。</p>
+
+<h3 id='id443'>背后理念</h3>
+
+<p><a href='http://tom.preston-werner.com/2008/10/18/how-i-turned-down-300k.html'>How I Turned Down $300,000 from Microsoft to go Full-Time on GitHub Markdown</a> <br />不再忧虑排版，专注写作。</p>
+
+<h3 id='id444'>背后理念</h3>
+
+<p><a href='http://markdown.tw/'>Markdown语法中译</a> <br /><a href='http://jianshu.io/p/q81RER'>献给写作者的 Markdown 新手指南</a></p>
+
+<h2 id='jekyll'>Jekyll</h2>
+
+<p>Octopress出来之后，也向人推荐。但自己不用。之所以用Jekyll，是希望专注于写作而非版式、图片等。如果用Octopress，又回归老路了。 Octopress有两点细节不能接受：</p>
 
 <ul>
-<li><strong>1.git简易指南</strong></li>
+<li>
+<p>无法支持Github在线编辑；<br />- 分源码与生成两个分支，违背简洁原则。</p>
+
+<h3 id='id445'>背后理念</h3>
+
+<p><a href='http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html'>Blogging Like a Hacker</a></p>
+
+<h3 id='id446'>相关参考</h3>
+
+<p><a href='http://www.yangzhiping.com/psy/flow.html'>如何提高创作型任务的效率？</a> <br /><a href='http://www.yangzhiping.com/psy/mac.html'>如何提高创作型任务的效率？（MAC版）</a> <br /><a href='http://www.yangzhiping.com/tech/github.html'>如何高效利用Github</a> <br /><a href='http://www.yangzhiping.com/tech/r-markdown-knitr.html'>Markdown写作浅谈</a> <a href='http://www.yangzhiping.com/psy/writers-model.html'>快速写作模式谈</a></p>
+</li>
 </ul>
 
-<p><a href='http://www.bootcss.com/p/git-guide/' title='http://www.bootcss.com/p/git-guide/'>http://www.bootcss.com/p/git-guide/</a></p>
-
-<p><strong>2.git简单实用教程</strong></p>
-
-<p><a href='http://wuyuans.com/2012/05/github-simple-tutorial/' title='http://wuyuans.com/2012/05/github-simple-tutorial/'>http://wuyuans.com/2012/05/github-simple-tutorial/</a></p>
-
-<p><strong>3.使用github+jekyll搭建blog环境，完美替代wordpress</strong> <a href='http://www.heiniuhaha.com/lessons/2012/08/09/use-jekyll-build-blog/' title='http://www.heiniuhaha.com/lessons/2012/08/09/use-jekyll-build-blog/'>http://www.heiniuhaha.com/lessons/2012/08/09/use-jekyll-build-blog/</a></p>
-
-<p>在进行jekyll serve(按提示&#8211;server指令已经过时，需要使用serve)这一步时， 遇到的情况是，libyaml版本低于0.1.5，需要升级成0.1.6。可以参考 <br /><a href='https://www.ruby-lang.org/en/news/2014/03/29/heap-overflow-in-yaml-uri-escape-parsing-cve-2014-2525/' title='https://www.ruby-lang.org/en/news/2014/03/29/heap-overflow-in-yaml-uri-escape-parsing-cve-2014-2525/'>https://www.ruby-lang.org/en/news/2014/03/29/heap-overflow-in-yaml-uri-escape-parsing-cve-2014-2525/</a> <br />我安装的是ruby193版本。（考虑到稳定性等因素，没有搭建2.1.1版本及以上，这也是官网推荐的稳定版本）</p>
-
-<pre><code>  SafeYAML Warning   
-  
-You appear to have an outdated version of libyaml (0.1.5) installed on your system.   
-Prior to 0.1.6, libyaml is vulnerable to a heap overflow exploit from malicious YAML payloads.
-For more info, see:  
-  *https://www.ruby-lang.org/en/news/2014/03/29/heap-overflow-in-yaml-uri-escape-parsing-cve-2014-2525/*   
-
-  The easiest thing to do right now is probably to update Psych to the  latest version and enable the &#39;bundled-libyaml&#39; option, which will  install a vendored libyaml with the vulnerability patched:   
-
-  **gem install psych -- --enable-bundled-libyaml**</code></pre>
-
-<p>这里提到gem install psych &#8211; &#8211;enable-bundled-libyaml这一步，提交指令之后依然是此问题不能解决。 然后参考了 <br /><a href='http://jonforums.github.io/ruby/2012/02/24/hacking-a-gem.html' title='http://jonforums.github.io/ruby/2012/02/24/hacking-a-gem.html '>http://jonforums.github.io/ruby/2012/02/24/hacking-a-gem.html</a><br />均无解。。。 <br />最后发现这是warning。。暂时放弃解决。 同时发现了另外一个bug，关于中文GBK文字无法显示的bug。 <br />终于在这找到了答案： <a href='http://changfengmingzhi.blog.163.com/blog/static/16710528820131013103511364/' title='http://changfengmingzhi.blog.163.com/blog/static/16710528820131013103511364/'>http://changfengmingzhi.blog.163.com/blog/static/16710528820131013103511364/</a></p>
-
-<h5 id='jekyll_'>Jekyll 本地调试之若干问题</h5>
-
-<p><a href='http://chxt6896.github.io/blog/2012/02/13/blog-jekyll-native.html' title='http://chxt6896.github.io/blog/2012/02/13/blog-jekyll-native.html'>http://chxt6896.github.io/blog/2012/02/13/blog-jekyll-native.html</a></p>
-
-<h6 id='httpbeiyuucom'>http://beiyuu.com/</h6>
-
-<h4 id='httpblogfensmejekyllbootstarpgithub'>http://blog.fens.me/jekyll-bootstarp-github/</h4>
+<p><em>声明: 本文采用 BY-NC-SA授权。</em><br /><em>转载自http://www.yangzhiping.com/tech/writing-space.html</em></p>
 
         <div id="disqus_container">
             <div style="margin-bottom:20px" class="right">
@@ -122,7 +129,7 @@ For more info, see:
             <div id="disqus_thread"></div>
         </div>
         <!-- 多说评论框 start -->
-    <div class="ds-thread" data-thread-key="/notes/gent" data-title="Github+Jekyll博客环境的搭建遇到的问题" data-url="/notes/gent"></div>
+    <div class="ds-thread" data-thread-key="/relays/writing" data-title="理想的写作环境：Git+Github+Markdown+Jekyll" data-url="/relays/writing"></div>
 <!-- 多说评论框 end -->
     </div>
 

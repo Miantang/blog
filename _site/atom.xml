@@ -4,7 +4,7 @@
    <title>Blog of Miantang</title>
    <link href="http://miantang.github.io/blog/atom.xml" rel="self" type="application/atom+xml"/>
    <link href="http://miantang.github.io/blog" rel="alternate" type="text/html" />
-   <updated>2014-04-18T22:56:33+08:00</updated>
+   <updated>2014-07-26T15:58:05+08:00</updated>
    <id>http://miantang.github.io/blog</id>
    <author>
      <name>Miantang</name>
@@ -13,23 +13,340 @@
 
    
    <entry>
+     <title>Git时代的VIM不完全使用教程</title>
+     <link href="http://beiyuu.com/relays/vimtutor"/>
+     <updated>2014-07-26T00:00:00+08:00</updated>
+     <id>http://beiyuu.com/relays/vimtutor</id>
+     <content type="html">&lt;p&gt;最近整理了VIM的配置，换上插件管理的神器&amp;#8212;&amp;#8211;&lt;a href='https://github.com/gmarik/vundle'&gt;Vundle&lt;/a&gt;，由他引发的VIM生态环境的改善，堪称完美。遂打算写一份简单的教程，分享Git时代VIM新世界的美丽动人之处。&lt;strong&gt;对VIM有基础的同学，可直接跳至插件管理部分。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id='vim'&gt;VIM的模式&lt;/h2&gt;
+
+&lt;p&gt;第一次使用VIM，会觉得无所适从，他并不像记事本，你敲什么键就显示什么，理解VIM的需要明白他的两种模式：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;命令模式 (Command Mode)&lt;/li&gt;
+
+&lt;li&gt;编辑模式 (Insert Mode)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;命令模式下，可以做移动、编辑操作；编辑模式则用来输入。键入&lt;code&gt;i&lt;/code&gt;,&lt;code&gt;o&lt;/code&gt;,&lt;code&gt;s&lt;/code&gt;,&lt;code&gt;a&lt;/code&gt;等即可进入编辑模式，后面解释原因。&lt;/p&gt;
+
+&lt;p&gt;模式的设计是VIM和其他编辑器最不同的地方，优势和劣势也全基于此而生。&lt;/p&gt;
+
+&lt;h2 id='id447'&gt;基本操作&lt;/h2&gt;
+
+&lt;p&gt;以下介绍的键盘操作，都是大小写敏感的，并且要在&lt;strong&gt;命令模式&lt;/strong&gt;下完成，需注意：&lt;/p&gt;
+
+&lt;h3 id='id448'&gt;以字为单位的移动&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;h&lt;/code&gt; 向左移动一个字&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;j&lt;/code&gt; 向下移动一行&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;k&lt;/code&gt; 向上&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;l&lt;/code&gt; 向右&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这四个键在右手最容易碰到几个位置，最为常用。&lt;/p&gt;
+
+&lt;h3 id='id449'&gt;以词为单位的移动&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;w&lt;/code&gt; 下一個word w(ord)&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;W&lt;/code&gt; 下一個word(跳过标点)&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;b&lt;/code&gt; 前一個word b(ackward)&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;B&lt;/code&gt; 前一个word(跳过标点)&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;e&lt;/code&gt; 跳到当前word的尾端 e(nd)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id='id450'&gt;行移动&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;0&lt;/code&gt; 跳到当前行的开头 - &lt;code&gt;^&lt;/code&gt; 跳到当前行第一个非空字符 - &lt;code&gt;$&lt;/code&gt; 跳到行尾&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;助记：0(第0个字符),&lt;code&gt;^&lt;/code&gt;和&lt;code&gt;$&lt;/code&gt;含义同正则表达式&lt;/p&gt;
+
+&lt;h3 id='id451'&gt;段落移动&lt;/h3&gt;
+
+&lt;p&gt;- &lt;code&gt;{&lt;/code&gt; 上一段(以空白行分隔) - &lt;code&gt;}&lt;/code&gt; 下一段(以空白行分隔) - &lt;code&gt;%&lt;/code&gt; 跳到当前对应的括号上(适用各种配对符号)&lt;/p&gt;
+
+&lt;h3 id='id452'&gt;跳跃移动&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;/xxxx&lt;/code&gt; 搜索xxxx，然后可以用&lt;code&gt;n&lt;/code&gt;下一个，&lt;code&gt;N&lt;/code&gt;上一个移动 - &lt;code&gt;#&lt;/code&gt; 向前搜索光标当前所在的字 - &lt;code&gt;*&lt;/code&gt; 向后搜索光标当前所在的字&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;fx&lt;/code&gt; 在当前行移动到光标之后第一个字符x的位置 f(ind)x&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;gd&lt;/code&gt; 跳到光标所在位置词(word)的定义位置 g(o)d(efine)&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;gg&lt;/code&gt; 到文档顶部&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;G&lt;/code&gt; 到文档底部&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;:x&lt;/code&gt; 跳到第x行(x是行号)&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;ctrl+d&lt;/code&gt; 向下翻页 d(down)&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;ctrl+u&lt;/code&gt; 向上翻页 u(p)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id='id453'&gt;基本编辑&lt;/h3&gt;
+
+&lt;h4 id='id454'&gt;修改&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;i&lt;/code&gt; 在光标当前位置向前插入 i(nsert)&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;I&lt;/code&gt; 在本行第一个字符前插入&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;a&lt;/code&gt; 在光标当前位置向后插入 a(fter)&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;A&lt;/code&gt; 在本行末尾插入&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;o&lt;/code&gt; 向下插入一行&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;O&lt;/code&gt; 向上插入一行&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;:w&lt;/code&gt; 保存&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;:q&lt;/code&gt; 退出&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;:wq&lt;/code&gt; 保存并退出&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id='id455'&gt;删除&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;x&lt;/code&gt; 删除当前字符&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;dd&lt;/code&gt; 删除当前行 d(elete)&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;dw&lt;/code&gt; 删除当前光标下的词 d(elete)w(ord)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id='id456'&gt;复制粘贴&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;yy&lt;/code&gt; 复制当前行 y(ank)&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;yw&lt;/code&gt; 复制当前光标下的词 y(ank)w(ord)&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;p&lt;/code&gt; 粘贴 p(aste)&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;P&lt;/code&gt; 粘贴在当前位置之前&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id='id457'&gt;进阶操作&lt;/h2&gt;
+
+&lt;p&gt;限于篇幅，在这里我仅介绍下我非常常用的几个操作。&lt;/p&gt;
+
+&lt;h3 id='id458'&gt;重复操作&lt;/h3&gt;
+
+&lt;p&gt;因为VIM所有的操作都是原子化的，所以把这些操作程序化就非常简单了：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;5w&lt;/code&gt; 相当于按五次&lt;code&gt;w&lt;/code&gt;键；&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;6j&lt;/code&gt; 下移6行，相当于按六次j；&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;3J&lt;/code&gt; 大写J,本来是将下一行与当前行合并，加上数量，就是重复操作3次；&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;6dw&lt;/code&gt;和&lt;code&gt;d6w&lt;/code&gt; 结果是一样，就是删除6个word； - 剩下的无数情况，自己类推吧。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id='id459'&gt;高效编辑&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;di&amp;quot;&lt;/code&gt; 光标在&amp;#8221;&amp;#8220;之间，则删除&amp;#8221;&amp;#8220;之间的内容&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;yi(&lt;/code&gt; 光标在()之间，则复制()之间的内容&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;vi[&lt;/code&gt; 光标在&lt;span /&gt;之间，则选中&lt;span /&gt;之间的内容&lt;/li&gt;
+
+&lt;li&gt;以上三种可以自由组合搭配，效率奇高，i(nner)&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;dtx&lt;/code&gt; 删除字符直到遇见光标之后的第一个&lt;code&gt;x&lt;/code&gt;字符&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;ytx&lt;/code&gt; 复制字符直到遇见光标之后的第一个&lt;code&gt;x&lt;/code&gt;字符&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id='macro'&gt;标记和宏(macro)&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ma&lt;/code&gt; 将当前位置标记为a，26个字母均可做标记，&lt;code&gt;mb&lt;/code&gt;、&lt;code&gt;mc&lt;/code&gt;等等；&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;&amp;#39;a&lt;/code&gt; 跳转到a标记的位置； - 这是一组很好的文档内标记方法，在文档中跳跃编辑时很有用；&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;qa&lt;/code&gt; 将之后的所有键盘操作录制下来，直到再次在命令模式按下&lt;code&gt;q&lt;/code&gt;，并存储在&lt;code&gt;a&lt;/code&gt;中；&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;@a&lt;/code&gt; 执行刚刚记录在&lt;code&gt;a&lt;/code&gt;里面的键盘操作；&lt;/li&gt;
+
+&lt;li&gt;&lt;code&gt;@@&lt;/code&gt; 执行上一次的macro操作；&lt;/li&gt;
+
+&lt;li&gt;宏操作是VIM最为神奇的操作之一，需要慢慢体会其强大之处；&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;VIM的基本操作，可以挖掘的东西非常多，不仅仅需要记忆，更需要自己去探索总结，熟练之后，效率会大幅度提升。后面会给出一些参考链接。&lt;/p&gt;
+
+&lt;h2 id='id460'&gt;插件管理&lt;/h2&gt;
+
+&lt;h3 id='vundle'&gt;Vundle&lt;/h3&gt;
+
+&lt;p&gt;终于到这篇Blog我最想讨论的部分了。VIM的强大不仅仅体现在操作的高效率，更有强大而充沛的插件做支援，插件丰富了之后，就面临查找和管理的问题。&lt;/p&gt;
+
+&lt;p&gt;在遇见&lt;a href='https://github.com/gmarik/vundle'&gt;Vundle&lt;/a&gt;之前，我用&lt;a href='https://github.com/tpope/vim-pathogen'&gt;Pathogen&lt;/a&gt;管理插件。Pathogen还算方便，只需要把相应插件，放在&lt;code&gt;bundle&lt;/code&gt;目录下即可，不需要再像以前那样逐个放置单独的文件到相应目录，大大节省了劳动力，管理起来也一目了然，觉得还不错，至少比vimball那种需要执行命令安装的方式好一些。&lt;/p&gt;
+
+&lt;p&gt;我真希望我早些遇见Vundle。Vundle受到Pathogen和Vimball的启发，于是有了现在的模样。Vundle的逻辑是这样的：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;在&lt;a href='http://vim-scripts.org/vim/scripts.html'&gt;Vim Script&lt;/a&gt;选好你想要的插件；&lt;/li&gt;
+
+&lt;li&gt;在VIM的配置文件中写一句 &lt;code&gt;Bundle plugin_name&lt;/code&gt;；&lt;/li&gt;
+
+&lt;li&gt;执行一下Vundle的初始化命令，插件就装好了； - 升级和卸载也是同样的简单；&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;完美的世界！&lt;/p&gt;
+
+&lt;h3 id='vundle'&gt;Vundle的配置&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href='https://github.com/gmarik/vundle'&gt;Vundle&lt;/a&gt;的安装很简单：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone http://github.com/gmarik/vundle.git ~/.vim/bundle/vundle&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后写配置文件&lt;code&gt;.vimrc&lt;/code&gt;：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set nocompatible    &amp;quot; be iMproved
+filetype off        &amp;quot; required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+&amp;quot; let Vundle manage Vundle
+&amp;quot; required!
+Bundle &amp;#39;gmarik/vundle&amp;#39;
+
+&amp;quot; vim-scripts repos
+Bundle &amp;#39;vim-plugin-foo&amp;#39;
+Bundle &amp;#39;vim-plugin-bar&amp;#39;
+
+filetype plugin indent on    &amp;quot; required!&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;其中&lt;code&gt;Bundle&lt;/code&gt;后面的内容，就是插件的名字，插件维护在&lt;a href='http://vim-scripts.org/vim/scripts.html'&gt;Vim-Script.org&lt;/a&gt;。&lt;/p&gt;
+
+&lt;p&gt;然后，打开VIM之后，可以输入以下命令：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;quot;安装插件:
+:BundleInstall
+
+&amp;quot;更新插件:
+:BundleInstall!
+
+&amp;quot;卸载不在列表中的插件:
+:BundleClean&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;现在大部分的插件都已经从&lt;a href='http://www.vim.org/scripts/index.php'&gt;Vim.org&lt;/a&gt;迁移到了&lt;a href='http://vim-scripts.org/vim/scripts.html'&gt;Vim-Script.org&lt;/a&gt;，而且很多作者也认领了自己的插件，直接在这个Github的项目下更新，一个比Vim.org更科学更有效的生态环境，就这样完美的形成了。&lt;/p&gt;
+
+&lt;p&gt;在此非常严重的感谢vim-scripts.org的创建者&lt;a href='https://github.com/bronson'&gt;Scott Bronson&lt;/a&gt;，和&lt;a href='https://github.com/gmarik/vundle'&gt;Vundle&lt;/a&gt;的作者&lt;a href='https://github.com/gmarik'&gt;gmarik&lt;/a&gt;。他们的创新和分享精神，让这个世界又美好了一些。&lt;/p&gt;
+
+&lt;p&gt;也感谢业界良心&lt;a href='https://github.com/'&gt;Github&lt;/a&gt;。Vim-Scripts.org整站就是用&lt;a href='https://pages.github.com/'&gt;Github Pages&lt;/a&gt;建立维护的，对于个人来说，这是很好的选择，有兴趣的同学可以参看我之前的博客：&lt;a href='http://beiyuu.com/github-pages/'&gt;使用Github Pages建独立博客&lt;/a&gt;。&lt;/p&gt;
+
+&lt;h2 id='id461'&gt;插件介绍&lt;/h2&gt;
+
+&lt;p&gt;有了Vundle，再装插件就是件享受的事情了。我常用的插件有：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#相较于Command-T等查找文件的插件，ctrlp.vim最大的好处在于没有依赖，干净利落
+Bundle &amp;#39;ctrlp.vim&amp;#39;
+
+#在输入()，&amp;quot;&amp;quot;等需要配对的符号时，自动帮你补全剩余半个
+Bundle &amp;#39;AutoClose&amp;#39;
+
+#神级插件，ZenCoding可以让你以一种神奇而无比爽快的感觉写HTML、CSS
+Bundle &amp;#39;ZenCoding.vim&amp;#39;
+
+#在()、&amp;quot;&amp;quot;、甚至HTML标签之间快速跳转；
+Bundle &amp;#39;matchit.zip&amp;#39;
+
+#显示行末的空格；
+Bundle &amp;#39;ShowTrailingWhitespace&amp;#39;
+
+#JS代码格式化插件；
+Bundle &amp;#39;_jsbeautify&amp;#39;
+
+#用全新的方式在文档中高效的移动光标，革命性的突破
+Bundle &amp;#39;EasyMotion&amp;#39;
+
+#自动识别文件编码；
+Bundle &amp;#39;FencView.vim&amp;#39;
+
+#必不可少，在VIM的编辑窗口树状显示文件目录
+Bundle &amp;#39;The-NERD-tree&amp;#39;
+
+#NERD出品的快速给代码加注释插件，选中，`ctrl+h`即可注释多种语言代码；
+Bundle &amp;#39;The-NERD-Commenter&amp;#39;
+
+#解放生产力的神器，简单配置，就可以按照自己的风格快速输入大段代码。
+Bundle &amp;#39;UltiSnips&amp;#39;
+
+#让代码更加易于纵向排版，以=或,符号对齐
+Bundle &amp;#39;Tabular&amp;#39;
+
+#迄今位置最好的自动VIM自动补全插件了吧
+#Vundle的这个写法，是直接取该插件在Github上的repo
+Bundle &amp;#39;Valloric/YouCompleteMe&amp;#39;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;以上插件可以在&lt;a href='http://vim-scripts.org/vim/scripts.html'&gt;vim-script.org&lt;/a&gt;找到源码和文档，&lt;a href='http://mattn.github.com/zencoding-vim/'&gt;ZenCoding&lt;/a&gt;和&lt;a href='http://net.tutsplus.com/tutorials/other/vim-essential-plugin-easymotion/'&gt;EasyMotion&lt;/a&gt;演示点链接,你会心动的。&lt;/p&gt;
+
+&lt;h2 id='vimrc'&gt;.vimrc配置&lt;/h2&gt;
+
+&lt;p&gt;因为配置不断在更新，所以放上我的配置的链接：&lt;a href='https://github.com/beiyuu/vimfiles/blob/master/_vimrc'&gt;.vimrc配置&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id='id462'&gt;更多&lt;/h2&gt;
+
+&lt;p&gt;VIM在一开始会觉得非常不习惯，一定要坚持下去，收获的会更多，不仅仅是在装大侠方面的哦~&lt;/p&gt;
+
+&lt;p&gt;关于VIM的使用，这篇博客仅仅介绍了很小的一部分，网络上还有大量朋友总结的心得，常学常有收获：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href='http://book.douban.com/subject/10599776/'&gt;Practical Vim&lt;/a&gt;，强烈推荐的一本系统介绍VIM的书籍&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://overapi.com/vim/'&gt;Vim Cheat Sheet&lt;/a&gt;，有VIM的各种助记图，可以作为桌面&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://www.vimer.cn/'&gt;Vimer的程序世界&lt;/a&gt;，不错的站，博主持续钻研VIM各种技巧&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://hi.baidu.com/whqvzhjoixbbdwd/item/11315a5073667d0de6c4a5e9'&gt;网友狂人收集的vim资料链接&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://www.rayninfo.co.uk/vimtips.html'&gt;Best of Vim Tips&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://www.limboy.com/2009/05/30/vim-setting/'&gt;面向前端开发者和TextMate粉丝的vim配置&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://scmbob.org/vim_fdm.html'&gt;Vim代码折叠简介&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='http://blog.longwin.com.tw/2009/03/choose-vim-color-scheme-2009/'&gt;挑選 Vim 顏色(Color Scheme)&lt;/a&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;a href='https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb'&gt;vimium&lt;/a&gt;，用VIM的操作习惯来控制Chrome的插件&lt;/li&gt;
+&lt;/ul&gt;</content>
+   </entry>
+   
+   <entry>
      <title>解决goagent下youtube飞墙视频无法播放的记录</title>
      <link href="http://beiyuu.com/notes/youtubejump"/>
      <updated>2014-04-15T00:00:00+08:00</updated>
      <id>http://beiyuu.com/notes/youtubejump</id>
-     <content type="html">&lt;p&gt;在&lt;a href=&quot;http://mooc.guokr.com/&quot;&gt;果壳MOOC学院&lt;/a&gt;fork了一些课程。觉得自己应该利用业余时间拓展一些知识。特别是英文授课的内容。&lt;/p&gt;
+     <content type="html">&lt;p&gt;在&lt;a href='http://mooc.guokr.com/'&gt;果壳MOOC学院&lt;/a&gt;fork了一些课程。觉得自己应该利用业余时间拓展一些知识。特别是英文授课的内容。&lt;/p&gt;
 
 &lt;p&gt;现今主要关注了CS方面、未来技能方面和English Writing方面的课程。国外各大名校的教授水平应该不低。&lt;/p&gt;
 
-&lt;p&gt;在&lt;a href=&quot;https://www.udacity.com/&quot;&gt;udacity&lt;/a&gt;和&lt;a href=&quot;https://www.edx.org/&quot;&gt;edX&lt;/a&gt;都需要使用youtube进行视频播放。  &lt;br/&gt;
-遇到一个问题： &lt;br/&gt;
-youtube网页能正常打开，但视频却是undefined无法播放。
-上goagent的谷歌code处查找到了相关的解决办法： &lt;br/&gt;
-SwitchySharp Options添加一条rule:&lt;em&gt;://&lt;/em&gt;.googlevideo.com/*。。
-Mission complete!&lt;/p&gt;
+&lt;p&gt;在&lt;a href='https://www.udacity.com/'&gt;udacity&lt;/a&gt;和&lt;a href='https://www.edx.org/'&gt;edX&lt;/a&gt;都需要使用youtube进行视频播放。 &lt;br /&gt;遇到一个问题： &lt;br /&gt;youtube网页能正常打开，但视频却是undefined无法播放。 上goagent的谷歌code处查找到了相关的解决办法： &lt;br /&gt;SwitchySharp Options添加一条rule:&lt;em&gt;://&lt;/em&gt;.googlevideo.com/&lt;em&gt;。。 Mission complete!&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;……&lt;/p&gt;
-</content>
+&lt;p&gt;……&lt;/p&gt;</content>
    </entry>
    
    <entry>
@@ -39,23 +356,15 @@ Mission complete!&lt;/p&gt;
      <id>http://beiyuu.com/relays/untrust</id>
      <content type="html">&lt;p&gt;This is a A meta-JavaScript adventure game.&lt;/p&gt;
 
-&lt;p&gt;很有趣。只能在特定的行使用javascript修改源代码，使用自己的方法，把障碍物#或者隐形的Object(mine)移除。 &lt;br/&gt;
-使得绿色@(Player)能到达♢(exit)出口。 &lt;br/&gt;
-有相关的内部API使用。&lt;/p&gt;
+&lt;p&gt;很有趣。只能在特定的行使用javascript修改源代码，使用自己的方法，把障碍物#或者隐形的Object(mine)移除。 &lt;br /&gt;使得绿色@(Player)能到达♢(exit)出口。 &lt;br /&gt;有相关的内部API使用。&lt;/p&gt;
 
 &lt;p&gt;虽然我暂时只玩到了第五关。。&lt;/p&gt;
 
-&lt;p&gt;以下是传送地址
-&lt;a href=&quot;http://alexnisnevich.github.io/untrusted/&quot;&gt;http://alexnisnevich.github.io/untrusted/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;以下是传送地址 &lt;a href='http://alexnisnevich.github.io/untrusted/'&gt;http://alexnisnevich.github.io/untrusted/&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://jayisgames.com/images/untrusted/untrusted.html&quot; title=&quot;http://jayisgames.com/images/untrusted/untrusted.html&quot;&gt;http://jayisgames.com/images/untrusted/untrusted.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href='http://jayisgames.com/images/untrusted/untrusted.html' title='http://jayisgames.com/images/untrusted/untrusted.html'&gt;http://jayisgames.com/images/untrusted/untrusted.html&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt; 包括Github下的源代码  &lt;br/&gt;
-&lt;a href=&quot;https://github.com/AlexNisnevich/untrusted&quot; title=&quot;https://github.com/AlexNisnevich/untrusted&quot;&gt;https://github.com/AlexNisnevich/untrusted&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;iframe frameborder=&quot;0&quot; height=&quot;700&quot; marginheight=&quot;0px&quot; marginwidth=&quot;0px&quot; scrolling=&quot;no&quot; src=&quot;http://jayisgames.com/images/untrusted/untrusted.html&quot; width=&quot;1230&quot;&gt;&lt;/iframe&gt;&lt;/p&gt;
-
-</content>
+&lt;p&gt;包括Github下的源代码 &lt;br /&gt;&lt;a href='https://github.com/AlexNisnevich/untrusted' title='https://github.com/AlexNisnevich/untrusted'&gt;https://github.com/AlexNisnevich/untrusted&lt;/a&gt; &lt;br /&gt;&lt;p&gt;&lt;iframe frameborder='0' height='700' marginheight='0px' marginwidth='0px' scrolling='no' src='http://jayisgames.com/images/untrusted/untrusted.html' width='1230' /&gt;&lt;/p&gt;&lt;/p&gt;</content>
    </entry>
    
    <entry>
@@ -69,55 +378,93 @@ Mission complete!&lt;/p&gt;
 
 &lt;p&gt;这种搭配，符合心理学原理，背后有着相应理念。分享如下：&lt;/p&gt;
 
-&lt;p&gt;Git
-让人不再担心写废，想到哪里，写到哪里。&lt;/p&gt;
+&lt;p&gt;Git 让人不再担心写废，想到哪里，写到哪里。&lt;/p&gt;
 
-&lt;h3&gt;背后理念&lt;/h3&gt;
+&lt;h3 id='id441'&gt;背后理念&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://zh-cn.whygitisbetterthanx.com/&quot;&gt;http://zh-cn.whygitisbetterthanx.com/&lt;/a&gt; &lt;br/&gt;
-Github
-让人不再担心备份与远程协作，一切提交，均有记录。&lt;/p&gt;
+&lt;p&gt;&lt;a href='http://zh-cn.whygitisbetterthanx.com/'&gt;http://zh-cn.whygitisbetterthanx.com/&lt;/a&gt; &lt;br /&gt;Github 让人不再担心备份与远程协作，一切提交，均有记录。&lt;/p&gt;
 
-&lt;h3&gt;补充介绍&lt;/h3&gt;
+&lt;h3 id='id442'&gt;补充介绍&lt;/h3&gt;
 
-&lt;p&gt;购买一个Github的私人账户，用于托管个人&quot;不适合公开&quot;的项目。 零散的思考，随时写在Jekyll的_drafts目录下。当思考成熟，予以发布。较系统的思考，尤其需要远程协作，则参考Github中成功的开源图书项目，单独整理为Jekyll的子目录或独立项目。&lt;/p&gt;
+&lt;p&gt;购买一个Github的私人账户，用于托管个人&amp;#8221;不适合公开&amp;#8221;的项目。 零散的思考，随时写在Jekyll的_drafts目录下。当思考成熟，予以发布。较系统的思考，尤其需要远程协作，则参考Github中成功的开源图书项目，单独整理为Jekyll的子目录或独立项目。&lt;/p&gt;
 
-&lt;h3&gt;背后理念&lt;/h3&gt;
+&lt;h3 id='id443'&gt;背后理念&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://tom.preston-werner.com/2008/10/18/how-i-turned-down-300k.html&quot;&gt;How I Turned Down $300,000 from Microsoft to go Full-Time on GitHub
-Markdown &lt;/a&gt;  &lt;br/&gt;
-不再忧虑排版，专注写作。&lt;/p&gt;
+&lt;p&gt;&lt;a href='http://tom.preston-werner.com/2008/10/18/how-i-turned-down-300k.html'&gt;How I Turned Down $300,000 from Microsoft to go Full-Time on GitHub Markdown&lt;/a&gt; &lt;br /&gt;不再忧虑排版，专注写作。&lt;/p&gt;
 
-&lt;h3&gt;背后理念&lt;/h3&gt;
+&lt;h3 id='id444'&gt;背后理念&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://markdown.tw/&quot;&gt;Markdown语法中译&lt;/a&gt; &lt;br/&gt;
-&lt;a href=&quot;http://jianshu.io/p/q81RER&quot;&gt;献给写作者的 Markdown 新手指南&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href='http://markdown.tw/'&gt;Markdown语法中译&lt;/a&gt; &lt;br /&gt;&lt;a href='http://jianshu.io/p/q81RER'&gt;献给写作者的 Markdown 新手指南&lt;/a&gt;&lt;/p&gt;
 
-&lt;h2&gt;Jekyll&lt;/h2&gt;
+&lt;h2 id='jekyll'&gt;Jekyll&lt;/h2&gt;
 
 &lt;p&gt;Octopress出来之后，也向人推荐。但自己不用。之所以用Jekyll，是希望专注于写作而非版式、图片等。如果用Octopress，又回归老路了。 Octopress有两点细节不能接受：&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;无法支持Github在线编辑；&lt;/li&gt;
-&lt;li&gt;分源码与生成两个分支，违背简洁原则。
+&lt;li&gt;
+&lt;p&gt;无法支持Github在线编辑；&lt;br /&gt;- 分源码与生成两个分支，违背简洁原则。&lt;/p&gt;
 
-&lt;h3&gt;背后理念&lt;/h3&gt;
+&lt;h3 id='id445'&gt;背后理念&lt;/h3&gt;
 
-&lt;a href=&quot;http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html&quot;&gt;Blogging Like a Hacker&lt;/a&gt;
+&lt;p&gt;&lt;a href='http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html'&gt;Blogging Like a Hacker&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3&gt;相关参考&lt;/h3&gt;
+&lt;h3 id='id446'&gt;相关参考&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://www.yangzhiping.com/psy/flow.html&quot;&gt;如何提高创作型任务的效率？&lt;/a&gt; &lt;br/&gt;
-&lt;a href=&quot;http://www.yangzhiping.com/psy/mac.html&quot;&gt;如何提高创作型任务的效率？（MAC版）&lt;/a&gt; &lt;br/&gt;
-&lt;a href=&quot;http://www.yangzhiping.com/tech/github.html&quot;&gt;如何高效利用Github&lt;/a&gt; &lt;br/&gt;
-&lt;a href=&quot;http://www.yangzhiping.com/tech/r-markdown-knitr.html&quot;&gt;Markdown写作浅谈&lt;/a&gt;
-&lt;a href=&quot;http://www.yangzhiping.com/psy/writers-model.html&quot;&gt;快速写作模式谈&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;&lt;a href='http://www.yangzhiping.com/psy/flow.html'&gt;如何提高创作型任务的效率？&lt;/a&gt; &lt;br /&gt;&lt;a href='http://www.yangzhiping.com/psy/mac.html'&gt;如何提高创作型任务的效率？（MAC版）&lt;/a&gt; &lt;br /&gt;&lt;a href='http://www.yangzhiping.com/tech/github.html'&gt;如何高效利用Github&lt;/a&gt; &lt;br /&gt;&lt;a href='http://www.yangzhiping.com/tech/r-markdown-knitr.html'&gt;Markdown写作浅谈&lt;/a&gt; &lt;a href='http://www.yangzhiping.com/psy/writers-model.html'&gt;快速写作模式谈&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;p&gt;&lt;em&gt;声明: 本文采用 BY-NC-SA授权。&lt;/em&gt;&lt;br /&gt;&lt;em&gt;转载自http://www.yangzhiping.com/tech/writing-space.html&lt;/em&gt;&lt;/p&gt;</content>
+   </entry>
+   
+   <entry>
+     <title>Github的学习教程</title>
+     <link href="http://beiyuu.com/relays/whriting"/>
+     <updated>2014-04-10T00:00:00+08:00</updated>
+     <id>http://beiyuu.com/relays/whriting</id>
+     <content type="html">&lt;p&gt;理想的写作环境，受各类干扰小、清理废话及版本管理容易。曾花费较长时间寻找，最后还是到了。&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;声明: 本文采用 BY-NC-SA授权。 *&lt;br/&gt;
-&lt;/em&gt;转载自http://www.yangzhiping.com/tech/writing-space.html*&lt;/p&gt;
-</content>
+&lt;p&gt;2010年开始，采取Git+Github+Markdown+Jekyll，完成一些作品。暖色调灯光，黑暗的背景色，全屏的写作状态，很有氛围。&lt;/p&gt;
+
+&lt;p&gt;这种搭配，符合心理学原理，背后有着相应理念。分享如下：&lt;/p&gt;
+
+&lt;p&gt;Git 让人不再担心写废，想到哪里，写到哪里。&lt;/p&gt;
+
+&lt;h3 id='id435'&gt;背后理念&lt;/h3&gt;
+
+&lt;p&gt;http://zh-cn.whygitisbetterthanx.com/ &lt;br /&gt;Github 让人不再担心备份与远程协作，一切提交，均有记录。&lt;/p&gt;
+
+&lt;h3 id='id436'&gt;补充介绍&lt;/h3&gt;
+
+&lt;p&gt;购买一个Github的私人账户，用于托管个人&amp;#8221;不适合公开&amp;#8221;的项目。 零散的思考，随时写在Jekyll的_drafts目录下。当思考成熟，予以发布。较系统的思考，尤其需要远程协作，则参考Github中成功的开源图书项目，单独整理为Jekyll的子目录或独立项目。&lt;/p&gt;
+
+&lt;h3 id='id437'&gt;背后理念&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href='http://tom.preston-werner.com/2008/10/18/how-i-turned-down-300k.html'&gt;How I Turned Down $300,000 from Microsoft to go Full-Time on GitHub Markdown&lt;/a&gt; &lt;br /&gt;不再忧虑排版，专注写作。&lt;/p&gt;
+
+&lt;h3 id='id438'&gt;背后理念&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href='http://markdown.tw/'&gt;Markdown语法中译&lt;/a&gt; &lt;br /&gt;&lt;a href='http://jianshu.io/p/q81RER'&gt;献给写作者的 Markdown 新手指南&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id='jekyll'&gt;Jekyll&lt;/h2&gt;
+
+&lt;p&gt;Octopress出来之后，也向人推荐。但自己不用。之所以用Jekyll，是希望专注于写作而非版式、图片等。如果用Octopress，又回归老路了。 Octopress有两点细节不能接受：&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;无法支持Github在线编辑；&lt;br /&gt;- 分源码与生成两个分支，违背简洁原则。&lt;/p&gt;
+
+&lt;h3 id='id439'&gt;背后理念&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href='http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html'&gt;Blogging Like a Hacker&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id='id440'&gt;相关参考&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href='http://www.yangzhiping.com/psy/flow.html'&gt;如何提高创作型任务的效率？&lt;/a&gt; &lt;br /&gt;&lt;a href='http://www.yangzhiping.com/psy/mac.html'&gt;如何提高创作型任务的效率？（MAC版）&lt;/a&gt; &lt;br /&gt;&lt;a href='http://www.yangzhiping.com/tech/github.html'&gt;如何高效利用Github&lt;/a&gt; &lt;br /&gt;&lt;a href='http://www.yangzhiping.com/tech/r-markdown-knitr.html'&gt;Markdown写作浅谈&lt;/a&gt; &lt;a href='http://www.yangzhiping.com/psy/writers-model.html'&gt;快速写作模式谈&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;em&gt;声明: 本文采用 BY-NC-SA授权。微信号Mindnote，欢迎订阅。扫码请点击&lt;/em&gt; &lt;em&gt;转载自http://www.yangzhiping.com/tech/writing-space.html&lt;/em&gt;&lt;/p&gt;</content>
    </entry>
    
    <entry>
@@ -127,22 +474,21 @@ Markdown &lt;/a&gt;  &lt;br/&gt;
      <id>http://beiyuu.com/notes/jekyll-learing</id>
      <content type="html">&lt;p&gt;这里收集了一些关于jekyll语法或者建设博客的教程：&lt;/p&gt;
 
-&lt;h5&gt;1.Jekyll变量 和 Jekyll模板语法教程&lt;/h5&gt;
+&lt;h5 id='1jekyll__jekyll'&gt;1.Jekyll变量 和 Jekyll模板语法教程&lt;/h5&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://higrid.net/c-art-jeklly_template_data.htm&quot; title=&quot;http://higrid.net/c-art-jeklly_template_data.htm&quot;&gt;http://higrid.net/c-art-jeklly_template_data.htm&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href='http://higrid.net/c-art-jeklly_template_data.htm' title='http://higrid.net/c-art-jeklly_template_data.htm'&gt;http://higrid.net/c-art-jeklly_template_data.htm&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;本文主要讲述Jekyll变量 和 Jekyll模板语法教程相关内容：Jekyll变量和Jekyll模板语法，包括全局变量、Site变量、Page变量和需要注意的内容，其中变量解释内容翻译自官方wiki。&lt;/p&gt;
 
-&lt;h5&gt;2.JekyllBootstrap官方网站&lt;/h5&gt;
+&lt;h5 id='2jekyllbootstrap'&gt;2.JekyllBootstrap官方网站&lt;/h5&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://jekyllbootstrap.com/&quot; title=&quot;http://jekyllbootstrap.com/&quot;&gt;http://jekyllbootstrap.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href='http://jekyllbootstrap.com/' title='http://jekyllbootstrap.com/'&gt;http://jekyllbootstrap.com/&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;主要用于简化建设博客流程。（苦逼的我居然还各种找模板，改模板，有时间自己写写模板看。。）&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://jekyllbootstrap.com/usage/blog-configuration.html&quot; title=&quot;http://jekyllbootstrap.com/usage/blog-configuration.html&quot;&gt;http://jekyllbootstrap.com/usage/blog-configuration.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href='http://jekyllbootstrap.com/usage/blog-configuration.html' title='http://jekyllbootstrap.com/usage/blog-configuration.html'&gt;http://jekyllbootstrap.com/usage/blog-configuration.html&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://jekyllcn.com/docs/home/&quot; title=&quot;http://jekyllcn.com/docs/home/&quot;&gt;http://jekyllcn.com/docs/home/&lt;/a&gt;&lt;/p&gt;
-</content>
+&lt;p&gt;&lt;a href='http://jekyllcn.com/docs/home/' title='http://jekyllcn.com/docs/home/'&gt;http://jekyllcn.com/docs/home/&lt;/a&gt;&lt;/p&gt;</content>
    </entry>
    
    <entry>
@@ -150,56 +496,42 @@ Markdown &lt;/a&gt;  &lt;br/&gt;
      <link href="http://beiyuu.com/notes/gent"/>
      <updated>2014-04-10T00:00:00+08:00</updated>
      <id>http://beiyuu.com/notes/gent</id>
-     <content type="html">&lt;h1&gt;github+jekyll博客环境的搭建遇到的问题&lt;/h1&gt;
+     <content type="html">&lt;h1 id='githubjekyll'&gt;github+jekyll博客环境的搭建遇到的问题&lt;/h1&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;1.git简易指南&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-
-&lt;p&gt;&lt;a href=&quot;http://www.bootcss.com/p/git-guide/&quot; title=&quot;http://www.bootcss.com/p/git-guide/&quot;&gt;http://www.bootcss.com/p/git-guide/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href='http://www.bootcss.com/p/git-guide/' title='http://www.bootcss.com/p/git-guide/'&gt;http://www.bootcss.com/p/git-guide/&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;2.git简单实用教程&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://wuyuans.com/2012/05/github-simple-tutorial/&quot; title=&quot;http://wuyuans.com/2012/05/github-simple-tutorial/&quot;&gt;http://wuyuans.com/2012/05/github-simple-tutorial/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href='http://wuyuans.com/2012/05/github-simple-tutorial/' title='http://wuyuans.com/2012/05/github-simple-tutorial/'&gt;http://wuyuans.com/2012/05/github-simple-tutorial/&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;3.使用github+jekyll搭建blog环境，完美替代wordpress&lt;/strong&gt;
-&lt;a href=&quot;http://www.heiniuhaha.com/lessons/2012/08/09/use-jekyll-build-blog/&quot; title=&quot;http://www.heiniuhaha.com/lessons/2012/08/09/use-jekyll-build-blog/&quot;&gt;http://www.heiniuhaha.com/lessons/2012/08/09/use-jekyll-build-blog/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;3.使用github+jekyll搭建blog环境，完美替代wordpress&lt;/strong&gt; &lt;a href='http://www.heiniuhaha.com/lessons/2012/08/09/use-jekyll-build-blog/' title='http://www.heiniuhaha.com/lessons/2012/08/09/use-jekyll-build-blog/'&gt;http://www.heiniuhaha.com/lessons/2012/08/09/use-jekyll-build-blog/&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;   在进行jekyll serve(按提示--server指令已经过时，需要使用serve)这一步时，
-遇到的情况是，libyaml版本低于0.1.5，需要升级成0.1.6。可以参考 &lt;br/&gt;
-&lt;a href=&quot;https://www.ruby-lang.org/en/news/2014/03/29/heap-overflow-in-yaml-uri-escape-parsing-cve-2014-2525/&quot; title=&quot;https://www.ruby-lang.org/en/news/2014/03/29/heap-overflow-in-yaml-uri-escape-parsing-cve-2014-2525/&quot;&gt;https://www.ruby-lang.org/en/news/2014/03/29/heap-overflow-in-yaml-uri-escape-parsing-cve-2014-2525/&lt;/a&gt; &lt;br/&gt;
-我安装的是ruby193版本。（考虑到稳定性等因素，没有搭建2.1.1版本及以上，这也是官网推荐的稳定版本）&lt;/p&gt;
+&lt;p&gt;在进行jekyll serve(按提示&amp;#8211;server指令已经过时，需要使用serve)这一步时， 遇到的情况是，libyaml版本低于0.1.5，需要升级成0.1.6。可以参考 &lt;br /&gt;&lt;a href='https://www.ruby-lang.org/en/news/2014/03/29/heap-overflow-in-yaml-uri-escape-parsing-cve-2014-2525/' title='https://www.ruby-lang.org/en/news/2014/03/29/heap-overflow-in-yaml-uri-escape-parsing-cve-2014-2525/'&gt;https://www.ruby-lang.org/en/news/2014/03/29/heap-overflow-in-yaml-uri-escape-parsing-cve-2014-2525/&lt;/a&gt; &lt;br /&gt;我安装的是ruby193版本。（考虑到稳定性等因素，没有搭建2.1.1版本及以上，这也是官网推荐的稳定版本）&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;  SafeYAML Warning   
-
+  
 You appear to have an outdated version of libyaml (0.1.5) installed on your system.   
 Prior to 0.1.6, libyaml is vulnerable to a heap overflow exploit from malicious YAML payloads.
 For more info, see:  
   *https://www.ruby-lang.org/en/news/2014/03/29/heap-overflow-in-yaml-uri-escape-parsing-cve-2014-2525/*   
 
-  The easiest thing to do right now is probably to update Psych to the  latest version and enable the 'bundled-libyaml' option, which will  install a vendored libyaml with the vulnerability patched:   
+  The easiest thing to do right now is probably to update Psych to the  latest version and enable the &amp;#39;bundled-libyaml&amp;#39; option, which will  install a vendored libyaml with the vulnerability patched:   
 
-  **gem install psych -- --enable-bundled-libyaml**
-&lt;/code&gt;&lt;/pre&gt;
+  **gem install psych -- --enable-bundled-libyaml**&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;这里提到gem install psych -- --enable-bundled-libyaml这一步，提交指令之后依然是此问题不能解决。
-然后参考了 &lt;br/&gt;
-&lt;a href=&quot;http://jonforums.github.io/ruby/2012/02/24/hacking-a-gem.html&quot; title=&quot;http://jonforums.github.io/ruby/2012/02/24/hacking-a-gem.html &quot;&gt;http://jonforums.github.io/ruby/2012/02/24/hacking-a-gem.html &lt;/a&gt;&lt;br/&gt;
-均无解。。。 &lt;br/&gt;
-最后发现这是warning。。暂时放弃解决。
-同时发现了另外一个bug，关于中文GBK文字无法显示的bug。 &lt;br/&gt;
-终于在这找到了答案：
-&lt;a href=&quot;http://changfengmingzhi.blog.163.com/blog/static/16710528820131013103511364/&quot; title=&quot;http://changfengmingzhi.blog.163.com/blog/static/16710528820131013103511364/&quot;&gt;http://changfengmingzhi.blog.163.com/blog/static/16710528820131013103511364/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这里提到gem install psych &amp;#8211; &amp;#8211;enable-bundled-libyaml这一步，提交指令之后依然是此问题不能解决。 然后参考了 &lt;br /&gt;&lt;a href='http://jonforums.github.io/ruby/2012/02/24/hacking-a-gem.html' title='http://jonforums.github.io/ruby/2012/02/24/hacking-a-gem.html '&gt;http://jonforums.github.io/ruby/2012/02/24/hacking-a-gem.html&lt;/a&gt;&lt;br /&gt;均无解。。。 &lt;br /&gt;最后发现这是warning。。暂时放弃解决。 同时发现了另外一个bug，关于中文GBK文字无法显示的bug。 &lt;br /&gt;终于在这找到了答案： &lt;a href='http://changfengmingzhi.blog.163.com/blog/static/16710528820131013103511364/' title='http://changfengmingzhi.blog.163.com/blog/static/16710528820131013103511364/'&gt;http://changfengmingzhi.blog.163.com/blog/static/16710528820131013103511364/&lt;/a&gt;&lt;/p&gt;
 
-&lt;h5&gt;Jekyll 本地调试之若干问题&lt;/h5&gt;
+&lt;h5 id='jekyll_'&gt;Jekyll 本地调试之若干问题&lt;/h5&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://chxt6896.github.io/blog/2012/02/13/blog-jekyll-native.html&quot; title=&quot;http://chxt6896.github.io/blog/2012/02/13/blog-jekyll-native.html&quot;&gt;http://chxt6896.github.io/blog/2012/02/13/blog-jekyll-native.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href='http://chxt6896.github.io/blog/2012/02/13/blog-jekyll-native.html' title='http://chxt6896.github.io/blog/2012/02/13/blog-jekyll-native.html'&gt;http://chxt6896.github.io/blog/2012/02/13/blog-jekyll-native.html&lt;/a&gt;&lt;/p&gt;
 
-&lt;h6&gt;http://beiyuu.com/&lt;/h6&gt;
+&lt;h6 id='httpbeiyuucom'&gt;http://beiyuu.com/&lt;/h6&gt;
 
-&lt;h4&gt;http://blog.fens.me/jekyll-bootstarp-github/&lt;/h4&gt;
-</content>
+&lt;h4 id='httpblogfensmejekyllbootstarpgithub'&gt;http://blog.fens.me/jekyll-bootstarp-github/&lt;/h4&gt;</content>
    </entry>
    
    <entry>
@@ -207,16 +539,15 @@ For more info, see:
      <link href="http://beiyuu.com/notes/git-learning"/>
      <updated>2014-04-09T00:00:00+08:00</updated>
      <id>http://beiyuu.com/notes/git-learning</id>
-     <content type="html">&lt;h3&gt;1.Github Pages极简教程&lt;/h3&gt;
+     <content type="html">&lt;h3 id='1github_pages'&gt;1.Github Pages极简教程&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://www.yangzhiping.com/tech/writing-space.html&quot; title=&quot;http://www.yangzhiping.com/tech/writing-space.html&quot;&gt;http://www.yangzhiping.com/tech/writing-space.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href='http://www.yangzhiping.com/tech/writing-space.html' title='http://www.yangzhiping.com/tech/writing-space.html'&gt;http://www.yangzhiping.com/tech/writing-space.html&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3&gt;2.10篇写给Git初学者的最佳教程&lt;/h3&gt;
+&lt;h3 id='210git'&gt;2.10篇写给Git初学者的最佳教程&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://www.kuqin.com/managetool/20110705/92113.html&quot; title=&quot;http://www.kuqin.com/managetool/20110705/92113.html&quot;&gt;http://www.kuqin.com/managetool/20110705/92113.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href='http://www.kuqin.com/managetool/20110705/92113.html' title='http://www.kuqin.com/managetool/20110705/92113.html'&gt;http://www.kuqin.com/managetool/20110705/92113.html&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;大部分都是英文。有时间去阅读一下。&lt;/p&gt;
-</content>
+&lt;p&gt;大部分都是英文。有时间去阅读一下。&lt;/p&gt;</content>
    </entry>
    
    <entry>
@@ -224,32 +555,25 @@ For more info, see:
      <link href="http://beiyuu.com/relays/css3-animation"/>
      <updated>2013-08-24T00:00:00+08:00</updated>
      <id>http://beiyuu.com/relays/css3-animation</id>
-     <content type="html">&lt;h2&gt;CSS3动画&lt;/h2&gt;
+     <content type="html">&lt;h2 id='css3'&gt;CSS3动画&lt;/h2&gt;
 
 &lt;p&gt;有人认为CSS动画是做了js的事情，较真起来也算，只是已经抢占许多年了，早些年要实现鼠标滑过链接变色的基本效果，需要动用Java Applet，后来只需给HTML元素加事件&lt;code&gt;onclick=changecolor()&lt;/code&gt;，再之后正如你所知，只要写&lt;code&gt;:hover&lt;/code&gt;、&lt;code&gt;:focus&lt;/code&gt;这样的伪类即可，同样的，现在有了CSS3动画。&lt;/p&gt;
 
-&lt;h4&gt;CSS3动画的优势：&lt;/h4&gt;
-
+&lt;h4 id='css3'&gt;CSS3动画的优势：&lt;/h4&gt;
 &lt;ul&gt;
     &lt;li&gt;写起来非常方便，不会js也没问题&lt;/li&gt;
     &lt;li&gt;有些动画js也不能很好的胜任，比如让一个元素在二维、三维空间旋转&lt;/li&gt;
     &lt;li&gt;运行效果流畅，让浏览器去优化性能&lt;/li&gt;
     &lt;li&gt;浏览器从底层优化动画序列，例如当tab不可见的时候，降低更新的频率提高整体性能&lt;/li&gt;
 &lt;/ul&gt;
-
-
-&lt;h4&gt;劣势：&lt;/h4&gt;
-
+&lt;h4 id='id430'&gt;劣势：&lt;/h4&gt;
 &lt;ul&gt;
     &lt;li&gt;CSS3动画应用的范围还是有限&lt;/li&gt;
     &lt;li&gt;兼容性：对于增强体验的Feature来说，可以无视&lt;/li&gt;
 &lt;/ul&gt;
-
-
-&lt;h3&gt;可以做动画效果的属性&lt;/h3&gt;
+&lt;h3 id='id431'&gt;可以做动画效果的属性&lt;/h3&gt;
 
 &lt;p&gt;理论上来说，任何单独的CSS属性都可以做动画的效果，比如：&lt;/p&gt;
-
 &lt;ul&gt;
     &lt;li&gt;&lt;code&gt;width&lt;/code&gt;：10px 到 100px&lt;/li&gt;
     &lt;li&gt;&lt;code&gt;padding&lt;/code&gt;：0px 到 20px&lt;/li&gt;
@@ -258,11 +582,9 @@ For more info, see:
     &lt;li&gt;&lt;code&gt;border-radius&lt;/code&gt;：3px 到 8px&lt;/li&gt;
     &lt;li&gt;&lt;code&gt;transform&lt;/code&gt;：rotate(0deg) 到 ratate(45deg)&lt;/li&gt;
 &lt;/ul&gt;
-
-
 &lt;p&gt;你也可以给&lt;code&gt;red&lt;/code&gt;、&lt;code&gt;blue&lt;/code&gt;这样的赋值的颜色属性加transition或animation，它会被自动转化为对应的RGB值。&lt;/p&gt;
 
-&lt;h3&gt;不可以做动画效果的属性&lt;/h3&gt;
+&lt;h3 id='id432'&gt;不可以做动画效果的属性&lt;/h3&gt;
 
 &lt;p&gt;看下面这些例子：&lt;/p&gt;
 
@@ -284,20 +606,19 @@ For more info, see:
 
 #container:hover p {
     height: auto;
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;属性从无到有或到不确定值，动画效果不会生效，因为浏览器不知道如何去做，对于元素从无到有，你可以选择&lt;code&gt;opacity&lt;/code&gt;属性来处理。&lt;/p&gt;
 
-&lt;h2&gt;CSS3 Transition&lt;/h2&gt;
+&lt;h2 id='css3_transition'&gt;CSS3 Transition&lt;/h2&gt;
 
 &lt;p&gt;Transition是被用到最多的也是最简单的CSS3动画类型。如果要做一个10px宽的蓝色元素在3s后变成一个100px宽的红色元素的效果，Transition可以平滑实现，你只需要声明起始和终止这两个状态。&lt;/p&gt;
 
 &lt;p&gt;Transition的触发也很简单，可以用&lt;code&gt;:hover&lt;/code&gt;、&lt;code&gt;:focus&lt;/code&gt;这样的伪类来触发，也可以通过改变元素的样式来触发。&lt;/p&gt;
 
-&lt;h3&gt;transition的属性&lt;/h3&gt;
+&lt;h3 id='transition'&gt;transition的属性&lt;/h3&gt;
 
-&lt;h4&gt;transition-property&lt;/h4&gt;
+&lt;h4 id='transitionproperty'&gt;transition-property&lt;/h4&gt;
 
 &lt;p&gt;transition-property用来声明transition会被应用到的属性。&lt;/p&gt;
 
@@ -311,12 +632,11 @@ For more info, see:
 
 #container p.three {
     transition-property: color, width;
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;如果你想应用到所有属性，那可以简单写作&lt;code&gt;all&lt;/code&gt;，也可以通过&lt;code&gt;none&lt;/code&gt;来关闭transition。&lt;/p&gt;
 
-&lt;h4&gt;transition-duration&lt;/h4&gt;
+&lt;h4 id='transitionduration'&gt;transition-duration&lt;/h4&gt;
 
 &lt;p&gt;transition-duration用来声明动画持续的时长，可以是s也可以是ms&lt;/p&gt;
 
@@ -326,13 +646,11 @@ For more info, see:
 
 #container p.two {
     transition-duration: 3000ms;
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4&gt;transition-timing-function&lt;/h4&gt;
+&lt;h4 id='transitiontimingfunction'&gt;transition-timing-function&lt;/h4&gt;
 
 &lt;p&gt;transition-timing-function声明了动画的缓动类型，有下面几个选项：&lt;/p&gt;
-
 &lt;ul&gt;
     &lt;li&gt;&lt;code&gt;ease&lt;/code&gt;：默认项，动画效果慢慢开始然后加速，到中点后再减速最后缓慢到达终点&lt;/li&gt;
     &lt;li&gt;&lt;code&gt;ease-in-out&lt;/code&gt;：与ease类似，加减速更柔和一些&lt;/li&gt;
@@ -340,11 +658,9 @@ For more info, see:
     &lt;li&gt;&lt;code&gt;ease-out&lt;/code&gt;：开始较快，然后缓慢停止&lt;/li&gt;
     &lt;li&gt;&lt;code&gt;linear&lt;/code&gt;：线性平均速率，通常在color和opacity属性的变化上&lt;/li&gt;
 &lt;/ul&gt;
-
-
 &lt;p&gt;最后，还有&lt;code&gt;cubic-bezier&lt;/code&gt;函数，可以自己创造更多更优美的缓动类型。&lt;/p&gt;
 
-&lt;h4&gt;transition-delay&lt;/h4&gt;
+&lt;h4 id='transitiondelay'&gt;transition-delay&lt;/h4&gt;
 
 &lt;p&gt;transition-delay声明了动画延迟开始的时间，很容易理解&lt;/p&gt;
 
@@ -354,10 +670,9 @@ For more info, see:
 
 #container p.two {
     transition-delay: 500ms;
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3&gt;transition简写&lt;/h3&gt;
+&lt;h3 id='transition'&gt;transition简写&lt;/h3&gt;
 
 &lt;p&gt;上面介绍了transition的属性，他们也可以合并成一项，省去了许多拼写，当然也别忘记浏览器前缀：&lt;/p&gt;
 
@@ -379,12 +694,11 @@ For more info, see:
 #element:hover {
     /* ending state styles */
     color: #00F;
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3&gt;transition的高级用法&lt;/h3&gt;
+&lt;h3 id='transition'&gt;transition的高级用法&lt;/h3&gt;
 
-&lt;h4&gt;不同的transition效果&lt;/h4&gt;
+&lt;h4 id='transition'&gt;不同的transition效果&lt;/h4&gt;
 
 &lt;p&gt;看这样的例子：&lt;/p&gt;
 
@@ -396,8 +710,7 @@ For more info, see:
 p#animate:hover {
     color: #0f0;
     transform: scale(4);
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;在这个例子中，当鼠标hover，元素在0.5s之后在3s内放大四倍，鼠标移开，需要同样的时间回到原来的状态。如果想要不同的效果，可以这样写：&lt;/p&gt;
 
@@ -410,10 +723,9 @@ p#animate:hover {
     color: #0f0;
     transform: scale(4);
     transition: all 3s ease-in-out 0.5s;
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4&gt;多个transition&lt;/h4&gt;
+&lt;h4 id='transition'&gt;多个transition&lt;/h4&gt;
 
 &lt;p&gt;需要给多个transition指定不同的效果时，&lt;code&gt;all&lt;/code&gt;属性解决不了，可以这样写：&lt;/p&gt;
 
@@ -430,32 +742,27 @@ p#animate:hover {
     width: 20em;
     background-color: #00F;
     border-radius: 50%;
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;注意其中的&lt;code&gt;transition-duration&lt;/code&gt;只写了两个，那么第三个&lt;code&gt;transition-property&lt;/code&gt;属性&lt;code&gt;background-color&lt;/code&gt;就用循环到第一个，也就是说他的&lt;code&gt;transition-duration&lt;/code&gt;值是&lt;code&gt;1s&lt;/code&gt;。&lt;/p&gt;
 
-&lt;h3&gt;transition示例&lt;/h3&gt;
-
-&lt;div id=&quot;transition1&quot;&gt;
-#transition1 {&lt;br&gt;
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;width:350px;&lt;br&gt;
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;background-color:#1abc9c;&lt;br&gt;
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;transition-propety:width,background-color;&lt;br&gt;
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;transition-duration:.5s, 1s;&lt;br&gt;
-}&lt;br&gt;
-#transition1:hover {&lt;br&gt;
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;width:450px;&lt;br&gt;
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;background-color:#8e44ad;&lt;br&gt;
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;transition-duration:.5s, 3s;&lt;br&gt;
-}&lt;br&gt;
+&lt;h3 id='transition'&gt;transition示例&lt;/h3&gt;
+&lt;div id='transition1'&gt;
+#transition1 {&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;width:350px;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;background-color:#1abc9c;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;transition-propety:width,background-color;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;transition-duration:.5s, 1s;&lt;br /&gt;
+}&lt;br /&gt;
+#transition1:hover {&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;width:450px;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;background-color:#8e44ad;&lt;br /&gt;
+&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;transition-duration:.5s, 3s;&lt;br /&gt;
+}&lt;br /&gt;
 &lt;/div&gt;
+&lt;h2 id='css3_animation'&gt;CSS3 Animation&lt;/h2&gt;
 
-
-&lt;h2&gt;CSS3 Animation&lt;/h2&gt;
-
-&lt;h3&gt;Animation和Transition的不同&lt;/h3&gt;
-
+&lt;h3 id='animationtransition'&gt;Animation和Transition的不同&lt;/h3&gt;
 &lt;ul&gt;
     &lt;li&gt;和transition一样都可以定义开始和结束状态，但是animation还可以指定更确定的中间状态&lt;/li&gt;
     &lt;li&gt;animation可以像transition一样被触发，也可以自动运行&lt;/li&gt;
@@ -463,9 +770,7 @@ p#animate:hover {
     &lt;li&gt;animation可以在顺序运行也可以反向运行&lt;/li&gt;
     &lt;li&gt;animatino写起来稍麻烦些，但是依然比js简单许多&lt;/li&gt;
 &lt;/ul&gt;
-
-
-&lt;h3&gt;定义keyframes&lt;/h3&gt;
+&lt;h3 id='keyframes'&gt;定义keyframes&lt;/h3&gt;
 
 &lt;pre&gt;&lt;code&gt;@keyframes colorchange {
     0%   { background-color: #00F; /* from: blue */ }
@@ -481,12 +786,11 @@ p#animate:hover {
     50%  { background-color: #0F0; /* green      */ }
     75%  { background-color: #F0F; /* purple     */ }
     100% { background-color: #00F; /* to: blue   */ }
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;在这个例子中，只是定义了&lt;code&gt;background-color&lt;/code&gt;这一个属性，如有需要，可以换做其他。对于&lt;code&gt;0%&lt;/code&gt;这个也可以用&lt;code&gt;from&lt;/code&gt;关键字来替代，同样的可以用&lt;code&gt;to&lt;/code&gt;来代替&lt;code&gt;100%&lt;/code&gt;，过渡状态，你可以定义任何百分比，类似&lt;code&gt;12.5%&lt;/code&gt;这样的也可以，不过就不用给自己找麻烦了吧。浏览器的&lt;code&gt;prefix&lt;/code&gt;也不能少。&lt;/p&gt;
 
-&lt;h3&gt;应用到元素&lt;/h3&gt;
+&lt;h3 id='id433'&gt;应用到元素&lt;/h3&gt;
 
 &lt;p&gt;将&lt;code&gt;animation&lt;/code&gt;应用到元素的属性写法，和&lt;code&gt;transition&lt;/code&gt;差不太多，顺序都一致，就不在一个个参数重复说明，直接看代码吧：&lt;/p&gt;
 
@@ -503,34 +807,26 @@ p#animate:hover {
 #myelement {
     -webkit-animation: colorchange 5s linear 1s infinite alternate;
     animation: colorchange 5s linear 1s infinite alternate;
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;code&gt;animation-iteration-count&lt;/code&gt;用来指定动画循环的次数，无限循环用&lt;code&gt;infinite&lt;/code&gt;。&lt;/p&gt;
 
 &lt;p&gt;animation-direction有四个值：&lt;/p&gt;
-
 &lt;ul&gt;
     &lt;li&gt;&lt;code&gt;normal&lt;/code&gt;：默认，从0%执行到100%&lt;/li&gt;
     &lt;li&gt;&lt;code&gt;reverse&lt;/code&gt;：动画从100%执行到0%&lt;/li&gt;
     &lt;li&gt;&lt;code&gt;alternate&lt;/code&gt;：动画在0%到100%之间往复执行&lt;/li&gt;
     &lt;li&gt;&lt;code&gt;alternate-reverse&lt;/code&gt;与&lt;code&gt;alternate&lt;/code&gt;一致，不过是从100%开始&lt;/li&gt;
 &lt;/ul&gt;
-
-
-&lt;h3&gt;Animation示例&lt;/h3&gt;
-
-&lt;div id=&quot;ani1&quot;&gt;Animate color&lt;/div&gt;
-
-
-&lt;h2&gt;CSS3 Transform&lt;/h2&gt;
+&lt;h3 id='animation'&gt;Animation示例&lt;/h3&gt;
+&lt;div id='ani1'&gt;Animate color&lt;/div&gt;
+&lt;h2 id='css3_transform'&gt;CSS3 Transform&lt;/h2&gt;
 
 &lt;p&gt;有了&lt;code&gt;transition&lt;/code&gt;和&lt;code&gt;animation&lt;/code&gt;之后，就可以做出些漂亮的动画效果，如果再搭配&lt;code&gt;transform&lt;/code&gt;这一CSS3动画利器，就更出彩了。&lt;/p&gt;
 
-&lt;h3&gt;CSS3 2D Transform&lt;/h3&gt;
+&lt;h3 id='css3_2d_transform'&gt;CSS3 2D Transform&lt;/h3&gt;
 
 &lt;p&gt;运用CSS3 2D Transform的技术，可以更自由轻松的来修饰HTML元素。CSS3 2D Transform的基本方法有下面这些：&lt;/p&gt;
-
 &lt;ul&gt;
     &lt;li&gt;&lt;code&gt;translate()&lt;/code&gt;&lt;/li&gt;
     &lt;li&gt;&lt;code&gt;rotate()&lt;/code&gt;&lt;/li&gt;
@@ -538,9 +834,7 @@ p#animate:hover {
     &lt;li&gt;&lt;code&gt;skew()&lt;/code&gt;&lt;/li&gt;
     &lt;li&gt;&lt;code&gt;matrix()&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-
-
-&lt;h4&gt;Translate&lt;/h4&gt;
+&lt;h4 id='translate'&gt;Translate&lt;/h4&gt;
 
 &lt;p&gt;使用&lt;code&gt;translate()&lt;/code&gt;方法，可以将HTML元素在x-y轴平面上做位移，且不会影响到其他元素。&lt;/p&gt;
 
@@ -549,62 +843,47 @@ p#animate:hover {
     -moz-transform: translate(20px,20px);
     -o-transform: translate(20px,20px);
     transform: translate(20px,20px);
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;效果如下：&lt;/p&gt;
-
-&lt;div id=&quot;translate1&quot;&gt;
-&lt;div id=&quot;trans-inner1&quot;&gt;Normal Div&lt;/div&gt;
-&lt;div id=&quot;trans-inner2&quot;&gt;transform:tranlated(40px, 40px)&lt;/div&gt;
+&lt;div id='translate1'&gt;
+&lt;div id='trans-inner1'&gt;Normal Div&lt;/div&gt;
+&lt;div id='trans-inner2'&gt;transform:tranlated(40px, 40px)&lt;/div&gt;
 &lt;/div&gt;
-
-
-&lt;h4&gt;Rotate&lt;/h4&gt;
+&lt;h4 id='rotate'&gt;Rotate&lt;/h4&gt;
 
 &lt;p&gt;&lt;code&gt;rotate()&lt;/code&gt;方法可以将元素按照时钟方向旋转，参数可以是&lt;code&gt;0deg&lt;/code&gt;到&lt;code&gt;360deg&lt;/code&gt;，也是在x-y轴平面，示例如下：&lt;/p&gt;
-
-&lt;div id=&quot;rotate1&quot;&gt;
-&lt;div id=&quot;rota-inner1&quot;&gt;Normal Div&lt;/div&gt;
-&lt;div id=&quot;rota-inner2&quot;&gt;transform:rotate(-30deg)&lt;/div&gt;
+&lt;div id='rotate1'&gt;
+&lt;div id='rota-inner1'&gt;Normal Div&lt;/div&gt;
+&lt;div id='rota-inner2'&gt;transform:rotate(-30deg)&lt;/div&gt;
 &lt;/div&gt;
-
-
-&lt;h4&gt;Scale&lt;/h4&gt;
+&lt;h4 id='scale'&gt;Scale&lt;/h4&gt;
 
 &lt;p&gt;和名字的一样，&lt;code&gt;scale()&lt;/code&gt;方法用来放大一个元素，依然是在x-y轴平面，看示例：&lt;/p&gt;
-
-&lt;div id=&quot;scale1&quot;&gt;
-    &lt;div id=&quot;sca-inner1&quot;&gt;Normal Div&lt;/div&gt;
-    &lt;div id=&quot;sca-inner2&quot;&gt;transform:scale(1.5,1.3)&lt;/div&gt;
+&lt;div id='scale1'&gt;
+    &lt;div id='sca-inner1'&gt;Normal Div&lt;/div&gt;
+    &lt;div id='sca-inner2'&gt;transform:scale(1.5,1.3)&lt;/div&gt;
 &lt;/div&gt;
-
-
-&lt;h4&gt;Skew&lt;/h4&gt;
+&lt;h4 id='skew'&gt;Skew&lt;/h4&gt;
 
 &lt;p&gt;&lt;code&gt;skew()&lt;/code&gt;方法可以将元素按照指定参数进行扭曲，你需要指定x、y轴的扭曲角度，看示例：&lt;/p&gt;
-
-&lt;div id=&quot;skew1&quot;&gt;
-&lt;div id=&quot;sk-inner1&quot;&gt;Normal Div&lt;/div&gt;
-&lt;div id=&quot;sk-inner2&quot;&gt;transform:skew(30deg,0)&lt;/div&gt;
+&lt;div id='skew1'&gt;
+&lt;div id='sk-inner1'&gt;Normal Div&lt;/div&gt;
+&lt;div id='sk-inner2'&gt;transform:skew(30deg,0)&lt;/div&gt;
 &lt;/div&gt;
-
-
-&lt;h4&gt;Matrix&lt;/h4&gt;
+&lt;h4 id='matrix'&gt;Matrix&lt;/h4&gt;
 
 &lt;p&gt;&lt;code&gt;matrix()&lt;/code&gt;方法是以上所有2D效果的方法的总和，写法如下：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;div{
     transform: matrix(a,b,c,d,tx,ty);
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;本质上&lt;code&gt;scale&lt;/code&gt;、&lt;code&gt;skew&lt;/code&gt;、&lt;code&gt;rotate&lt;/code&gt;、&lt;code&gt;translate&lt;/code&gt;的效果都是通过&lt;code&gt;matrix&lt;/code&gt;实现的，&lt;code&gt;tx&lt;/code&gt;、&lt;code&gt;ty&lt;/code&gt;表示位移量，关于&lt;code&gt;matrix&lt;/code&gt;方法更详细的介绍可以参考这里：&lt;a href=&quot;http://www.zhangxinxu.com/wordpress/2012/06/css3-transform-matrix-%E7%9F%A9%E9%98%B5/&quot;&gt;理解CSS3 transform中的Matrix(矩阵)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;本质上&lt;code&gt;scale&lt;/code&gt;、&lt;code&gt;skew&lt;/code&gt;、&lt;code&gt;rotate&lt;/code&gt;、&lt;code&gt;translate&lt;/code&gt;的效果都是通过&lt;code&gt;matrix&lt;/code&gt;实现的，&lt;code&gt;tx&lt;/code&gt;、&lt;code&gt;ty&lt;/code&gt;表示位移量，关于&lt;code&gt;matrix&lt;/code&gt;方法更详细的介绍可以参考这里：&lt;a href='http://www.zhangxinxu.com/wordpress/2012/06/css3-transform-matrix-%E7%9F%A9%E9%98%B5/'&gt;理解CSS3 transform中的Matrix(矩阵)&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3&gt;CSS3 3D Transform&lt;/h3&gt;
+&lt;h3 id='css3_3d_transform'&gt;CSS3 3D Transform&lt;/h3&gt;
 
 &lt;p&gt;了解了2D Transform之后，3D Transform的概念也不会太难，他给HTML元素在x-y平面加上了z轴，我们一个个来看看：&lt;/p&gt;
-
 &lt;ul&gt;
     &lt;li&gt;&lt;code&gt;translate3d(tx,ty,tz)&lt;/code&gt;：他定义了一个3D的位移方法，增加了z轴的偏移量&lt;/li&gt;
     &lt;li&gt;&lt;code&gt;translateZ(tz)&lt;/code&gt;：这个方法只在Z轴偏移，与&lt;code&gt;translateX()&lt;/code&gt;和&lt;code&gt;translateY()&lt;/code&gt;相似&lt;/li&gt;
@@ -613,91 +892,65 @@ p#animate:hover {
     &lt;li&gt;&lt;code&gt;rotate3d(rx,ry,rz)&lt;/code&gt;：将元素以给定参数的某一个轴方向旋转&lt;/li&gt;
     &lt;li&gt;&lt;code&gt;rotateX(angle)，rotateY(angle)&lt;/code&gt;和&lt;code&gt;rotateZ(angle)&lt;/code&gt;：只按照某一个轴旋转，&lt;code&gt;rotate3d(1,0,0,30deg)&lt;/code&gt;相当于&lt;code&gt;rotateX(30deg)&lt;/code&gt;，其他类推。&lt;/li&gt;
 &lt;/ul&gt;
-
-
 &lt;p&gt;来看看例子：&lt;/p&gt;
-
-&lt;div class=&quot;transform-con&quot;&gt;
-&lt;div id=&quot;trans-3&quot; class=&quot;inner&quot;&gt;
-width:100%;&lt;br&gt;
-height:100%;&lt;br&gt;
+&lt;div class='transform-con'&gt;
+&lt;div class='inner' id='trans-3'&gt;
+width:100%;&lt;br /&gt;
+height:100%;&lt;br /&gt;
 transform: translateZ(-200px);
 &lt;/div&gt;
-&lt;/div&gt;
-
-
-
-
-&lt;div class=&quot;transform-con&quot;&gt;
-&lt;div id=&quot;trans-31&quot; class=&quot;inner&quot;&gt;
-width:100%;&lt;br&gt;
-height:100%;&lt;br&gt;
+&lt;/div&gt;&lt;div class='transform-con'&gt;
+&lt;div class='inner' id='trans-31'&gt;
+width:100%;&lt;br /&gt;
+height:100%;&lt;br /&gt;
 transform: translateZ(100px);
 &lt;/div&gt;
-&lt;/div&gt;
-
-
-
-
-&lt;div class=&quot;transform-con&quot;&gt;
-&lt;div id=&quot;rotate-31&quot; class=&quot;inner&quot;&gt;
-width:100%;&lt;br&gt;
-height:100%;&lt;br&gt;
+&lt;/div&gt;&lt;div class='transform-con'&gt;
+&lt;div class='inner' id='rotate-31'&gt;
+width:100%;&lt;br /&gt;
+height:100%;&lt;br /&gt;
 transform: rotateX(45deg);
 &lt;/div&gt;
-&lt;/div&gt;
-
-
-&lt;div class=&quot;transform-con&quot;&gt;
-&lt;div id=&quot;rotate-32&quot; class=&quot;inner&quot;&gt;
-width:100%;&lt;br&gt;
-height:100%;&lt;br&gt;
+&lt;/div&gt;&lt;div class='transform-con'&gt;
+&lt;div class='inner' id='rotate-32'&gt;
+width:100%;&lt;br /&gt;
+height:100%;&lt;br /&gt;
 transform: rotateY(45deg);
 &lt;/div&gt;
-&lt;/div&gt;
-
-
-&lt;div class=&quot;transform-con&quot;&gt;
-&lt;div id=&quot;rotate-33&quot; class=&quot;inner&quot;&gt;
-width:100%;&lt;br&gt;
-height:100%;&lt;br&gt;
+&lt;/div&gt;&lt;div class='transform-con'&gt;
+&lt;div class='inner' id='rotate-33'&gt;
+width:100%;&lt;br /&gt;
+height:100%;&lt;br /&gt;
 transform: rotateZ(45deg);
 &lt;/div&gt;
 &lt;/div&gt;
-
-
 &lt;p&gt;任何有3D变换的元素，不论最后只是做了2D的变换，或者什么都没做&lt;code&gt;translate3d(0,0,0)&lt;/code&gt;，都会触发浏览器去计算。不过，以后会更新优化也不一定。&lt;/p&gt;
 
-&lt;h3&gt;Perspective&lt;/h3&gt;
+&lt;h3 id='perspective'&gt;Perspective&lt;/h3&gt;
 
 &lt;p&gt;激活元素的3D空间，需要&lt;code&gt;perspective&lt;/code&gt;属性，写法有两种：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;transform: perspective( 600px );
 /**或者**/
-perspective: 600px;
-&lt;/code&gt;&lt;/pre&gt;
+perspective: 600px;&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;这两种不同写法，当应用元素只有一个时候，并没有区别，当有多个元素的时候，我们看看效果：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#pers-red .item{
   background: red;
   transform: perspective( 400px ) rotateY(45deg);
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;div class=&quot;pers-con&quot; id=&quot;pers-red&quot;&gt;
-&lt;div class=&quot;item&quot;&gt;&amp;nbsp;&lt;/div&gt;
-&lt;div class=&quot;item&quot;&gt;&amp;nbsp;&lt;/div&gt;
-&lt;div class=&quot;item&quot;&gt;&amp;nbsp;&lt;/div&gt;
-&lt;div class=&quot;item&quot;&gt;&amp;nbsp;&lt;/div&gt;
-&lt;div class=&quot;item&quot;&gt;&amp;nbsp;&lt;/div&gt;
-&lt;div class=&quot;item&quot;&gt;&amp;nbsp;&lt;/div&gt;
-&lt;div class=&quot;item&quot;&gt;&amp;nbsp;&lt;/div&gt;
-&lt;div class=&quot;item&quot;&gt;&amp;nbsp;&lt;/div&gt;
-&lt;div class=&quot;item&quot;&gt;&amp;nbsp;&lt;/div&gt;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;div class='pers-con' id='pers-red'&gt;
+&lt;div class='item'&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div class='item'&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div class='item'&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div class='item'&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div class='item'&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div class='item'&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div class='item'&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div class='item'&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div class='item'&gt;&amp;nbsp;&lt;/div&gt;
 &lt;/div&gt;
-
-
 &lt;pre&gt;&lt;code&gt;#pers-blue {
   perspective: 400px;
 }
@@ -705,78 +958,66 @@ perspective: 600px;
 #pers-blue .item{
   background: blue;
   transform: rotateY( 45deg );
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;div class=&quot;pers-con&quot; id=&quot;pers-blue&quot;&gt;
-&lt;div class=&quot;item&quot;&gt;&amp;nbsp;&lt;/div&gt;
-&lt;div class=&quot;item&quot;&gt;&amp;nbsp;&lt;/div&gt;
-&lt;div class=&quot;item&quot;&gt;&amp;nbsp;&lt;/div&gt;
-&lt;div class=&quot;item&quot;&gt;&amp;nbsp;&lt;/div&gt;
-&lt;div class=&quot;item&quot;&gt;&amp;nbsp;&lt;/div&gt;
-&lt;div class=&quot;item&quot;&gt;&amp;nbsp;&lt;/div&gt;
-&lt;div class=&quot;item&quot;&gt;&amp;nbsp;&lt;/div&gt;
-&lt;div class=&quot;item&quot;&gt;&amp;nbsp;&lt;/div&gt;
-&lt;div class=&quot;item&quot;&gt;&amp;nbsp;&lt;/div&gt;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;div class='pers-con' id='pers-blue'&gt;
+&lt;div class='item'&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div class='item'&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div class='item'&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div class='item'&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div class='item'&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div class='item'&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div class='item'&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div class='item'&gt;&amp;nbsp;&lt;/div&gt;
+&lt;div class='item'&gt;&amp;nbsp;&lt;/div&gt;
 &lt;/div&gt;
-
-
 &lt;p&gt;上面这两种写法，都触发了元素的3D行为，函数型的写法&lt;code&gt;transform:perspective(400px)&lt;/code&gt;适用于单个元素，会对每一个元素做3D视图的变换，而&lt;code&gt;perspective:400px&lt;/code&gt;的写法，需写在父元素上，然后以父元素的视角，对多个子元素进行3D变换，多个子元素共享同一个3D空间，可以自己打开console修改感受一下。&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;perspective&lt;/code&gt;的参数值，决定了3D效果的强烈程度，可以想象为距离多远去观察元素。值越大，观察距离就越远，同样的旋转值，看起来效果就弱一些；值越小，距离越近，3D效果就更强烈。&lt;/p&gt;
 
-&lt;h4&gt;perspective-orgin&lt;/h4&gt;
+&lt;h4 id='perspectiveorgin'&gt;perspective-orgin&lt;/h4&gt;
 
 &lt;p&gt;通常，对一个元素进行3D变换的时候，变换点都是元素的中心点，如果你想以其他的位置为变换点，那就可以用这个属性来做调整：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;perspective-orgin: 20% 70%;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;perspective-orgin: 20% 70%;&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;这个是默认值的&lt;code&gt;perspective-orign:50% 50%&lt;/code&gt;：&lt;/p&gt;
-
-&lt;div id=&quot;transform1&quot;&gt;
-&lt;div class=&quot;inner&quot;&gt;
-&lt;img src=&quot;http://lorempixel.com/150/150/city&quot; alt=&quot;Nature&quot;&gt;
-&lt;img src=&quot;http://lorempixel.com/150/150/food&quot; alt=&quot;Nature&quot;&gt;
-&lt;img src=&quot;http://lorempixel.com/150/150/people&quot; alt=&quot;Nature&quot;&gt;
+&lt;p&gt;这个是默认值的&lt;code&gt;perspective-orign:50% 50%&lt;/code&gt;： &lt;div id='transform1'&gt;
+&lt;div class='inner'&gt;
+&lt;img alt='Nature' src='http://lorempixel.com/150/150/city' /&gt;
+&lt;img alt='Nature' src='http://lorempixel.com/150/150/food' /&gt;
+&lt;img alt='Nature' src='http://lorempixel.com/150/150/people' /&gt;
 &lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
+
+&lt;p&gt;这个是&lt;code&gt;perspective-orgin: 0% 50%;&lt;/code&gt; &lt;div id='transform1' sytle='-webkit-perspective-origin:0% 50%;perspective-origin:0% 50%'&gt;
+&lt;div class='inner'&gt;
+&lt;img alt='Nature' src='http://lorempixel.com/150/150/nature' /&gt;
+&lt;img alt='Nature' src='http://lorempixel.com/150/150/animals' /&gt;
+&lt;img alt='Nature' src='http://lorempixel.com/150/150/abstract' /&gt;
 &lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
 
-
-&lt;p&gt;这个是&lt;code&gt;perspective-orgin: 0% 50%;&lt;/code&gt;&lt;/p&gt;
-
-&lt;div id=&quot;transform1&quot; sytle=&quot;-webkit-perspective-origin:0% 50%;perspective-origin:0% 50%&quot;&gt;
-&lt;div class=&quot;inner&quot;&gt;
-&lt;img src=&quot;http://lorempixel.com/150/150/nature&quot; alt=&quot;Nature&quot;&gt;
-&lt;img src=&quot;http://lorempixel.com/150/150/animals&quot; alt=&quot;Nature&quot;&gt;
-&lt;img src=&quot;http://lorempixel.com/150/150/abstract&quot; alt=&quot;Nature&quot;&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-
-&lt;h4&gt;transform-style&lt;/h4&gt;
+&lt;h4 id='transformstyle'&gt;transform-style&lt;/h4&gt;
 
 &lt;p&gt;这个参数用来共享父元素的3D空间，这样说起来有些抽象，下面第一个翻卡片的例子中会讲到。&lt;/p&gt;
 
-&lt;h4&gt;backface-visibility&lt;/h4&gt;
+&lt;h4 id='backfacevisibility'&gt;backface-visibility&lt;/h4&gt;
 
 &lt;p&gt;backface-visibility 属性可用于隐藏内容的背面。默认情况下，背面可见，这意味着即使在翻转后，变换的内容仍然可见。但当 backface-visibility 设置为 hidden 时，旋转后内容将隐藏，因为旋转后正面将不再可见。该功能可帮助你模拟多面的对象，例如下例中使用的卡片。通过将 backface-visibility 设置为 hidden，可以确保只有正面可见。&lt;/p&gt;
 
-&lt;h2&gt;CSS3 动画实例&lt;/h2&gt;
+&lt;h2 id='css3_'&gt;CSS3 动画实例&lt;/h2&gt;
 
 &lt;p&gt;下面例子中的代码，为了方便查看都没有写浏览器前缀，也没有加入其他的修饰属性，所以实际应用时，不要忘记哦，当然也可以直接console查看。&lt;/p&gt;
 
-&lt;h3&gt;CSS3 翻纸牌&lt;/h3&gt;
+&lt;h3 id='css3_'&gt;CSS3 翻纸牌&lt;/h3&gt;
 
 &lt;p&gt;做一个翻纸牌的效果，结构很简单：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;&amp;lt;div id=&quot;cardflip&quot;&amp;gt;
-  &amp;lt;div id=&quot;card1&quot;&amp;gt;
-    &amp;lt;div class=&quot;front&quot;&amp;gt;1&amp;lt;/div&amp;gt;
-    &amp;lt;div class=&quot;back&quot;&amp;gt;2&amp;lt;/div&amp;gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;div id=&amp;quot;cardflip&amp;quot;&amp;gt;
+  &amp;lt;div id=&amp;quot;card1&amp;quot;&amp;gt;
+    &amp;lt;div class=&amp;quot;front&amp;quot;&amp;gt;1&amp;lt;/div&amp;gt;
+    &amp;lt;div class=&amp;quot;back&amp;quot;&amp;gt;2&amp;lt;/div&amp;gt;
   &amp;lt;/div&amp;gt;
-&amp;lt;/div&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
+&amp;lt;/div&amp;gt;&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;code&gt;.cardflip&lt;/code&gt;是整个3D效果的容器，&lt;code&gt;#card1&lt;/code&gt;是翻转效果的元素，&lt;code&gt;.front&lt;/code&gt;和&lt;code&gt;.back&lt;/code&gt;是翻转的两面。添加样式：&lt;/p&gt;
 
@@ -793,8 +1034,7 @@ perspective: 600px;
     position: absolute;
     transform-style: preserve-3d;
     transition: transform 1s;
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;首先给&lt;code&gt;#cardflip&lt;/code&gt;添加&lt;code&gt;perspective&lt;/code&gt;属性，这样才能触发3D变换，之后&lt;code&gt;#card1&lt;/code&gt;就在父元素的3D空间中了，用了&lt;code&gt;absolute&lt;/code&gt;来定位子元素，设置宽高都是&lt;code&gt;100%&lt;/code&gt;，这样就可以让&lt;code&gt;transform-origin&lt;/code&gt;在元素的中心点，这个后面再讨论。&lt;/p&gt;
 
@@ -805,8 +1045,7 @@ perspective: 600px;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;只有&lt;code&gt;#card1 div&lt;/code&gt;元素共享了外层元素的3D空间之后，3D变换的属性才能生效，这时候的&lt;code&gt;backface-visibility&lt;/code&gt;才有效，设置为&lt;code&gt;hidden&lt;/code&gt;。&lt;/p&gt;
 
@@ -821,56 +1060,48 @@ perspective: 600px;
 
 #card1.flipped {
     transform: rotateY( 180deg );
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;因为设置了&lt;code&gt;backface-visibility&lt;/code&gt;，而&lt;code&gt;.back&lt;/code&gt;默认就是以Y轴旋转了180度，空间想象一下，&lt;code&gt;.back&lt;/code&gt;就转到背面去了，所以&lt;code&gt;hidden&lt;/code&gt;属性生效，就看不到&lt;code&gt;.back&lt;/code&gt;了。&lt;/p&gt;
 
 &lt;p&gt;当&lt;code&gt;#card1&lt;/code&gt;添加了&lt;code&gt;.flipped&lt;/code&gt;的样式，&lt;code&gt;#card1&lt;/code&gt;以Y轴旋转了180度，这时候&lt;code&gt;.front&lt;/code&gt;转到了背面，而&lt;code&gt;.back&lt;/code&gt;从背面转到了前面，所以就完成了切换。这一段需要仔细的想一想。好了，看看下面的实例，点击即可翻转：&lt;/p&gt;
-
-&lt;div id=&quot;cardflip&quot;&gt;
-&lt;div id=&quot;card1&quot;&gt;
-&lt;div class=&quot;front&quot;&gt;1&lt;/div&gt;
-&lt;div class=&quot;back&quot;&gt;2&lt;/div&gt;
+&lt;div id='cardflip'&gt;
+&lt;div id='card1'&gt;
+&lt;div class='front'&gt;1&lt;/div&gt;
+&lt;div class='back'&gt;2&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
-
 &lt;p&gt;我们再给这个翻转加一些偏移的效果，看起来会不那么生硬。这就用到了&lt;code&gt;transform-origin&lt;/code&gt;，这个参数：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#card1 { transform-origin: left center; }
 
 #card1.flipped {
   transform: translateX( 100% ) rotateY( 180deg );
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;默认的&lt;code&gt;transform-origin&lt;/code&gt;是&lt;code&gt;center center&lt;/code&gt;，我们改成&lt;code&gt;left center&lt;/code&gt;之后，就不再以元素的x方向的中心为轴旋转，而是以元素的左边为Y轴旋转，所以还需要给整个&lt;code&gt;#card1&lt;/code&gt;加一个位移量&lt;code&gt;translate&lt;/code&gt;，值是&lt;code&gt;100%&lt;/code&gt;，就是元素本身的宽度。&lt;/p&gt;
 
 &lt;p&gt;可以在console里面去掉&lt;code&gt;#card1.flipped&lt;/code&gt;的&lt;code&gt;translate&lt;/code&gt;帮助理解。&lt;/p&gt;
-
-&lt;div id=&quot;cardflip1&quot;&gt;
-&lt;div id=&quot;card2&quot;&gt;
-&lt;div class=&quot;front&quot;&gt;1&lt;/div&gt;
-&lt;div class=&quot;back&quot;&gt;2&lt;/div&gt;
+&lt;div id='cardflip1'&gt;
+&lt;div id='card2'&gt;
+&lt;div class='front'&gt;1&lt;/div&gt;
+&lt;div class='back'&gt;2&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
-
 &lt;p&gt;这里有一点需要注意，当元素在z轴上有了位移，或者朝向负角度旋转，会导致元素在页面上无法被鼠标点击到，想像一下3D空间，这个元素已经位于整个页面平面的&lt;strong&gt;里面&lt;/strong&gt;，所以无法触及了。&lt;/p&gt;
 
-&lt;h3&gt;CSS3 立方体&lt;/h3&gt;
+&lt;h3 id='css3_'&gt;CSS3 立方体&lt;/h3&gt;
 
 &lt;p&gt;做完了反转卡片的效果，肯定还想做更炫的，来试试做一个立方体吧：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;&amp;lt;section id=&quot;cube-con&quot;&amp;gt;
-  &amp;lt;div id=&quot;cube&quot;&amp;gt;
-    &amp;lt;figure class=&quot;front&quot;&amp;gt;1&amp;lt;/figure&amp;gt;
-    &amp;lt;figure class=&quot;back&quot;&amp;gt;2&amp;lt;/figure&amp;gt;
-    &amp;lt;figure class=&quot;right&quot;&amp;gt;3&amp;lt;/figure&amp;gt;
-    &amp;lt;figure class=&quot;left&quot;&amp;gt;4&amp;lt;/figure&amp;gt;
-    &amp;lt;figure class=&quot;top&quot;&amp;gt;5&amp;lt;/figure&amp;gt;
-    &amp;lt;figure class=&quot;bottom&quot;&amp;gt;6&amp;lt;/figure&amp;gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;section id=&amp;quot;cube-con&amp;quot;&amp;gt;
+  &amp;lt;div id=&amp;quot;cube&amp;quot;&amp;gt;
+    &amp;lt;figure class=&amp;quot;front&amp;quot;&amp;gt;1&amp;lt;/figure&amp;gt;
+    &amp;lt;figure class=&amp;quot;back&amp;quot;&amp;gt;2&amp;lt;/figure&amp;gt;
+    &amp;lt;figure class=&amp;quot;right&amp;quot;&amp;gt;3&amp;lt;/figure&amp;gt;
+    &amp;lt;figure class=&amp;quot;left&amp;quot;&amp;gt;4&amp;lt;/figure&amp;gt;
+    &amp;lt;figure class=&amp;quot;top&amp;quot;&amp;gt;5&amp;lt;/figure&amp;gt;
+    &amp;lt;figure class=&amp;quot;bottom&amp;quot;&amp;gt;6&amp;lt;/figure&amp;gt;
   &amp;lt;/div&amp;gt;
 &amp;lt;/section&amp;gt;
 
@@ -894,8 +1125,7 @@ perspective: 600px;
     display: block;
     position: absolute;
     border: 2px solid black;
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;这一部分和上一个例子没有太大的差别，应该都能理解每一个属性的含义了。&lt;/p&gt;
 
@@ -904,15 +1134,13 @@ perspective: 600px;
 #cube .right  { transform: rotateY(  90deg ) translateZ( 100px ); }
 #cube .left   { transform: rotateY( -90deg ) translateZ( 100px ); }
 #cube .top    { transform: rotateX(  90deg ) translateZ( 100px ); }
-#cube .bottom { transform: rotateX( -90deg ) translateZ( 100px ); }
-&lt;/code&gt;&lt;/pre&gt;
+#cube .bottom { transform: rotateX( -90deg ) translateZ( 100px ); }&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;立方体的每一个面，经过&lt;code&gt;rotate&lt;/code&gt;旋转之后，就放置在了他该被放置的地方，但是这时候会发现，这些层叠加在一起，还没有成为一个立方体，这时候需要给Z轴一个位移，想象一下我们的视角点在&lt;code&gt;#cube&lt;/code&gt;正中间，拉伸z轴之后，&lt;code&gt;.right&lt;/code&gt;、&lt;code&gt;left&lt;/code&gt;等面就会有一定的角度，参考画画时候的透视，因为刚好在中心点，所以位移量就是宽度的一半。分步过程可以看&lt;a href=&quot;http://desandro.github.io/3dtransforms/examples/cube-01-steps.html&quot;&gt;这里&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;立方体的每一个面，经过&lt;code&gt;rotate&lt;/code&gt;旋转之后，就放置在了他该被放置的地方，但是这时候会发现，这些层叠加在一起，还没有成为一个立方体，这时候需要给Z轴一个位移，想象一下我们的视角点在&lt;code&gt;#cube&lt;/code&gt;正中间，拉伸z轴之后，&lt;code&gt;.right&lt;/code&gt;、&lt;code&gt;left&lt;/code&gt;等面就会有一定的角度，参考画画时候的透视，因为刚好在中心点，所以位移量就是宽度的一半。分步过程可以看&lt;a href='http://desandro.github.io/3dtransforms/examples/cube-01-steps.html'&gt;这里&lt;/a&gt;。&lt;/p&gt;
 
 &lt;p&gt;因为z轴拉伸之后，原来的对象会被放大一些，这样就会模糊掉，为了去掉这个影响，我们需要把立方体再推回原来的视角平面，于是：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;#cube { transform: translateZ( -100px ); }
-&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;#cube { transform: translateZ( -100px ); }&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;完成了立方体，想让某个面旋转到前方，只需转动整个立方体，不用去调整每个面：&lt;/p&gt;
 
@@ -924,39 +1152,30 @@ perspective: 600px;
 #cube.show-bottom { transform: translateZ( -100px ) rotateX(   90deg ); }
 
 /**还有过渡效果**/
-#cube { transition: transform 1s; }
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;section id=&quot;cube-con&quot;&gt;&lt;/p&gt;
-
-&lt;div id=&quot;cube&quot;&gt;
-&lt;figure class=&quot;front&quot;&gt;1&lt;/figure&gt;
-&lt;figure class=&quot;back&quot;&gt;2&lt;/figure&gt;
-&lt;figure class=&quot;right&quot;&gt;3&lt;/figure&gt;
-&lt;figure class=&quot;left&quot;&gt;4&lt;/figure&gt;
-&lt;figure class=&quot;top&quot;&gt;5&lt;/figure&gt;
-&lt;figure class=&quot;bottom&quot;&gt;6&lt;/figure&gt;
+#cube { transition: transform 1s; }&lt;/code&gt;&lt;/pre&gt;
+&lt;section id='cube-con'&gt;
+&lt;div id='cube'&gt;
+&lt;figure class='front'&gt;1&lt;/figure&gt;
+&lt;figure class='back'&gt;2&lt;/figure&gt;
+&lt;figure class='right'&gt;3&lt;/figure&gt;
+&lt;figure class='left'&gt;4&lt;/figure&gt;
+&lt;figure class='top'&gt;5&lt;/figure&gt;
+&lt;figure class='bottom'&gt;6&lt;/figure&gt;
 &lt;/div&gt;
-
-
-&lt;p&gt;&lt;/section&gt;&lt;/p&gt;
-
-&lt;div id=&quot;cube-btn&quot;&gt;
-&lt;button data-class=&quot;show-front&quot;&gt;Show Front&lt;/button&gt;
-&lt;button data-class=&quot;show-back&quot;&gt;Show Back&lt;/button&gt;
-&lt;button data-class=&quot;show-right&quot;&gt;Show Right&lt;/button&gt;
-&lt;button data-class=&quot;show-left&quot;&gt;Show Left&lt;/button&gt;
-&lt;button data-class=&quot;show-top&quot;&gt;Show Top&lt;/button&gt;
-&lt;button data-class=&quot;show-bottom&quot;&gt;Show Bottom&lt;/button&gt;
+&lt;/section&gt;&lt;div id='cube-btn'&gt;
+&lt;button data-class='show-front'&gt;Show Front&lt;/button&gt;
+&lt;button data-class='show-back'&gt;Show Back&lt;/button&gt;
+&lt;button data-class='show-right'&gt;Show Right&lt;/button&gt;
+&lt;button data-class='show-left'&gt;Show Left&lt;/button&gt;
+&lt;button data-class='show-top'&gt;Show Top&lt;/button&gt;
+&lt;button data-class='show-bottom'&gt;Show Bottom&lt;/button&gt;
 &lt;/div&gt;
-
-
-&lt;h3&gt;3D 旋转跑马灯&lt;/h3&gt;
+&lt;h3 id='3d_'&gt;3D 旋转跑马灯&lt;/h3&gt;
 
 &lt;p&gt;做幻灯片展示的方法有很多，我们用CSS3的3D技术来试试看：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;&amp;lt;section class=&quot;container&quot;&amp;gt;
-  &amp;lt;div id=&quot;carousel&quot;&amp;gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;section class=&amp;quot;container&amp;quot;&amp;gt;
+  &amp;lt;div id=&amp;quot;carousel&amp;quot;&amp;gt;
     &amp;lt;figure&amp;gt;1&amp;lt;/figure&amp;gt;
     &amp;lt;figure&amp;gt;2&amp;lt;/figure&amp;gt;
     &amp;lt;figure&amp;gt;3&amp;lt;/figure&amp;gt;
@@ -991,8 +1210,7 @@ perspective: 600px;
   left: 10px;
   top: 10px;
   border: 2px solid black;
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;上面这一段，没什么特别要说明的，基本的结构样式，以及之前重点说明过的&lt;code&gt;perspective&lt;/code&gt;和&lt;code&gt;preserve-3d&lt;/code&gt;。现在有9个卡片，要环绕成一圈，那么每个的角度就是&lt;code&gt;40deg&lt;/code&gt; （360/90）。&lt;/p&gt;
 
@@ -1004,21 +1222,19 @@ perspective: 600px;
 #carousel figure:nth-child(6) { transform: rotateY( 200deg ); }
 #carousel figure:nth-child(7) { transform: rotateY( 240deg ); }
 #carousel figure:nth-child(8) { transform: rotateY( 280deg ); }
-#carousel figure:nth-child(9) { transform: rotateY( 320deg ); }
-&lt;/code&gt;&lt;/pre&gt;
+#carousel figure:nth-child(9) { transform: rotateY( 320deg ); }&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;好了，和立方体的例子到同样的步骤了，现在所有的卡片做了Y轴旋转，但因为观察的视角点没有变，所以看起来还是平面，如下这样：&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://ww3.sinaimg.cn/large/8b8af2c8jw1e84s4cel0uj208e05raa0.jpg&quot; alt=&quot;caro&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='caro' src='http://ww3.sinaimg.cn/large/8b8af2c8jw1e84s4cel0uj208e05raa0.jpg' /&gt;&lt;/p&gt;
 
 &lt;p&gt;立方体的位移很好计算，只要是宽度、高度、或者深度的一半就可以了，这个旋转的跑马灯应该怎么计算呢？&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://ww1.sinaimg.cn/large/8b8af2c8jw1e84s5efyxej20f00b6aaj.jpg&quot; alt=&quot;caro-cmpu&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt='caro-cmpu' src='http://ww1.sinaimg.cn/large/8b8af2c8jw1e84s5efyxej20f00b6aaj.jpg' /&gt;&lt;/p&gt;
 
 &lt;p&gt;从旋转跑马灯的上方观察，每个卡片的宽度是&lt;code&gt;210px&lt;/code&gt;，角度是&lt;code&gt;40deg&lt;/code&gt;，要计算到中心点的距离，根据旁边的三角形可得：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;r = 105 / tan(20deg) = 288px
-&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;r = 105 / tan(20deg) = 288px&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;所以：&lt;/p&gt;
 
@@ -1030,8 +1246,7 @@ perspective: 600px;
 #carousel figure:nth-child(6) {transform:rotateY(200deg) translateZ(288px);}
 #carousel figure:nth-child(7) {transform:rotateY(240deg) translateZ(288px);}
 #carousel figure:nth-child(8) {transform:rotateY(280deg) translateZ(288px);}
-#carousel figure:nth-child(9) {transform:rotateY(320deg) translateZ(288px);}
-&lt;/code&gt;&lt;/pre&gt;
+#carousel figure:nth-child(9) {transform:rotateY(320deg) translateZ(288px);}&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;知道了计算方法，如果要改变卡片的个数，或者宽度，只要按照那个公式再计算就好：&lt;/p&gt;
 
@@ -1039,63 +1254,54 @@ perspective: 600px;
   Math.tan( ( ( Math.PI * 2 ) / numberOfPanels ) / 2 ) );
 // or simplified to
 var tz = Math.round( ( panelSize / 2 ) / 
-  Math.tan( Math.PI / numberOfPanels ) );
-&lt;/code&gt;&lt;/pre&gt;
+  Math.tan( Math.PI / numberOfPanels ) );&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;计算好卡片的位置之后，然后旋转&lt;code&gt;#carousel&lt;/code&gt;就可以了，当然这个要用js来控制了：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;#carousel{
     transform: translateZ( -288px ) rotateY( -160deg );
-}
-&lt;/code&gt;&lt;/pre&gt;
+}&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;js代码如下：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$(function(){
-    $('#car-pre').click(function(){
-        var deg = $('#carousel').attr('data-deg') || 0;
+    $(&amp;#39;#car-pre&amp;#39;).click(function(){
+        var deg = $(&amp;#39;#carousel&amp;#39;).attr(&amp;#39;data-deg&amp;#39;) || 0;
         deg = parseInt(deg)+40;
 
-        var value = 'translateZ(-288px) rotateY('+deg+'deg)';
+        var value = &amp;#39;translateZ(-288px) rotateY(&amp;#39;+deg+&amp;#39;deg)&amp;#39;;
 
-        $('#carousel')
-            .attr('data-deg',deg)
+        $(&amp;#39;#carousel&amp;#39;)
+            .attr(&amp;#39;data-deg&amp;#39;,deg)
             .css({
-                '-webkit-transform':value
-                ,'-moz-transform':value
-                ,'-o-transform':value
-                ,'transform':value
+                &amp;#39;-webkit-transform&amp;#39;:value
+                ,&amp;#39;-moz-transform&amp;#39;:value
+                ,&amp;#39;-o-transform&amp;#39;:value
+                ,&amp;#39;transform&amp;#39;:value
             });
     });
-    $('#car-next').click(function(){
-        var deg = $('#carousel').attr('data-deg') || 0;
+    $(&amp;#39;#car-next&amp;#39;).click(function(){
+        var deg = $(&amp;#39;#carousel&amp;#39;).attr(&amp;#39;data-deg&amp;#39;) || 0;
         deg = parseInt(deg)-40;
 
-        var value = 'translateZ(-288px) rotateY('+deg+'deg)';
+        var value = &amp;#39;translateZ(-288px) rotateY(&amp;#39;+deg+&amp;#39;deg)&amp;#39;;
 
-        $('#carousel')
-            .attr('data-deg',deg)
+        $(&amp;#39;#carousel&amp;#39;)
+            .attr(&amp;#39;data-deg&amp;#39;,deg)
             .css({
-                '-webkit-transform':value
-                ,'-moz-transform':value
-                ,'-o-transform':value
-                ,'transform':value
+                &amp;#39;-webkit-transform&amp;#39;:value
+                ,&amp;#39;-moz-transform&amp;#39;:value
+                ,&amp;#39;-o-transform&amp;#39;:value
+                ,&amp;#39;transform&amp;#39;:value
             });
-    });
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;section id=&quot;caro-con&quot;&gt;&lt;div id=&quot;carousel&quot;&gt;&lt;figure&gt;1&lt;/figure&gt;&lt;figure&gt;2&lt;/figure&gt;&lt;figure&gt;3&lt;/figure&gt;&lt;figure&gt;4&lt;/figure&gt;&lt;figure&gt;5&lt;/figure&gt;&lt;figure&gt;6&lt;/figure&gt;&lt;figure&gt;7&lt;/figure&gt;&lt;figure&gt;8&lt;/figure&gt;&lt;figure&gt;9&lt;/figure&gt;&lt;/div&gt;&lt;/section&gt;&lt;/p&gt;
-
-&lt;div id=&quot;car-btn&quot;&gt;
-&lt;button id=&quot;car-pre&quot;&gt;&amp;lt; Prev&lt;/button&gt;
-&lt;button id=&quot;car-next&quot;&gt;Next &amp;gt;&lt;/button&gt;
+    });&lt;/code&gt;&lt;/pre&gt;
+&lt;section id='caro-con'&gt;&lt;div id='carousel'&gt;&lt;figure&gt;1&lt;/figure&gt;&lt;figure&gt;2&lt;/figure&gt;&lt;figure&gt;3&lt;/figure&gt;&lt;figure&gt;4&lt;/figure&gt;&lt;figure&gt;5&lt;/figure&gt;&lt;figure&gt;6&lt;/figure&gt;&lt;figure&gt;7&lt;/figure&gt;&lt;figure&gt;8&lt;/figure&gt;&lt;figure&gt;9&lt;/figure&gt;&lt;/div&gt;&lt;/section&gt;&lt;div id='car-btn'&gt;
+&lt;button id='car-pre'&gt;&amp;lt; Prev&lt;/button&gt;
+&lt;button id='car-next'&gt;Next &amp;gt;&lt;/button&gt;
 &lt;/div&gt;
+&lt;h2 id='id434'&gt;结语&lt;/h2&gt;
 
-
-&lt;h2&gt;结语&lt;/h2&gt;
-
-&lt;p&gt;终于完成了这篇，梳理的过程对我自己很有提高，希望对你也能有些帮助，有兴趣可以关注我，期待下以后的博客~&lt;/p&gt;
-</content>
+&lt;p&gt;终于完成了这篇，梳理的过程对我自己很有提高，希望对你也能有些帮助，有兴趣可以关注我，期待下以后的博客~&lt;/p&gt;</content>
    </entry>
    
  
