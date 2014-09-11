@@ -5,6 +5,7 @@ description: 这里罗列的是一些github的学习教程。
 category: notes
 tags: [github]
 ---
+{% include JB/setup %}
 
 ###1.Github Pages极简教程   
 [http://www.yangzhiping.com/tech/writing-space.html](http://www.yangzhiping.com/tech/writing-space.html "http://www.yangzhiping.com/tech/writing-space.html")
