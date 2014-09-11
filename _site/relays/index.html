@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--
+    * preAuthor:         BeiYuu ;
+    * blogAuthor :      Miantang
+    -->
+    <meta charset="utf-8" />
+    <title>Blog of Miantang</title>
+    <meta name="author" content="Miantang" />
+    <meta name="renderer" content="webkit">
+    <meta name="description" content="Miantang's Blog" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="/css/default.css" type="text/css" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="alternate" type="application/atom+xml" title="Recent Entries" href="/atom.xml" />
+    <script src="/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+</head>
+<body>
+
+    <div class="home-menu">
+        <div class="home-icon-con">
+            <a class="home-menu-icon" href="/">Miantang</a>
+            <a class="home-follow" href="#" title="Contact Me">+</a>
+        </div>
+        <div class="home-contact">
+            <a href="http://weibo.com/mt233/" target="_blank" style="margin-left:-5px;"><img src="http://www.weibo.com/favicon.ico" alt="" width="25"/></a>
+            <a href="http://www.douban.com/people/mt233/" target="_blank" style="text-align:center;"><img src="http://www.douban.com/favicon.ico" alt="" width="22"/></a>
+            <a href="https://github.com/Miantang" target="_blank" style="text-align:right"><img src="https://github.global.ssl.fastly.net/favicon.ico" alt="" width="22"/></a>
+        </div>
+    </div>
+
+    <div class='index-content relays'>
+    <div class='section'>
+        <ul class='artical-cate'>
+            <li style='text-align:left'><a href='/'><span>Notes</span></a></li>
+            <li style='text-align:left'><a href='/mood'><span>Mood</span></a></li>
+            <li class='on' style='text-align:left'><a href='/relays'><span>Relays</span></a></li>
+            <li style='text-align:left'><a href='/tags.html'><span>Tags</span></a></li>
+            <li style='text-align:left'><a href='/about.html'><span>About</span></a></li>
+        </ul>
+
+        <div class='cate-bar'><span id='cateBar' /></div>
+
+        <ul class='artical-list'>
+        
+            <li>
+                <h2><a href='/relays/vimtutor'>Git时代的VIM不完全使用教程</a></h2>
+                <div class='title-desc'>在Git流行的时代，VIM的生态环境也有了长足的进步，令人感动。</div>
+            </li>
+        
+            <li>
+                <h2><a href='/relays/untrust'>一个Javascript程序员的源代码游戏</a></h2>
+                <div class='title-desc'>This is a A meta-JavaScript adventure game.The game presents you with a roguelike-like playing environment and a console window with the JavaScript code generating each level. As loaded, each level is unbeatable, and most of the JavaScript is blocked from editing. The challenge is to open a path to the next level using only the limited tools left open to you.</div>
+            </li>
+        
+            <li>
+                <h2><a href='/relays/writing'>理想的写作环境：Git+Github+Markdown+Jekyll</a></h2>
+                <div class='title-desc'>理想的写作环境：Git+Github+Markdown+Jekyll</div>
+            </li>
+        
+            <li>
+                <h2><a href='/relays/whriting'>Github的学习教程</a></h2>
+                <div class='title-desc'>理想的写作环境：Git+Github+Markdown+Jekyll</div>
+            </li>
+        
+            <li>
+                <h2><a href='/relays/css3-animation'>CSS3动画详解</a></h2>
+                <div class='title-desc'>随着低版本IE份额下降，以及移动端流量的增长，在项目中也可以大胆使用CSS3动画来增强体验和提高产品的优雅程度，对那些不支持的浏览器也不用再费心去做更多兼容，所以，我们来研究下CSS3动画，到底应该怎么用。</div>
+            </li>
+        
+        </ul>
+    </div>
+    <div class='aside'>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        function animateBar($item,noAni){
+            var spanLeft = $item.find('span').offset().left;
+            var conLeft = $item.parent().offset().left;
+            var left = spanLeft - conLeft;
+            var width = $item.find('span').width() + 8;
+
+            if(noAni){
+                $('#cateBar').css({left:left,width:width})
+            }else{
+                $('#cateBar').stop().animate({left:left,width:width},300)
+            }
+        }
+
+        var waitForFinalEvent = (function () {
+            var timers = {};
+            return function (callback, ms, uniqueId) {
+                if (!uniqueId) {
+                    uniqueId = "Don't call this twice without a uniqueId";
+                }
+                if (timers[uniqueId]) {
+                    clearTimeout (timers[uniqueId]);
+                }
+                timers[uniqueId] = setTimeout(callback, ms);
+            };
+        })();
+
+        $('.artical-cate li').mouseenter(function(){
+            animateBar($(this));
+        }).mouseleave(function(){
+            animateBar($('.artical-cate .on'));
+        });
+
+        $(window).resize(function(e){
+            waitForFinalEvent(function(){
+                animateBar($('.artical-cate .on'));
+            })
+        })
+        animateBar($('.artical-cate .on'),true);
+    });
+</script>
+
+    <script type="text/javascript">
+        $(function(){
+            $('.home-follow').click(function(e){
+                e.preventDefault();
+
+                if($('.home-contact').is(':visible')){
+                    $('.home-contact').slideUp(100);
+                }else{
+                    $('.home-contact').slideDown(100);
+                }
+            });
+        })
+    </script>
+</body>
+</html>
