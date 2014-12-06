@@ -93,7 +93,7 @@ pre ol{margin-left:25px;list-style-type:decimal;}
 .entry ul li{margin-bottom:5px;list-style:none;line-height:1.8em;}
 .entry ol{margin-bottom:25px;margin-left:25px;}
 
-.entry ol.art{margin-bottom:25px;margin-left:25px;margin-top: 100px;}
+.entry ol.art{margin-bottom:25px;margin-left:25px;margin-top: 120px;}
 .entry ol li{margin-bottom:5px;list-style:decimal;line-height:1.8em;}
 .entry blockquote{margin-left:25px;font-size:14px;font-style:italic}
 .entry img{max-width:670px;display:block;margin:10px auto;}
@@ -232,7 +232,7 @@ h3.about {color:#777;margin-top:20px;font-size:22px;margin-bottom:10px}
 }
 ul.tag_box  {
     margin-left: 45px;
-    margin-top: -85px;
+    margin-top: -45px;
 }
 .tag-name {
     float: left;
