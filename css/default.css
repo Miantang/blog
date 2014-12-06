@@ -228,9 +228,10 @@ h3.about {color:#777;margin-top:20px;font-size:22px;margin-bottom:10px}
     background: #1BA1E2;
     color:#F8F8F8;
     text-decoration:none;
-    margin: -30px -60px 7px 7px;
+    margin: 10px 10px 7px 7px;
 }
-.tag_box ul li {
+.tag_box ul {
+    margin-left: 45px;
     margin-top: -85px;
 }
 .tag-name {
