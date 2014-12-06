@@ -230,7 +230,7 @@ h3.about {color:#777;margin-top:20px;font-size:22px;margin-bottom:10px}
     text-decoration:none;
     margin: 10px 10px 7px 7px;
 }
-.tag_box ul {
+ul.tag_box  {
     margin-left: 45px;
     margin-top: -85px;
 }
