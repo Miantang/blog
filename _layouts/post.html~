@@ -24,9 +24,9 @@ layout: default
         {% include JB/tags_list %}<!-- <a href="{{ site.baseurl }}/tags.html"> -->
          </ul>
         {% endunless %}  
-        <ol class="art">
+        <ul class="art">
         {{ content }}
-        </ol>
+        </ul>
         <div id="disqus_container">
             <div style="margin-bottom:20px" class="right">
                     <!-- JiaThis Button BEGIN -->
