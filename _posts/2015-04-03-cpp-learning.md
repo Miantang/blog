@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Does C support function overloading like C++?
-description: 二叉树作为一种十分重要的数据结构，基本的遍历方式有三种，先序，中序，后序。一般可以用递归的形式来遍历。而非递归则需要采用堆栈俩模拟，其中先序和中序较好实现，但后序相对会难点。
+description: A Variable Argument List is not Function Overloading
 category: notes
 tags: [编程学习]
 ---
