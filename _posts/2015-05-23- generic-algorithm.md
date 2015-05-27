@@ -40,11 +40,12 @@ tags: [编程学习]
 假如lambda函数体内包含单一return语句之外的内容，且未指定返回类型，则返回void。
 
 **假如，非单一return且未指定返回类型，但是返回了void之外的其他类型，会产生编译错误。**
+
 ```c++
-//错误：不能推断lambda返回类型。
-transform(v.begin(), v.end(), v.begin(), [](int i) { if(i < 0) return -i; else return i;});
-//正确：
-transform(v.begin(), v.end(), v.begin(), [](int i) -> int { if(i < 0) return -i; else return i;});
+    //错误：不能推断lambda返回类型。
+    transform(v.begin(), v.end(), v.begin(), [](int i) { if(i < 0) return -i; else return i;});
+    //正确：
+    transform(v.begin(), v.end(), v.begin(), [](int i) -> int { if(i < 0) return -i; else return i;});
 ```
     
 **然而，我[这段程序](https://github.com/Miantang/PAT-Advance/blob/master/NowCoder-Practice/1002-2.cpp)不管指定int,bool,或者不指定，都不报错但报warning，原因？**
