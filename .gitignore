@@ -10,4 +10,4 @@ phpmyadmin
 *.bak
 
 .idea
-
+.gitignore~
