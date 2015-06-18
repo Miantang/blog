@@ -18,6 +18,8 @@ tags: [Hexo]
 
 <http://zipperary.com/2013/05/30/hexo-guide-4/>
 
+<https://github.com/iissnan/hexo-theme-next/wiki/%E5%88%9B%E5%BB%BA%E5%88%86%E7%B1%BB%E9%A1%B5%E9%9D%A2>
+
 过去的样式，截图留念。
 
 ![1](/blog/images/1.jpg)

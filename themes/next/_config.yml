@@ -10,6 +10,7 @@ menu:
 # Place your favicon.ico to /source directory.
 favicon: favicon.ico
 
+avatar: images/avatar.jpg
 # Set default keywords (Use a comma to separate)
 keywords: "Hexo,next"
 
@@ -29,7 +30,7 @@ icon_font: feather
 # Code Highlight theme
 # Available value: normal | night | night eighties | night blue | night bright
 # https://github.com/chriskempson/tomorrow-theme
-highlight_theme: normal
+highlight_theme: night eighties 
 
 
 # MathJax Support
@@ -44,7 +45,7 @@ mathjax:
 #  - post    expand on posts automatically. Default.
 #  - always  expand for all pages automatically
 #  - hide    expand only when click on the sidebar toggle icon.
-sidebar: post
+sidebar: always
 #sidebar: always
 #sidebar: hide
 

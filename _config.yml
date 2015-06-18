@@ -14,7 +14,7 @@ timezone:
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://ppii.in/blog
 root: /blog/
-permalink: :year-:month-:day-:title/
+permalink: :year/:month/:day/:title/
 permalink_defaults:
 
 # Directory
@@ -72,6 +72,10 @@ deploy:
   repo: git@github.com:Miantang/blog.git
   branch: gh-pages
 
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
 # =============================================================================
 # NexT Theme configuration
 # =============================================================================
