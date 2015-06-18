@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  
+  <title><![CDATA[Blog of MiTan]]></title>
+  
+  <link href="/blog/atom.xml" rel="self"/>
+  <link href="http://ppii.in/blog/blog//"/>
+  <updated>2015-06-18T17:00:51.105Z</updated>
+  <id>http://ppii.in/blog/blog//</id>
+  
+  <author>
+    <name><![CDATA[面汤]]></name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[将博客从jekyll迁移到Hexo]]></title>
+    <link href="http://ppii.in/blog/blog/2015/06/18/jekyll-to-hexo/"/>
+    <id>http://ppii.in/blog/blog/2015/06/18/jekyll-to-hexo/</id>
+    <published>2015-06-17T16:00:00.000Z</published>
+    <updated>2015-06-18T17:00:51.105Z</updated>
+    <content type="html"><![CDATA[<p>本博客建立之初，也只是能让自己能有一个合适的地方保存自己的学习笔记。并且Github天然地支持Markdown渲染，于是十分乐意地按照官方的教程基于jekyll搭建了这个博客。虽然很多时候没有阶段性地整理自己的学习历程（大部分笔记都放在了对应的repository里），不过免费不限流量的github博客也满足了我DIY的兴趣，所以也常不定期地写下一下学习笔记和文章。</p>
+<p>具体迁移过程就不详述了，较为简单，以后有机会再自定义一些内容吧！</p>
+<p>比较喜欢的两个主题<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">nexT</a> , <a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">yilia</a></p>
+<p><em>nexT的字色默认是#555显得有些泛白，阅读困难</em></p>
+<p><a href="http://www.zhihu.com/question/24422335/answer/46357100" target="_blank" rel="external">参考资料</a></p>
+<p><a href="http://zipperary.com/2013/05/30/hexo-guide-4/" target="_blank" rel="external">http://zipperary.com/2013/05/30/hexo-guide-4/</a></p>
+<p><a href="https://github.com/iissnan/hexo-theme-next/wiki/%E5%88%9B%E5%BB%BA%E5%88%86%E7%B1%BB%E9%A1%B5%E9%9D%A2" target="_blank" rel="external">https://github.com/iissnan/hexo-theme-next/wiki/%E5%88%9B%E5%BB%BA%E5%88%86%E7%B1%BB%E9%A1%B5%E9%9D%A2</a></p>
+<p>过去的样式，截图留念。</p>
+<p><img src="/blog/images/1.jpg" alt="1"></p>
+<p><img src="/blog/images/2.jpg" alt="2"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[一切以实用为主]]>
+    
+    </summary>
+    
+      <category term="Hexo" scheme="http://ppii.in/blog/blog/tags/Hexo/"/>
+    
+      <category term="notes" scheme="http://ppii.in/blog/blog/categories/notes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[C++标准库算法遇到的一些问题]]></title>
+    <link href="http://ppii.in/blog/blog/2015/05/23/generic-algorithm/"/>
+    <id>http://ppii.in/blog/blog/2015/05/23/generic-algorithm/</id>
+    <published>2015-05-22T16:00:00.000Z</published>
+    <updated>2015-06-18T16:26:42.056Z</updated>
+    <content type="html"><![CDATA[<p>什么是<strong>泛型编程</strong>：</p>
+<p>简而言之，就是 <strong>用不变的代码实现可变的算法</strong>。</p>
+<p>一般有以下几种应用：</p>
+<ol>
+<li>模板</li>
+<li>RTTI（typeid, dynamic_cast, type_info）</li>
+<li>虚函数</li>
+</ol>
+<p>理解C++泛型算法我注意的几点内容：</p>
+<h4 id="1-_除了algorithm中的一百多种算法，_头文件numeric中也定义了一组数值型泛型算法。">1. 除了algorithm中的一百多种算法， 头文件numeric中也定义了一组数值型泛型算法。</h4><h4 id="2-_标准库算法不会改变它们操作的容器的大小，但是back_inserter却不然，原因是：">2. 标准库算法不会改变它们操作的容器的大小，但是back_inserter却不然，原因是：</h4><p>严格来说，<strong>标准库算法根本不知道“容器”这个东西</strong>，它们只接受迭代器参数，运行于这些迭代器之上，通过迭代器访问元素。</p>
+<p>当传递给算法普通迭代器时，普通的算法可以读取元素，改变元素值，移动元素，但是无法增加元素，删除元素。</p>
+<p>但是传递给算法插入器的时候，（如back_inserter）,这类迭代器可以调用下层容器的操作来向容器插入元素，造成了增加元素的效果。</p>
+<p>因此，问题的关键点是：标准库算法操作迭代器而间接访问容器，能不能增删元素，不在于算法，而在于传递给它们的迭代器是否具备这样的能力。</p>
+<h4 id="3-_lambda中，-&gt;_(return_type)的作用？">3. lambda中，<code>-&gt; (return type)</code>的作用？</h4><p>假如lambda函数体内是单一的return语句，返回类型可以推断出来，无需指定。</p>
+<p>假如lambda函数体内包含单一return语句之外的内容，且未指定返回类型，则返回void。</p>
+<p><strong>假如，非单一return且未指定返回类型，但是返回了void之外的其他类型，会产生编译错误。</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//错误：不能推断lambda返回类型。</span></span><br><span class="line">transform(v.begin(), v.end(), v.begin(), [](<span class="keyword">int</span> i) &#123; <span class="keyword">if</span>(i &lt; <span class="number">0</span>) <span class="keyword">return</span> -i; <span class="keyword">else</span> <span class="keyword">return</span> i;&#125;);</span><br><span class="line"><span class="comment">//正确：</span></span><br><span class="line">transform(v.begin(), v.end(), v.begin(), [](<span class="keyword">int</span> i) -&gt; <span class="keyword">int</span> &#123; <span class="keyword">if</span>(i &lt; <span class="number">0</span>) <span class="keyword">return</span> -i; <span class="keyword">else</span> <span class="keyword">return</span> i;&#125;);</span><br></pre></td></tr></table></figure>
+<p><strong>然而，我<a href="https://github.com/Miantang/PAT-Advance/blob/master/NowCoder-Practice/1002-2.cpp" target="_blank" rel="external">这段程序</a>不管指定int,bool,或者不指定，都不报错但报warning，原因？</strong></p>
+<blockquote>
+<p>warning: control reaches end of non-void function [-Wreturn-type]</p>
+</blockquote>
+<p><a href="http://www.nowcoder.com/pat/1/problem/4015" target="_blank" rel="external">对应的相关题目</a></p>
+<h4 id="4-_lambda中的捕获，">4. lambda中的捕获，</h4><p>捕获列表只用于局部非static变量，lambda可以直接使用局部static变量和所在函数之外声明的名字。</p>
+<p>为避免潜在的捕获导致的问题，可能的话，应该避免捕获指针和引用。</p>
+<p>[=] ： 隐式捕获，引用捕获。</p>
+<p>[&amp;, a, b…] : <code>a,b</code>表示这些变量采用值捕获，而其他任何隐式捕获采用引用捕获。</p>
+<p>[=, a, b…] : <code>a,b</code>表示这些变量采用引用捕获，而其他任何隐式捕获采用值捕获。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[需要深入理解“泛型”的思想，体会标准库是如何通过算法和数据结构的分离来实现泛型，迭代器是如何在这两者之间架起的桥梁。]]>
+    
+    </summary>
+    
+      <category term="编程学习" scheme="http://ppii.in/blog/blog/tags/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="notes" scheme="http://ppii.in/blog/blog/categories/notes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[物联网关于硬件平台/协议的原型设计]]></title>
+    <link href="http://ppii.in/blog/blog/2015/04/23/iot-origin/"/>
+    <id>http://ppii.in/blog/blog/2015/04/23/iot-origin/</id>
+    <published>2015-04-22T16:00:00.000Z</published>
+    <updated>2015-06-18T16:26:42.056Z</updated>
+    <content type="html"><![CDATA[<h2 id="1-_硬件平台">1. 硬件平台</h2><p>物联网系统设计现如今已经有着众多的技术方案，各有各的特色/优点和使用场景。</p>
+<p>假如以成本来考虑，可能有以下一些方案：</p>
+<ul>
+<li><p>51单片机，AVR单片机，430单片机，芯片价格较为便宜，假如不是很依靠操作系统，仅为了解决一部分简单/特定的需求，这种方式可以考虑。但是涉及到IO控制/驱动/代码写入等等问题，并不能算是一种快速的解决方案。</p>
+</li>
+<li><p>Arduino或者Arduino的扩展平台。虽然大部分也是使用的是AVR微处理芯片，但是作为开源硬件，已经很好的提供较为完善的整套开发流程，如IO标签，IDE，对于一些常见场景，都能找到较为完善的解决方案，同时也有着活跃的交流社区。不过出于性能和内存考虑，要使用类C的Processing语言编程。</p>
+</li>
+<li><p>一些诸如BeagleBone/树莓派的开发板，它们有着相对更强大的处理能力和足够大的RAM，同时运行Linux，它们可以使用更多高级的编程语言，如Python/JavaScript，在基于Web服务器诸如nginx/Node.js等平台，因为已经有现成的库，对于直接控制IO引脚也是十分方便。</p>
+</li>
+<li><p>……</p>
+</li>
+</ul>
+<h2 id="2-_协议选型">2. 协议选型</h2><p>1) HTTP</p>
+<p>采用HTTP方案，向HTTP服务器发送HTTP请求，能从服务器接收到响应，假如对实时响应要求高，那么采用这种方案并不科学。建立一次HTTP请求需要在下位机和服务器之间建立好几个来回的交互（三次握手），对于Arduino来说，当前的以太网在建立http连接时，会阻塞其他操作，这意味着在这段时间内，处理器不能做其他操作（尽管用硬件中断可以相应解决这个问题，但这使问题复杂化并且加入了一些不必要的限制）。鉴于此，对于一些对实时性要求不高的系统，比如长时监控，可以考虑这种解决方案。</p>
+<p>2）长轮询。</p>
+<p>这意味服务器必须周期性地向客户端发送keep-alive消息，防止物联网下级装置认为服务器超时无响应，并且，最大的缺点还是，单向通信。</p>
+<p>3）WebSockets</p>
+<p>在HTML5标准提出后，很有效地解决了一部分HTTP协议的缺点。优势就是可以双向通信，在Arduino中有一个（部分）实现的WebSockets库.<a href="https://github.com/krohling/ArduinoWebsocketClient" target="_blank" rel="external">https://github.com/krohling/ArduinoWebsocketClient</a></p>
+<p>但是由于技术方案较新，实现上有待商榷。</p>
+<p>4）MQTT</p>
+<p>消息队列遥测传输，是一种轻量级的消息传输协议，专门针对网络带宽受限或者代码的内存占有量有限的应用场景设计而成。</p>
+<p>不同于HTTP采用客户端/服务器模型，MQTT使用的是发布/订阅机制，实现了经由消息代理的消息交换。发送者与接收者通信依靠的是相应的消息主题。在及时性和双向通信上有着很不错的表现。同时，它消除了存在于HTTP中客户端和服务器的紧密耦合。</p>
+<p>同时MQTT可以运用与许多非常受限的平台和网络环境，诸如zigbee等传感器网络。</p>
+<p>5）XMPP</p>
+<p>是另一种消息传输的解决方案。可扩展通讯和表示协议。是因特网上一种较为通用的协议，采用XML作为消息格式。由于消息可能相对冗长，可能不太适用于内存受限的微处理器。</p>
+<p>6）CoAP</p>
+<p>设计受限应用协议。旨在解决适用于HTTP的同类问题。类似与MQTT-S，可以用于没有TCP的网络。</p>
+<h4 id="TODO">TODO</h4>]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="1-_硬件平台">1. 硬件平台</h2><p>物联网系统设计现如今已经有着众多的技术方案，各有各的特色/优点和使用场景。</p>
+<p>假如以成本来考虑，可能有以下一些方案：</p>
+<ul>
+<li><p>51单片机，AVR单片机，430单片机，芯片价格较为便]]>
+    </summary>
+    
+      <category term="物联网" scheme="http://ppii.in/blog/blog/tags/%E7%89%A9%E8%81%94%E7%BD%91/"/>
+    
+      <category term="notes" scheme="http://ppii.in/blog/blog/categories/notes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Does C support function overloading like C++?]]></title>
+    <link href="http://ppii.in/blog/blog/2015/04/03/cpp-learning/"/>
+    <id>http://ppii.in/blog/blog/2015/04/03/cpp-learning/</id>
+    <published>2015-04-02T16:00:00.000Z</published>
+    <updated>2015-06-18T16:26:42.055Z</updated>
+    <content type="html"><![CDATA[<p>If you consider theprintf() function in C, that may lead you to think that C supports function overloading. Because, in C you can have <code>printf(&quot;%d&quot;, aDecimal)</code> and <code>printf(&quot;%f&quot;, aFloat)</code>. This looks a lot like function overloading, because we are using the same function name, but the function is accepting different parameter types – which is one of the ways we can overload functions.</p>
+<h3 id="A_Variable_Argument_List_is_not_Function_Overloading">A Variable Argument List is not Function Overloading</h3><p>Actually, this is not a case of function overloading – the printf function is just using a feature of C known as variable argument lists. This should not be confused with function overloading. So, to answer the question, Standard C does not support function overloading.</p>
+<p>As an interesting side note, C++ doesn’t really have function overloading. What it does have is a means of faking it: the C++ compiler actually ‘mangles’ (or changes) function names according to the function’s parameters. So, functions that share the same name but have different numbers or types of parameters can be differentiated when invoked. Also, since the ‘mangling’ of function names is not standardized, it’s usually difficult to link object files compiled by different C++ compilers.</p>
+<p> <a href="http://www.programmerinterview.com/index.php/c-cplusplus/function-overloading/" target="_blank" rel="external">.</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[A Variable Argument List is not Function Overloading]]>
+    
+    </summary>
+    
+      <category term="编程学习" scheme="http://ppii.in/blog/blog/tags/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="notes" scheme="http://ppii.in/blog/blog/categories/notes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[二叉树的后序非递归遍历]]></title>
+    <link href="http://ppii.in/blog/blog/2015/01/03/bintree-postoder/"/>
+    <id>http://ppii.in/blog/blog/2015/01/03/bintree-postoder/</id>
+    <published>2015-01-02T16:00:00.000Z</published>
+    <updated>2015-06-18T16:26:42.055Z</updated>
+    <content type="html"><![CDATA[<p>二叉树是一种非常重要的数据结构，很多其它数据结构都是基于二叉树的基础演变而来的。对于二叉树，有前序、中序以及后序三种遍历方法。因为树的定义本身就是递归定义，因此采用递归的方法去实现树的三种遍历不仅容易理解而且代码很简洁。而对于树的遍历若采用非递归的方法，就要采用栈去模拟实现。在三种遍历中，前序和中序遍历的非递归算法都很容易实现，非递归后序遍历实现起来相对来说要难一点。</p>
+<h3 id="后序遍历">后序遍历</h3><h4 id="后序遍历按照“左孩子-右孩子-根结点”的顺序进行访问。">后序遍历按照“左孩子-右孩子-根结点”的顺序进行访问。</h4><ul>
+<li>递归实现</li>
+</ul>
+<p>···<br>    void postOrder1(BinTree *root)    //递归后序遍历<br>    {<br>        if(root!=NULL)<br>        {<br>            postOrder1(root-&gt;lchild);<br>            postOrder1(root-&gt;rchild);<br>            cout&lt;<root->data&lt;&lt;” “;<br>        }<br>    }<br>···</root-></p>
+<ul>
+<li>非递归实现</li>
+</ul>
+<p>这里要保证左子和右子都已经被访问之后，并且左子在右子前访问，才能访问根节点。就这对流程有较大的影响。</p>
+<p>这里根据查阅资料提供两个思路：</p>
+<p> 第一种思路：对于任一结点P，将其入栈，然后沿其左子树一直往下搜索，直到搜索到没有左孩子的结点，此时该结点出现在栈顶，但是此时不能将其出栈并访问，因此其右孩子还为被访问。所以接下来按照相同的规则对其右子树进行相同的处理，当访问完其右孩子时，该结点又出现在栈顶，此时可以将其出栈并访问。这样就保证了正确的访问顺序。可以看出，在这个过程中，每个结点都两次出现在栈顶，只有在第二次出现在栈顶时，才能访问它。因此需要多设置一个变量标识该结点是否是第一次出现在栈顶。</p>
+<p> 第二种思路：要保证根结点在左孩子和右孩子访问之后才能访问，因此对于任一结点P，先将其入栈。如果P不存在左孩子和右孩子，则可以直接访问它；或者P存在左孩子或者右孩子，但是其左孩子和右孩子都已被访问过了，则同样可以直接访问该结点。若非上述两种情况，则将P的右孩子和左孩子依次入栈，这样就保证了每次取栈顶元素的时候，左孩子在右孩子前面被访问，左孩子和右孩子都在根结点前面被访问。</p>
+<p>[参考文献][<a href="http://www.cnblogs.com/dolphin0520/archive/2011/08/25/2153720.html" target="_blank" rel="external">http://www.cnblogs.com/dolphin0520/archive/2011/08/25/2153720.html</a>]</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[二叉树作为一种十分重要的数据结构，基本的遍历方式有三种，先序，中序，后序。一般可以用递归的形式来遍历。而非递归则需要采用堆栈俩模拟，其中先序和中序较好实现，但后序相对会难点。]]>
+    
+    </summary>
+    
+      <category term="编程学习" scheme="http://ppii.in/blog/blog/tags/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="notes" scheme="http://ppii.in/blog/blog/categories/notes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014-12-11_20日志]]></title>
+    <link href="http://ppii.in/blog/blog/2014/12/20/diary10/"/>
+    <id>http://ppii.in/blog/blog/2014/12/20/diary10/</id>
+    <published>2014-12-19T16:00:00.000Z</published>
+    <updated>2015-06-18T16:26:42.054Z</updated>
+    <content type="html"><![CDATA[<p>虽然说，最近因为考试也好，各种杂事也好。但这些都不能是我作为暂停写日志的因素。有的时候会看书，学MOOC坚持到很晚将近一点。困了累了就不想打开记事本写下这个每日的总结和感想，包括对李笑来老师的《把时间当朋友》的认真研读也被搁置了。</p>
+<p>果然还是自己的执行力上，养成这样一个习惯，并不是很简单。有的时候只是一念之间。应该还是认识不够。要是我再不写下，也许多少个月就过去了。</p>
+<p>26号，30号两门专业课的考试。不能再吐槽它们的作用，以及研究生的专业课是否对自己的研究方向有作用。该遇到的，总是要解决。不能质疑任何知识的作用。即使这辈子十分大的可能不再用上。但是这是毕业必需的。所以还是要好好准备考试。</p>
+<p>今天刚刚考完六级，苦于没有好好准备，其实还是往常的做英语的状态。没有那种得心应手的感觉，信息获取效率还是很低。阅读一篇英语文章，不能很好的理解真实的内容。虽然是六级刷分，没有什么压力感。。不过这次机会还是没有好好把握住。研究生阶段也就剩下明年的六月的这次六级考试了。好好准备吧。</p>
+<p>还有两篇论文，明天一定要完成一篇才行啊。哎。越到期末，各种各样的事情全部蜂拥而至，并且越忙，自己想学的东西就越多。。去图书馆又借了大量的新书。希望会是考完之后好好补一补计算机知识。年年复年年都是这个状态呢。</p>
+<p>MOOC可能会落下几门课。不够很多还是没有时间做作业，毕竟期末才是重要的。重点抓好浙江大学的那门数据结构和哈工大的算法导论吧。当务之急！</p>
+<p>不管是怎么样，想好好改一下，做总结，写日志，做笔记的形式。但是不能在策划好整个方法之前，什么事情都不做。先做，慢慢再去完善。这是我最应该认识到的！</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[执行力差。害怕失败，追求完美。关键的问题，还是贵在坚持。]]>
+    
+    </summary>
+    
+      <category term="日记" scheme="http://ppii.in/blog/blog/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+      <category term="mood" scheme="http://ppii.in/blog/blog/categories/mood/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014-12-10-日志]]></title>
+    <link href="http://ppii.in/blog/blog/2014/12/10/diary8/"/>
+    <id>http://ppii.in/blog/blog/2014/12/10/diary8/</id>
+    <published>2014-12-09T16:00:00.000Z</published>
+    <updated>2015-06-18T16:26:42.054Z</updated>
+    <content type="html"><![CDATA[<p>现代信号处理，这门课还好去了，课堂上考了一个试。题目虽然只有两道，还是不太会做啊。某种程度上还是自己根本没有好好复习。要考试了，考前焦虑又来了。大约会在12月27号考试，看来这个很需要好好计划一番啊。</p>
+<p>明天开始尝试写下自己的时间账本。寻找一种更好，更一目了然可以回溯查看的方法。</p>
+<p>特别是MOOC的内容，还是有一个好规划才行。不然每天挺盲目的。</p>
+<p>信号检测的报告还没写。还有相应的PPT……这是一个大坑。这周之内要完成啊。。</p>
+<p>fight！</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[要开始考试了，时间上开始紧凑！时间管理！信号检测的报告还没有写。多件事情，让我显得有些焦虑。]]>
+    
+    </summary>
+    
+      <category term="日记" scheme="http://ppii.in/blog/blog/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+      <category term="mood" scheme="http://ppii.in/blog/blog/categories/mood/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014-12-09-日志]]></title>
+    <link href="http://ppii.in/blog/blog/2014/12/09/diary7/"/>
+    <id>http://ppii.in/blog/blog/2014/12/09/diary7/</id>
+    <published>2014-12-08T16:00:00.000Z</published>
+    <updated>2015-06-18T16:26:42.054Z</updated>
+    <content type="html"><![CDATA[<p>开启了你的梦想吗。阅读了新东方李笑来老师的《把时间当朋友》，里面提到了一种关于时间记录的方法，Event-log。把我一天的时间消耗全部记录下来，不写感想不写结果，只写做了什么。一目了然，等一段时间之后，就会发现，自己无意义的事情会越来越少。以后做的事情也是越来越有意义的。这一点，跟<a href="http://www.zhihu.com/question/21438053" target="_blank" rel="external">学习编程用什么做笔记比较好？</a>,<a href="http://www.zhihu.com/question/23427617" target="_blank" rel="external">如何构建你的笔记系统？</a>。有着异曲同工的相同之处。</p>
+<p><strong>关键还是好记性不如烂笔头啊。。你要记住你所浪费的时间！你浪费了多少时间！</strong></p>
+<p>最近学习JAVA和安卓，倒是想能在明年4月之前，看能不能开发出这样一个APP。</p>
+<p>以此为目标和动力尝试一下吧！先把整体软件的功能架构写出来~参考一下同类的软件。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[一种高效的时间管理方法，有了写一个时间账本APP的想法]]>
+    
+    </summary>
+    
+      <category term="日记" scheme="http://ppii.in/blog/blog/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+      <category term="mood" scheme="http://ppii.in/blog/blog/categories/mood/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014-12-08-日志]]></title>
+    <link href="http://ppii.in/blog/blog/2014/12/08/diary6/"/>
+    <id>http://ppii.in/blog/blog/2014/12/08/diary6/</id>
+    <published>2014-12-07T16:00:00.000Z</published>
+    <updated>2015-06-18T16:26:42.053Z</updated>
+    <content type="html"><![CDATA[<p>确定要开始考试了！12月20日。信号检测与估计。</p>
+<p>时间管理！现在一周过去已经感觉到一点吃力了。</p>
+<p>北理工那门《面向对象编程实训》有点吃力。毕竟Winform控件还没入门。很多东西都不太会写。作业虽然基本功能实现了。但是代码实在，，难看啊。</p>
+<p>写好我的计划表。不能放弃任何一个小时。</p>
+<p>Do！</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[要开始考试了，时间上开始紧凑！时间管理！]]>
+    
+    </summary>
+    
+      <category term="github" scheme="http://ppii.in/blog/blog/tags/github/"/>
+    
+      <category term="日记" scheme="http://ppii.in/blog/blog/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+      <category term="mood" scheme="http://ppii.in/blog/blog/categories/mood/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014-12-07-日志]]></title>
+    <link href="http://ppii.in/blog/blog/2014/12/07/diary5/"/>
+    <id>http://ppii.in/blog/blog/2014/12/07/diary5/</id>
+    <published>2014-12-06T16:00:00.000Z</published>
+    <updated>2015-06-18T16:26:42.053Z</updated>
+    <content type="html"><![CDATA[<p>整理了一下网易云课堂的内容，十门课啊。后期可能会很吃力。。看来时间管理很重要。。想看看自己的极限在哪里。我希望可以全部拿到证书（有可能是一个奢望）。</p>
+<p>导师又再次强调了理论的重要性。智能家居这个项目的投标阶段将要结束。下一个项目“干扰性能评估系统”要到来了！需要好好准备C++，MFC和MATLAB吧，可能主要还是理论算法上的积淀。等今后老师的交接吧。</p>
+<p>今天还把明天《科研信息获取与利用》这门课的PPT做完了。80多页。。作为组长伤不起啊。组员很多都比较敷衍了事，虽然整个内容不是很重要，主要在检索的过程。漏洞太多，我也不能全部修复，只能在明天做presention的时候现场发挥了。加油！</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[周末休息]]>
+    
+    </summary>
+    
+      <category term="github" scheme="http://ppii.in/blog/blog/tags/github/"/>
+    
+      <category term="日记" scheme="http://ppii.in/blog/blog/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+      <category term="mood" scheme="http://ppii.in/blog/blog/categories/mood/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014-12-06-日志]]></title>
+    <link href="http://ppii.in/blog/blog/2014/12/06/diary4/"/>
+    <id>http://ppii.in/blog/blog/2014/12/06/diary4/</id>
+    <published>2014-12-05T16:00:00.000Z</published>
+    <updated>2015-06-18T16:26:42.052Z</updated>
+    <content type="html"><![CDATA[<p>今天算是修复了github的blog上一点css的错乱问题。</p>
+<p>整理了一下印象笔记的内容。把网易云课堂的课程进度同步在印象笔记。<br>为知笔记出乎意料的好，保存网页十分保真。这一点可能有道云笔记感觉逊色一些。<br>三个笔记配合着使用吧！</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[周末休息]]>
+    
+    </summary>
+    
+      <category term="github" scheme="http://ppii.in/blog/blog/tags/github/"/>
+    
+      <category term="日记" scheme="http://ppii.in/blog/blog/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+      <category term="mood" scheme="http://ppii.in/blog/blog/categories/mood/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014-12-05-日志]]></title>
+    <link href="http://ppii.in/blog/blog/2014/12/05/diary3/"/>
+    <id>http://ppii.in/blog/blog/2014/12/05/diary3/</id>
+    <published>2014-12-04T16:00:00.000Z</published>
+    <updated>2015-06-18T16:26:42.052Z</updated>
+    <content type="html"><![CDATA[<p>今晚刷了好几门课程。包括，编译原理，C、Python，做了相关的课后习题。太晚了，今天的留在明天早上来总结吧。晚安先~</p>
+<p>上午上的学术英语课，我争取到机会，终于可以上讲台进行自己的presentation。好几周之前已经准备好的PPT了。对一篇国际会议论文进行阐述。同时陈述自己的看法。<br>我选择的课题是，统计分析下认提对可穿戴天线的影响。TODO</p>
+<p>当然说最后留下的感受吧。<br>自己还是有演讲焦虑，在没有充分准备的情况下（因为ppt很久之前做的，很多忘了），说话会磕巴，紧张。有的时候并不能表述清楚自己的观点。演讲还是需要有一个明晰的脉络才不至于手忙脚乱语无伦次。当然，有的情况下，我的自我发挥还是有可取之处。包括中途提到的一些例子，都是临时想的。<br>在台下也“臆想”了自己怎么讲讲讲，会讲成什么样，到头来很多都没有达到预期。也给自己太大的压力了。</p>
+<p> <strong>所以，在做任何事情之前，准备好，确立一个清晰的脉络。肚子里有货，才会不慌张</strong></p>
+<p>另外一点，就是在自学课程上，有一个明晰的计划任务，不至于在一些简单的问题上花费大量的时间，也不至于在一些较为困难的问题上失去准心，不知道如何下手。<strong>多思考，打好基础才是最重要的</strong>。</p>
+<p>还是那个观点，到中期，课程的紧张不一定会让自己有足够的精力完成这些事情。那个时候会很吃力。注意好优先级，提高笔记能力，学习的效率，以赛代练！早点能确立相关的课题。</p>
+<p>导师今天给我们的说法是，明年他的看法是以写文章为主。因为项目足够多，还需要一些理论上的沉淀。<br>我知道，这个对于我这个两年制的专业硕士来说，是很冲突的，包括自己的未来目标，以及专业硕士的培养要求，这些都不是我必需的。而我自己在这方面可能也有不足，比如，前段时间导师让我写的专利起底。其实很多情况下，我并不能高屋建瓴地在这个特定的专业领域做相关的创新点设计。所以那个月还是很没有成就感的，比较低落。还是一个实际的工程项目会让我有很强大的动力去完成。<br>求同存异了吧。就怕明年实习导师肯定不会让我出去。</p>
+<p><em>有时间把blog重新启用一下，每天的post都push到blog上。</em></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[学术英语课上，我的presentation，给我留下的什么经验，以及自己在公众演讲上的不足；课程学习内容很多，学会把时间分配好；研究生阶段与导师的目标有冲突的情况下，求同存异。]]>
+    
+    </summary>
+    
+      <category term="日记" scheme="http://ppii.in/blog/blog/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+      <category term="网易云课堂" scheme="http://ppii.in/blog/blog/tags/%E7%BD%91%E6%98%93%E4%BA%91%E8%AF%BE%E5%A0%82/"/>
+    
+      <category term="mood" scheme="http://ppii.in/blog/blog/categories/mood/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014-12-04-日志]]></title>
+    <link href="http://ppii.in/blog/blog/2014/12/04/diary2/"/>
+    <id>http://ppii.in/blog/blog/2014/12/04/diary2/</id>
+    <published>2014-12-03T16:00:00.000Z</published>
+    <updated>2015-06-18T16:26:42.051Z</updated>
+    <content type="html"><![CDATA[<p><strong>坚持不可谓不是一件考验毅力的事情。</strong></p>
+<p>今天《现代信号处理》的冯老师出差，这节课就没有上。一天的时间可以说是泡在实验室。继续与同门小伙伴一起探讨关于导师项目的方案，头脑风暴多次，也只是得出一些简单的结论。今天也求助了网络上的软件工程专业的朋友，关于写这个项目的安卓app的难度。其实自己对整个框架和实现方法还是有一个大致的雏形。只是苦于入门不深，还是不够自信。导师还请了计算机系的外援，到后来经过一番讨论确立了一个大致的方案发现，其实难度上并不是在安卓app端的控制，而是中心服务器的架构上。导师笑称，我们给他造成了一个困难局面的假象。到头来还请了外援，不上不下的。</p>
+<p>总结今天这个事情来说，还是需要多多涉猎各方面的知识啊。才能做出合理的判断。（不过，后期懂得更多的时候，也许现在的判断也会被推翻。螺旋式上升的过程~）</p>
+<p>另外一方面，关于网易云课堂，今天没有花费时间来学习，总感觉是不妥的，这个还是不能停的。毕竟是有期限的。明天最好能做出一个周计划表，以防止中途忘记更新课程的学习而失去了机会。到头来还是坚持的问题啊。</p>
+<p>刷了挺久的知乎，到底能从里面得到什么？我认为还是需要多花时间消化一下收藏夹的内容。有的时候，什么都想知道一点，其实就是什么都不知道。做笔记也好，markdown也好，关键是以用为主。比如说现在写的日志，关键是要为以后留下什么经验或者教训，以警示今后不再犯错误，坚持好的方面等等。</p>
+<p>这方面是任重道远啊！</p>
+<p>0点55.早点休息吧，晚安！每天对着亲爱的，说晚安，其实已经是两个小时之前了。哎。时间利用的效率啊，难怪会经常焦虑。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[现代信号处理也好，网易云课堂也好，关键是利用好时间，做好时间管理。明确自己的目标，计划，学习牛人的经验，学会做笔记，学会收藏，学会消化优秀的经验，学会学以致用！ ]]>
+    
+    </summary>
+    
+      <category term="日记" scheme="http://ppii.in/blog/blog/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+      <category term="网易云课堂" scheme="http://ppii.in/blog/blog/tags/%E7%BD%91%E6%98%93%E4%BA%91%E8%AF%BE%E5%A0%82/"/>
+    
+      <category term="mood" scheme="http://ppii.in/blog/blog/categories/mood/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[2014-12-03-日志]]></title>
+    <link href="http://ppii.in/blog/blog/2014/12/03/diary1/"/>
+    <id>http://ppii.in/blog/blog/2014/12/03/diary1/</id>
+    <published>2014-12-02T16:00:00.000Z</published>
+    <updated>2015-06-18T16:26:42.051Z</updated>
+    <content type="html"><![CDATA[<p>今天是写日志的第一天，尝试看一下自己能坚持多久吧。<br>在这里先给自己一些简单的要求：（以后可以继续补充）</p>
+<blockquote>
+<ul>
+<li>尝试之后的git，push上我的jekyll博客。<ul>
+<li>每次写完之后记得做一次description，锻炼自己的概括能力。</li>
+</ul>
+</li>
+<li>每次的撰写时间尽量要短。不能吭哧瘪肚很久才吐出一点来。</li>
+<li>严格按照计算机指法吧，计算机键盘盲打的重要性，这也是从《把时间当朋友》这本书中得出的tip。就算是以后coding的时候，这种能力还是至关重要的。</li>
+<li>TODO</li>
+</ul>
+</blockquote>
+<p> 昨晚睡得比较晚，早上晚起太多，偷了一上午懒没有去实验室。有点自责。</p>
+<p> 今天上的《信号检测与估计理论》，基本上还是没有多听得懂。看来需要集中时间把落下的知识恶补一下。<br> 导师要求我们把“智能家居”这个项目整理出一个可行的方案。虽然现在关于Android的app是我们比较吃力的部分。因为毕竟是属于纯计算机方向的能力了。怎么说吧，事在人为，肯定是能写出来的。</p>
+<p> 今天算是坚持下来网易云课堂的第三天，暂时上了三门课，《算法导论》、《C编程实践》、《数据结构》。虽然12月1日开了八门课，但是肯定也不能全部吃下来。雄心壮志般想在满足导师任务、两门超难的专业课、还自学坚持下这些计算机课程。的确需要不小的毅力。特别是持之以恒以及高效率的学习模式这两点。</p>
+<p> 数据结构这门课，初上的感觉还不错，浙江大学陈越老师真的讲的挺好。另外有一点令我十分震惊的是，参加这门课的人数之多，每道题的讨论区超过500楼，PAT的代码提交数这四天内也已经超过2000。比如那道“中等数量级的图书应该怎样排序的问题”，讨论区中也有许多同学提到了我不理解的诸如hash、散列等高端的解决办法，他们可能是来复习的吧。不过这也表示我还有很多我需要学习的地方。努力坚持吧！</p>
+<p> 真不知道自己能不能处理好时间上的分配。特别是到了云课堂的中期，那时候还是项目重要时期，更是两门专业课的重要结课期，能不能坚持下MOOC还是看自己现在开始的提前准备了。。Keep moving！还有一个六级。。哎<br> PS：这个月已经成为知乎重度用户了啊。。虽然在自己关注的领域，还一直是一个小白，成为一位优秀的答题者看来也还不够。以这个为目标！发现知乎也在不知不觉改变我的价值观！</p>
+<p> 记一篇TED视频：<a href="http://www.56.com/u65/v_MTE2MTQyNTQy.html" target="_blank" rel="external">The First 20 Hours_ How to Learn Anything</a> </p>
+<p> 和一条知乎问题: <a href="http://www.zhihu.com/question/23427617" target="_blank" rel="external">如何构建你的笔记系统？</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[第一天的日志。]]>
+    
+    </summary>
+    
+      <category term="日记" scheme="http://ppii.in/blog/blog/tags/%E6%97%A5%E8%AE%B0/"/>
+    
+      <category term="网易云课堂" scheme="http://ppii.in/blog/blog/tags/%E7%BD%91%E6%98%93%E4%BA%91%E8%AF%BE%E5%A0%82/"/>
+    
+      <category term="mood" scheme="http://ppii.in/blog/blog/categories/mood/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[亲爱的安德烈]]></title>
+    <link href="http://ppii.in/blog/blog/2014/09/07/andreas/"/>
+    <id>http://ppii.in/blog/blog/2014/09/07/andreas/</id>
+    <published>2014-09-06T16:00:00.000Z</published>
+    <updated>2015-06-18T16:26:42.050Z</updated>
+    <content type="html"><![CDATA[<p>人生，其实像一条从宽阔的平原走进森林的路。在平原上同伴可以结伙而行，欢乐地前推后挤、相濡以沫；一旦进入森林，草丛和荆棘挡路，各人专心走各人的路，寻找各人的方向，那推推挤挤的群体情感，那无忧无虑无猜忌的同侪深情，在人的一生中也只有少年期有。离开这段纯洁而明亮的阶段，路其实可能愈走愈孤独。你将被家庭羁绊，被责任捆绑，被自己的野心套牢，被人生的复杂和矛盾压抑，你往丛林深处走去，愈走愈深，不复再有阳光似的伙伴。到了熟透的年龄，即使在群众的怀抱中，你都可能觉得寂寞无比</p>
+<p>……</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[亲爱的安德烈 读后感]]>
+    
+    </summary>
+    
+      <category term="书评" scheme="http://ppii.in/blog/blog/tags/%E4%B9%A6%E8%AF%84/"/>
+    
+      <category term="notes" scheme="http://ppii.in/blog/blog/categories/notes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Git时代的VIM不完全使用教程]]></title>
+    <link href="http://ppii.in/blog/blog/2014/07/26/vimtutor/"/>
+    <id>http://ppii.in/blog/blog/2014/07/26/vimtutor/</id>
+    <published>2014-07-25T16:00:00.000Z</published>
+    <updated>2015-06-18T16:26:42.050Z</updated>
+    <content type="html"><![CDATA[<p>最近整理了VIM的配置，换上插件管理的神器——-<a href="https://github.com/gmarik/vundle" target="_blank" rel="external">Vundle</a>，由他引发的VIM生态环境的改善，堪称完美。遂打算写一份简单的教程，分享Git时代VIM新世界的美丽动人之处。<strong>对VIM有基础的同学，可直接跳至插件管理部分。</strong></p>
+<h2 id="VIM的模式">VIM的模式</h2><p>第一次使用VIM，会觉得无所适从，他并不像记事本，你敲什么键就显示什么，理解VIM的需要明白他的两种模式：</p>
+<ul>
+<li>命令模式 (Command Mode)</li>
+<li>编辑模式 (Insert Mode)</li>
+</ul>
+<p>命令模式下，可以做移动、编辑操作；编辑模式则用来输入。键入<code>i</code>,<code>o</code>,<code>s</code>,<code>a</code>等即可进入编辑模式，后面解释原因。</p>
+<p>模式的设计是VIM和其他编辑器最不同的地方，优势和劣势也全基于此而生。</p>
+<h2 id="基本操作">基本操作</h2><p>以下介绍的键盘操作，都是大小写敏感的，并且要在<strong>命令模式</strong>下完成，需注意：</p>
+<h3 id="以字为单位的移动">以字为单位的移动</h3><ul>
+<li><code>h</code> 向左移动一个字</li>
+<li><code>j</code> 向下移动一行</li>
+<li><code>k</code> 向上</li>
+<li><code>l</code> 向右</li>
+</ul>
+<p>这四个键在右手最容易碰到几个位置，最为常用。</p>
+<h3 id="以词为单位的移动">以词为单位的移动</h3><ul>
+<li><code>w</code> 下一個word w(ord)</li>
+<li><code>W</code> 下一個word(跳过标点)</li>
+<li><code>b</code> 前一個word b(ackward)</li>
+<li><code>B</code> 前一个word(跳过标点)</li>
+<li><code>e</code> 跳到当前word的尾端 e(nd)</li>
+</ul>
+<h3 id="行移动">行移动</h3><ul>
+<li><code>0</code> 跳到当前行的开头</li>
+<li><code>^</code> 跳到当前行第一个非空字符</li>
+<li><code>$</code> 跳到行尾</li>
+</ul>
+<p>助记：0(第0个字符),<code>^</code>和<code>$</code>含义同正则表达式</p>
+<h3 id="段落移动">段落移动</h3><ul>
+<li><code>{</code> 上一段(以空白行分隔)</li>
+<li><code>}</code> 下一段(以空白行分隔)</li>
+<li><code>%</code> 跳到当前对应的括号上(适用各种配对符号)</li>
+</ul>
+<h3 id="跳跃移动">跳跃移动</h3><ul>
+<li><code>/xxxx</code> 搜索xxxx，然后可以用<code>n</code>下一个，<code>N</code>上一个移动</li>
+<li><code>#</code> 向前搜索光标当前所在的字</li>
+<li><code>*</code> 向后搜索光标当前所在的字</li>
+<li><code>fx</code> 在当前行移动到光标之后第一个字符x的位置 f(ind)x</li>
+<li><code>gd</code> 跳到光标所在位置词(word)的定义位置 g(o)d(efine)</li>
+<li><code>gg</code> 到文档顶部</li>
+<li><code>G</code> 到文档底部</li>
+<li><code>:x</code> 跳到第x行(x是行号)</li>
+<li><code>ctrl+d</code> 向下翻页 d(down)</li>
+<li><code>ctrl+u</code> 向上翻页 u(p)</li>
+</ul>
+<h3 id="基本编辑">基本编辑</h3><h4 id="修改">修改</h4><ul>
+<li><code>i</code> 在光标当前位置向前插入 i(nsert)</li>
+<li><code>I</code> 在本行第一个字符前插入</li>
+<li><code>a</code> 在光标当前位置向后插入 a(fter)</li>
+<li><code>A</code> 在本行末尾插入</li>
+<li><code>o</code> 向下插入一行</li>
+<li><code>O</code> 向上插入一行</li>
+<li><code>:w</code> 保存</li>
+<li><code>:q</code> 退出</li>
+<li><code>:wq</code> 保存并退出</li>
+</ul>
+<h4 id="删除">删除</h4><ul>
+<li><code>x</code> 删除当前字符</li>
+<li><code>dd</code> 删除当前行 d(elete)</li>
+<li><code>dw</code> 删除当前光标下的词 d(elete)w(ord)</li>
+</ul>
+<h4 id="复制粘贴">复制粘贴</h4><ul>
+<li><code>yy</code> 复制当前行 y(ank)</li>
+<li><code>yw</code> 复制当前光标下的词 y(ank)w(ord)</li>
+<li><code>p</code> 粘贴 p(aste)</li>
+<li><code>P</code> 粘贴在当前位置之前</li>
+</ul>
+<h2 id="进阶操作">进阶操作</h2><p>限于篇幅，在这里我仅介绍下我非常常用的几个操作。</p>
+<h3 id="重复操作">重复操作</h3><p>因为VIM所有的操作都是原子化的，所以把这些操作程序化就非常简单了：</p>
+<ul>
+<li><code>5w</code> 相当于按五次<code>w</code>键；</li>
+<li><code>6j</code> 下移6行，相当于按六次j；</li>
+<li><code>3J</code> 大写J,本来是将下一行与当前行合并，加上数量，就是重复操作3次；</li>
+<li><code>6dw</code>和<code>d6w</code> 结果是一样，就是删除6个word；</li>
+<li>剩下的无数情况，自己类推吧。</li>
+</ul>
+<h3 id="高效编辑">高效编辑</h3><ul>
+<li><code>di&quot;</code> 光标在””之间，则删除””之间的内容</li>
+<li><code>yi(</code> 光标在()之间，则复制()之间的内容</li>
+<li><code>vi[</code> 光标在[]之间，则选中[]之间的内容</li>
+<li>以上三种可以自由组合搭配，效率奇高，i(nner)</li>
+<li><code>dtx</code> 删除字符直到遇见光标之后的第一个<code>x</code>字符</li>
+<li><code>ytx</code> 复制字符直到遇见光标之后的第一个<code>x</code>字符</li>
+</ul>
+<h3 id="标记和宏(macro)">标记和宏(macro)</h3><ul>
+<li><code>ma</code> 将当前位置标记为a，26个字母均可做标记，<code>mb</code>、<code>mc</code>等等；</li>
+<li><code>&#39;a</code> 跳转到a标记的位置；</li>
+<li>这是一组很好的文档内标记方法，在文档中跳跃编辑时很有用；</li>
+<li><code>qa</code> 将之后的所有键盘操作录制下来，直到再次在命令模式按下<code>q</code>，并存储在<code>a</code>中；</li>
+<li><code>@a</code> 执行刚刚记录在<code>a</code>里面的键盘操作；</li>
+<li><code>@@</code> 执行上一次的macro操作；</li>
+<li>宏操作是VIM最为神奇的操作之一，需要慢慢体会其强大之处；</li>
+</ul>
+<p>VIM的基本操作，可以挖掘的东西非常多，不仅仅需要记忆，更需要自己去探索总结，熟练之后，效率会大幅度提升。后面会给出一些参考链接。</p>
+<h2 id="插件管理">插件管理</h2><h3 id="Vundle">Vundle</h3><p>终于到这篇Blog我最想讨论的部分了。VIM的强大不仅仅体现在操作的高效率，更有强大而充沛的插件做支援，插件丰富了之后，就面临查找和管理的问题。</p>
+<p>在遇见<a href="https://github.com/gmarik/vundle" target="_blank" rel="external">Vundle</a>之前，我用<a href="https://github.com/tpope/vim-pathogen" target="_blank" rel="external">Pathogen</a>管理插件。Pathogen还算方便，只需要把相应插件，放在<code>bundle</code>目录下即可，不需要再像以前那样逐个放置单独的文件到相应目录，大大节省了劳动力，管理起来也一目了然，觉得还不错，至少比vimball那种需要执行命令安装的方式好一些。</p>
+<p>我真希望我早些遇见Vundle。Vundle受到Pathogen和Vimball的启发，于是有了现在的模样。Vundle的逻辑是这样的：</p>
+<ul>
+<li>在<a href="http://vim-scripts.org/vim/scripts.html" target="_blank" rel="external">Vim Script</a>选好你想要的插件；</li>
+<li>在VIM的配置文件中写一句 <code>Bundle plugin_name</code>；</li>
+<li>执行一下Vundle的初始化命令，插件就装好了；</li>
+<li>升级和卸载也是同样的简单；</li>
+</ul>
+<p>完美的世界！</p>
+<h3 id="Vundle的配置">Vundle的配置</h3><p><a href="https://github.com/gmarik/vundle" target="_blank" rel="external">Vundle</a>的安装很简单：</p>
+<pre><code>git clone <span class="symbol">http:</span>/<span class="regexp">/github.com/gmarik</span><span class="regexp">/vundle.git ~/</span>.vim/bundle/vundle
+</code></pre><p>然后写配置文件<code>.vimrc</code>：</p>
+<pre><code><span class="keyword">set</span> nocompatible    <span class="string">" be iMproved
+</span><span class="keyword">filetype</span> off        <span class="string">" required!
+</span>
+<span class="keyword">set</span> rtp+=~/.<span class="keyword">vim</span>/bundle/vundle/
+<span class="built_in">call</span> vundle#rc()
+
+<span class="string">" let Vundle manage Vundle
+</span><span class="string">" required!
+</span>Bundle <span class="string">'gmarik/vundle'</span>
+
+<span class="string">" vim-scripts repos
+</span>Bundle <span class="string">'vim-plugin-foo'</span>
+Bundle <span class="string">'vim-plugin-bar'</span>
+
+<span class="keyword">filetype</span> plugin <span class="built_in">indent</span> <span class="keyword">on</span>    " required!
+</code></pre><p>其中<code>Bundle</code>后面的内容，就是插件的名字，插件维护在<a href="http://vim-scripts.org/vim/scripts.html" target="_blank" rel="external">Vim-Script.org</a>。</p>
+<p>然后，打开VIM之后，可以输入以下命令：</p>
+<pre><code><span class="string">"安装插件:</span>
+:BundleInstall
+
+<span class="string">"更新插件:</span>
+:BundleInstall!
+
+<span class="string">"卸载不在列表中的插件:</span>
+:BundleClean
+</code></pre><p>现在大部分的插件都已经从<a href="http://www.vim.org/scripts/index.php" target="_blank" rel="external">Vim.org</a>迁移到了<a href="http://vim-scripts.org/vim/scripts.html" target="_blank" rel="external">Vim-Script.org</a>，而且很多作者也认领了自己的插件，直接在这个Github的项目下更新，一个比Vim.org更科学更有效的生态环境，就这样完美的形成了。</p>
+<p>在此非常严重的感谢vim-scripts.org的创建者<a href="https://github.com/bronson" target="_blank" rel="external">Scott Bronson</a>，和<a href="https://github.com/gmarik/vundle" target="_blank" rel="external">Vundle</a>的作者<a href="https://github.com/gmarik" target="_blank" rel="external">gmarik</a>。他们的创新和分享精神，让这个世界又美好了一些。</p>
+<p>也感谢业界良心<a href="https://github.com/" target="_blank" rel="external">Github</a>。Vim-Scripts.org整站就是用<a href="https://pages.github.com/" target="_blank" rel="external">Github Pages</a>建立维护的，对于个人来说，这是很好的选择，有兴趣的同学可以参看我之前的博客：<a href="http://beiyuu.com/github-pages/" target="_blank" rel="external">使用Github Pages建独立博客</a>。</p>
+<h2 id="插件介绍">插件介绍</h2><p>有了Vundle，再装插件就是件享受的事情了。我常用的插件有：</p>
+<pre><code><span class="preprocessor">#相较于Command-T等查找文件的插件，ctrlp.vim最大的好处在于没有依赖，干净利落</span>
+Bundle <span class="string">'ctrlp.vim'</span>
+
+<span class="preprocessor">#在输入()，""等需要配对的符号时，自动帮你补全剩余半个</span>
+Bundle <span class="string">'AutoClose'</span>
+
+<span class="preprocessor">#神级插件，ZenCoding可以让你以一种神奇而无比爽快的感觉写HTML、CSS</span>
+Bundle <span class="string">'ZenCoding.vim'</span>
+
+<span class="preprocessor">#在()、""、甚至HTML标签之间快速跳转；</span>
+Bundle <span class="string">'matchit.zip'</span>
+
+<span class="preprocessor">#显示行末的空格；</span>
+Bundle <span class="string">'ShowTrailingWhitespace'</span>
+
+<span class="preprocessor">#JS代码格式化插件；</span>
+Bundle <span class="string">'_jsbeautify'</span>
+
+<span class="preprocessor">#用全新的方式在文档中高效的移动光标，革命性的突破</span>
+Bundle <span class="string">'EasyMotion'</span>
+
+<span class="preprocessor">#自动识别文件编码；</span>
+Bundle <span class="string">'FencView.vim'</span>
+
+<span class="preprocessor">#必不可少，在VIM的编辑窗口树状显示文件目录</span>
+Bundle <span class="string">'The-NERD-tree'</span>
+
+<span class="preprocessor">#NERD出品的快速给代码加注释插件，选中，`ctrl+h`即可注释多种语言代码；</span>
+Bundle <span class="string">'The-NERD-Commenter'</span>
+
+<span class="preprocessor">#解放生产力的神器，简单配置，就可以按照自己的风格快速输入大段代码。</span>
+Bundle <span class="string">'UltiSnips'</span>
+
+<span class="preprocessor">#让代码更加易于纵向排版，以=或,符号对齐</span>
+Bundle <span class="string">'Tabular'</span>
+
+<span class="preprocessor">#迄今位置最好的自动VIM自动补全插件了吧</span>
+<span class="preprocessor">#Vundle的这个写法，是直接取该插件在Github上的repo</span>
+Bundle <span class="string">'Valloric/YouCompleteMe'</span>
+</code></pre><p>以上插件可以在<a href="http://vim-scripts.org/vim/scripts.html" target="_blank" rel="external">vim-script.org</a>找到源码和文档，<a href="http://mattn.github.com/zencoding-vim/" target="_blank" rel="external">ZenCoding</a>和<a href="http://net.tutsplus.com/tutorials/other/vim-essential-plugin-easymotion/" target="_blank" rel="external">EasyMotion</a>演示点链接,你会心动的。</p>
+<h2 id="-vimrc配置">.vimrc配置</h2><p>因为配置不断在更新，所以放上我的配置的链接：<a href="https://github.com/beiyuu/vimfiles/blob/master/_vimrc" target="_blank" rel="external">.vimrc配置</a></p>
+<h2 id="更多">更多</h2><p>VIM在一开始会觉得非常不习惯，一定要坚持下去，收获的会更多，不仅仅是在装大侠方面的哦~</p>
+<p>关于VIM的使用，这篇博客仅仅介绍了很小的一部分，网络上还有大量朋友总结的心得，常学常有收获：</p>
+<ul>
+<li><a href="http://book.douban.com/subject/10599776/" target="_blank" rel="external">Practical Vim</a>，强烈推荐的一本系统介绍VIM的书籍</li>
+<li><a href="http://overapi.com/vim/" target="_blank" rel="external">Vim Cheat Sheet</a>，有VIM的各种助记图，可以作为桌面</li>
+<li><a href="http://www.vimer.cn/" target="_blank" rel="external">Vimer的程序世界</a>，不错的站，博主持续钻研VIM各种技巧</li>
+<li><a href="http://hi.baidu.com/whqvzhjoixbbdwd/item/11315a5073667d0de6c4a5e9" target="_blank" rel="external">网友狂人收集的vim资料链接</a></li>
+<li><a href="http://www.rayninfo.co.uk/vimtips.html" target="_blank" rel="external">Best of Vim Tips</a></li>
+<li><a href="http://www.limboy.com/2009/05/30/vim-setting/" target="_blank" rel="external">面向前端开发者和TextMate粉丝的vim配置</a></li>
+<li><a href="http://scmbob.org/vim_fdm.html" target="_blank" rel="external">Vim代码折叠简介</a></li>
+<li><a href="http://blog.longwin.com.tw/2009/03/choose-vim-color-scheme-2009/" target="_blank" rel="external">挑選 Vim 顏色(Color Scheme)</a></li>
+<li><a href="https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb" target="_blank" rel="external">vimium</a>，用VIM的操作习惯来控制Chrome的插件</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[在Git流行的时代，VIM的生态环境也有了长足的进步，令人感动。]]>
+    
+    </summary>
+    
+      <category term="vim" scheme="http://ppii.in/blog/blog/tags/vim/"/>
+    
+      <category term="relays" scheme="http://ppii.in/blog/blog/categories/relays/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[解决goagent下youtube飞墙视频无法播放的记录]]></title>
+    <link href="http://ppii.in/blog/blog/2014/04/15/youtube-jump/"/>
+    <id>http://ppii.in/blog/blog/2014/04/15/youtube-jump/</id>
+    <published>2014-04-14T16:00:00.000Z</published>
+    <updated>2015-06-18T16:26:42.049Z</updated>
+    <content type="html"><![CDATA[<p>在<a href="http://mooc.guokr.com/" target="_blank" rel="external">果壳MOOC学院</a>fork了一些课程。觉得自己应该利用业余时间拓展一些知识。特别是英文授课的内容。</p>
+<p>现今主要关注了CS方面、未来技能方面和English Writing方面的课程。国外各大名校的教授水平应该不低。</p>
+<p>在<a href="https://www.udacity.com/" target="_blank" rel="external">udacity</a>和<a href="https://www.edx.org/" target="_blank" rel="external">edX</a>都需要使用youtube进行视频播放。<br>遇到一个问题：<br>youtube网页能正常打开，但视频却是undefined无法播放。<br>上goagent的谷歌code处查找到了相关的解决办法：<br>SwitchySharp Options添加一条rule:<em>://</em>.googlevideo.com/*。。<br>Mission complete!</p>
+<p>……</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[解决goagent下youtube飞墙视频无法播放的记录]]>
+    
+    </summary>
+    
+      <category term="goagent" scheme="http://ppii.in/blog/blog/tags/goagent/"/>
+    
+      <category term="youtube" scheme="http://ppii.in/blog/blog/tags/youtube/"/>
+    
+      <category term="notes" scheme="http://ppii.in/blog/blog/categories/notes/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[一个Javascript程序员的源代码游戏]]></title>
+    <link href="http://ppii.in/blog/blog/2014/04/13/untrust/"/>
+    <id>http://ppii.in/blog/blog/2014/04/13/untrust/</id>
+    <published>2014-04-12T16:00:00.000Z</published>
+    <updated>2015-06-18T16:26:42.049Z</updated>
+    <content type="html"><![CDATA[<p>This is a A meta-JavaScript adventure game.</p>
+<p>很有趣。只能在特定的行使用javascript修改源代码，使用自己的方法，把障碍物#或者隐形的Object(mine)移除。<br>使得绿色@(Player)能到达♢(exit)出口。<br>有相关的内部API使用。   </p>
+<p>虽然我暂时只玩到了第五关。。</p>
+<p>以下是传送地址<br><a href="http://alexnisnevich.github.io/untrusted/" target="_blank" rel="external">http://alexnisnevich.github.io/untrusted/</a>    </p>
+<p><a href="http://jayisgames.com/images/untrusted/untrusted.html" title="http://jayisgames.com/images/untrusted/untrusted.html" target="_blank" rel="external">http://jayisgames.com/images/untrusted/untrusted.html</a>   </p>
+<p> 包括Github下的源代码<br><a href="https://github.com/AlexNisnevich/untrusted" title="https://github.com/AlexNisnevich/untrusted" target="_blank" rel="external">https://github.com/AlexNisnevich/untrusted</a>    </p>
+<p><iframe frameborder="0" height="700" marginheight="0px" marginwidth="0px" scrolling="no" src="http://jayisgames.com/images/untrusted/untrusted.html" width="1230"></iframe></p>]]></content>
+    <summary type="html">
+    <![CDATA[This is a A meta-JavaScript adventure game.The game presents you with a roguelike-like playing environment and a console window with the JavaScript code generating each level. As loaded, each level is unbeatable, and most of the JavaScript is blocked from editing. The challenge is to open a path to the next level using only the limited tools left open to you.]]>
+    
+    </summary>
+    
+      <category term="game" scheme="http://ppii.in/blog/blog/tags/game/"/>
+    
+      <category term="relays" scheme="http://ppii.in/blog/blog/categories/relays/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Github的学习教程]]></title>
+    <link href="http://ppii.in/blog/blog/2014/04/10/writing/"/>
+    <id>http://ppii.in/blog/blog/2014/04/10/writing/</id>
+    <published>2014-04-09T16:00:00.000Z</published>
+    <updated>2015-06-18T16:26:42.048Z</updated>
+    <content type="html"><![CDATA[<p>理想的写作环境，受各类干扰小、清理废话及版本管理容易。曾花费较长时间寻找，最后还是到了。</p>
+<p>2010年开始，采取Git+Github+Markdown+Jekyll，完成一些作品。暖色调灯光，黑暗的背景色，全屏的写作状态，很有氛围。</p>
+<p>这种搭配，符合心理学原理，背后有着相应理念。分享如下：</p>
+<p>Git<br>让人不再担心写废，想到哪里，写到哪里。</p>
+<h3 id="背后理念">背后理念</h3><p><a href="http://zh-cn.whygitisbetterthanx.com/" target="_blank" rel="external">http://zh-cn.whygitisbetterthanx.com/</a><br>Github<br>让人不再担心备份与远程协作，一切提交，均有记录。</p>
+<h3 id="补充介绍">补充介绍</h3><p>购买一个Github的私人账户，用于托管个人”不适合公开”的项目。 零散的思考，随时写在Jekyll的_drafts目录下。当思考成熟，予以发布。较系统的思考，尤其需要远程协作，则参考Github中成功的开源图书项目，单独整理为Jekyll的子目录或独立项目。</p>
+<h3 id="背后理念-1">背后理念</h3><p><a href="http://tom.preston-werner.com/2008/10/18/how-i-turned-down-300k.html" target="_blank" rel="external">How I Turned Down $300,000 from Microsoft to go Full-Time on GitHub<br>Markdown </a><br>不再忧虑排版，专注写作。</p>
+<h3 id="背后理念-2">背后理念</h3><p><a href="http://markdown.tw/" target="_blank" rel="external">Markdown语法中译</a><br><a href="http://jianshu.io/p/q81RER" target="_blank" rel="external">献给写作者的 Markdown 新手指南</a>   </p>
+<h2 id="Jekyll">Jekyll</h2><p>Octopress出来之后，也向人推荐。但自己不用。之所以用Jekyll，是希望专注于写作而非版式、图片等。如果用Octopress，又回归老路了。 Octopress有两点细节不能接受： </p>
+<ul>
+<li>无法支持Github在线编辑；  </li>
+<li>分源码与生成两个分支，违背简洁原则。<h3 id="背后理念-3">背后理念</h3><a href="http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html" target="_blank" rel="external">Blogging Like a Hacker</a><h3 id="相关参考">相关参考</h3><a href="http://www.yangzhiping.com/psy/flow.html" target="_blank" rel="external">如何提高创作型任务的效率？</a><br><a href="http://www.yangzhiping.com/psy/mac.html" target="_blank" rel="external">如何提高创作型任务的效率？（MAC版）</a><br><a href="http://www.yangzhiping.com/tech/github.html" target="_blank" rel="external">如何高效利用Github</a><br><a href="http://www.yangzhiping.com/tech/r-markdown-knitr.html" target="_blank" rel="external">Markdown写作浅谈</a><br><a href="http://www.yangzhiping.com/psy/writers-model.html" target="_blank" rel="external">快速写作模式谈</a>   </li>
+</ul>
+<p><em>声明: 本文采用 BY-NC-SA授权。微信号Mindnote，欢迎订阅。扫码请点击</em><br><em>转载自<a href="http://www.yangzhiping.com/tech/writing-space.html" target="_blank" rel="external">http://www.yangzhiping.com/tech/writing-space.html</a></em></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[理想的写作环境：Git+Github+Markdown+Jekyll]]>
+    
+    </summary>
+    
+      <category term="github" scheme="http://ppii.in/blog/blog/tags/github/"/>
+    
+      <category term="relays" scheme="http://ppii.in/blog/blog/categories/relays/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Github+Jekyll博客环境的搭建遇到的问题]]></title>
+    <link href="http://ppii.in/blog/blog/2014/04/10/jekyll-problem/"/>
+    <id>http://ppii.in/blog/blog/2014/04/10/jekyll-problem/</id>
+    <published>2014-04-09T16:00:00.000Z</published>
+    <updated>2015-06-18T16:26:42.048Z</updated>
+    <content type="html"><![CDATA[<ul>
+<li><strong>1.git简易指南</strong></li>
+</ul>
+<p><a href="http://www.bootcss.com/p/git-guide/" title="http://www.bootcss.com/p/git-guide/" target="_blank" rel="external">http://www.bootcss.com/p/git-guide/</a></p>
+<p><strong>2.git简单实用教程</strong></p>
+<p><a href="http://wuyuans.com/2012/05/github-simple-tutorial/" title="http://wuyuans.com/2012/05/github-simple-tutorial/" target="_blank" rel="external">http://wuyuans.com/2012/05/github-simple-tutorial/</a></p>
+<p><strong>3.使用github+jekyll搭建blog环境，完美替代wordpress</strong><br><a href="http://www.heiniuhaha.com/lessons/2012/08/09/use-jekyll-build-blog/" title="http://www.heiniuhaha.com/lessons/2012/08/09/use-jekyll-build-blog/" target="_blank" rel="external">http://www.heiniuhaha.com/lessons/2012/08/09/use-jekyll-build-blog/</a>     </p>
+<p>   在进行jekyll serve(按提示—server指令已经过时，需要使用serve)这一步时，<br>遇到的情况是，libyaml版本低于0.1.5，需要升级成0.1.6。可以参考<br><a href="https://www.ruby-lang.org/en/news/2014/03/29/heap-overflow-in-yaml-uri-escape-parsing-cve-2014-2525/" title="https://www.ruby-lang.org/en/news/2014/03/29/heap-overflow-in-yaml-uri-escape-parsing-cve-2014-2525/" target="_blank" rel="external">https://www.ruby-lang.org/en/news/2014/03/29/heap-overflow-in-yaml-uri-escape-parsing-cve-2014-2525/</a><br>我安装的是ruby193版本。（考虑到稳定性等因素，没有搭建2.1.1版本及以上，这也是官网推荐的稳定版本）</p>
+<pre><code>  SafeYAML Warning   
+
+You appear <span class="keyword">to</span> have an outdated version <span class="keyword">of</span> libyaml (<span class="number">0.1</span>.<span class="number">5</span>) installed <span class="keyword">on</span> your system.   
+Prior <span class="keyword">to</span> <span class="number">0.1</span>.<span class="number">6</span>, libyaml <span class="keyword">is</span> vulnerable <span class="keyword">to</span> a heap overflow exploit <span class="keyword">from</span> malicious YAML payloads.
+<span class="keyword">For</span> more info, see:  
+  *https:<span class="comment">//www.ruby-lang.org/en/news/2014/03/29/heap-overflow-in-yaml-uri-escape-parsing-cve-2014-2525/*   </span>
+
+  The easiest thing <span class="keyword">to</span> <span class="keyword">do</span> right now <span class="keyword">is</span> probably <span class="keyword">to</span> update Psych <span class="keyword">to</span> the  latest version <span class="keyword">and</span> enable the <span class="string">'bundled-libyaml'</span> option, which will  install a vendored libyaml <span class="keyword">with</span> the vulnerability patched:   
+
+  **gem install psych -- --enable-bundled-libyaml**
+</code></pre><p>这里提到gem install psych — —enable-bundled-libyaml这一步，提交指令之后依然是此问题不能解决。<br>然后参考了<br><a href="http://jonforums.github.io/ruby/2012/02/24/hacking-a-gem.html" title="http://jonforums.github.io/ruby/2012/02/24/hacking-a-gem.html " target="_blank" rel="external">http://jonforums.github.io/ruby/2012/02/24/hacking-a-gem.html </a><br>均无解。。。<br>最后发现这是warning。。暂时放弃解决。<br>同时发现了另外一个bug，关于中文GBK文字无法显示的bug。<br>终于在这找到了答案：<br><a href="http://changfengmingzhi.blog.163.com/blog/static/16710528820131013103511364/" title="http://changfengmingzhi.blog.163.com/blog/static/16710528820131013103511364/" target="_blank" rel="external">http://changfengmingzhi.blog.163.com/blog/static/16710528820131013103511364/</a></p>
+<h5 id="Jekyll_本地调试之若干问题">Jekyll 本地调试之若干问题</h5><p><a href="http://chxt6896.github.io/blog/2012/02/13/blog-jekyll-native.html" title="http://chxt6896.github.io/blog/2012/02/13/blog-jekyll-native.html" target="_blank" rel="external">http://chxt6896.github.io/blog/2012/02/13/blog-jekyll-native.html</a></p>
+<h6 id="http://beiyuu-com/"><a href="http://beiyuu.com/" target="_blank" rel="external">http://beiyuu.com/</a></h6><h4 id="http://blog-fens-me/jekyll-bootstarp-github/"><a href="http://blog.fens.me/jekyll-bootstarp-github/" target="_blank" rel="external">http://blog.fens.me/jekyll-bootstarp-github/</a></h4>]]></content>
+    <summary type="html">
+    <![CDATA[遇到一个jekyll的libyaml库版本过低的问题，依然无解。虽然是warning并不会一下。]]>
+    
+    </summary>
+    
+      <category term="css" scheme="http://ppii.in/blog/blog/tags/css/"/>
+    
+      <category term="notes" scheme="http://ppii.in/blog/blog/categories/notes/"/>
+    
+  </entry>
+  
+</feed>
