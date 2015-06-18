@@ -6,8 +6,6 @@ category: notes
 tags: [JavaScript]
 ---
 
-{% include JB/setup %}
-
 ##创建对象
 
 ####1. 工厂模式

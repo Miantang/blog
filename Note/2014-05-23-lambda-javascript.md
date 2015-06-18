@@ -6,8 +6,6 @@ category: notes
 tags: [JavaScript]
 ---
 
-{% include JB/setup %}
-
 ##函数表达式
 
 ####一些简单的概念：
