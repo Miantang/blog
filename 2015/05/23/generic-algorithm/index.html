@@ -40,7 +40,7 @@
     analytics: {
       google: ''
     },
-    sidebar: 'always'
+    sidebar: 'post'
   };
 </script>
 
@@ -228,11 +228,12 @@
 <p>假如lambda函数体内包含单一return语句之外的内容，且未指定返回类型，则返回void。</p>
 <p><strong>假如，非单一return且未指定返回类型，但是返回了void之外的其他类型，会产生编译错误。</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//错误：不能推断lambda返回类型。</span></span><br><span class="line">transform(v.begin(), v.end(), v.begin(), [](<span class="keyword">int</span> i) &#123; <span class="keyword">if</span>(i &lt; <span class="number">0</span>) <span class="keyword">return</span> -i; <span class="keyword">else</span> <span class="keyword">return</span> i;&#125;);</span><br><span class="line"><span class="comment">//正确：</span></span><br><span class="line">transform(v.begin(), v.end(), v.begin(), [](<span class="keyword">int</span> i) -&gt; <span class="keyword">int</span> &#123; <span class="keyword">if</span>(i &lt; <span class="number">0</span>) <span class="keyword">return</span> -i; <span class="keyword">else</span> <span class="keyword">return</span> i;&#125;);</span><br></pre></td></tr></table></figure>
-<p><strong>然而，我<a href="https://github.com/Miantang/PAT-Advance/blob/master/NowCoder-Practice/1002-2.cpp" target="_blank" rel="external">这段程序</a>不管指定int,bool,或者不指定，都不报错但报warning，原因？</strong></p>
+<p><strong>然而，我<a href="https://github.com/Miantang/PAT/blob/master/NowCoder-Practice/1002-2.cpp" target="_blank" rel="external">这段程序</a>不管指定int,bool,或者不指定，都不报错但报warning，原因？</strong></p>
 <blockquote>
 <p>warning: control reaches end of non-void function [-Wreturn-type]</p>
 </blockquote>
 <p><a href="http://www.nowcoder.com/pat/1/problem/4015" target="_blank" rel="external">对应的相关题目</a></p>
+<p>经过<a href="https://blog.a-kar.in/legacy-mode8-projects/" target="_blank" rel="external">EPM God</a>的提点，我这个warning是因为 int 的遍历不全。<br>（虽然跟C++ Primer上说的，会报错但是实际没报错，不知道是不是编译器(MinGW 4.8.1)的关系</p>
 <h4 id="4-_lambda中的捕获，">4. lambda中的捕获，</h4><p>捕获列表只用于局部非static变量，lambda可以直接使用局部static变量和所在函数之外声明的名字。</p>
 <p>为避免潜在的捕获导致的问题，可能的话，应该避免捕获指针和引用。</p>
 <p>[=] ： 隐式捕获，引用捕获。</p>
@@ -345,7 +346,7 @@
 
       <div class="site-overview">
         <div class="site-author motion-element">
-          <img class="site-author-image" src="images/avatar.jpg" alt="面汤" />
+          <img class="site-author-image" src="/images/avatar.jpg" alt="面汤" />
           <p class="site-author-name">面汤</p>
         </div>
         <p class="site-description motion-element">面汤的个人博客</p>
