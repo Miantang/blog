@@ -45,11 +45,14 @@ tags: [编程学习]
     transform(v.begin(), v.end(), v.begin(), [](int i) -> int { if(i < 0) return -i; else return i;});
 ```
     
-**然而，我[这段程序](https://github.com/Miantang/PAT-Advance/blob/master/NowCoder-Practice/1002-2.cpp)不管指定int,bool,或者不指定，都不报错但报warning，原因？**
+**然而，我[这段程序](https://github.com/Miantang/PAT/blob/master/NowCoder-Practice/1002-2.cpp)不管指定int,bool,或者不指定，都不报错但报warning，原因？**
     
 > warning: control reaches end of non-void function [-Wreturn-type]
 
 [对应的相关题目](http://www.nowcoder.com/pat/1/problem/4015)
+
+经过[EPM God](https://blog.a-kar.in/legacy-mode8-projects/)的提点，我这个warning是因为 int 的遍历不全。
+（虽然跟C++ Primer上说的，会报错但是实际没报错，不知道是不是编译器(MinGW 4.8.1)的关系
     
 
 ####4. lambda中的捕获，

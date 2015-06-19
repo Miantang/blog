@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 物联网关于硬件平台/协议的原型设计
-description: 
+description: 起初的原型设计，包括硬件平台/协议选型，都关系到后期整个项目的进展。
 category: notes
 tags: [物联网]
 ---

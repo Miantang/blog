@@ -10,7 +10,7 @@ menu:
 # Place your favicon.ico to /source directory.
 favicon: favicon.ico
 
-avatar: images/avatar.jpg
+avatar: /images/avatar.jpg
 # Set default keywords (Use a comma to separate)
 keywords: "Hexo,next"
 
@@ -45,7 +45,7 @@ mathjax:
 #  - post    expand on posts automatically. Default.
 #  - always  expand for all pages automatically
 #  - hide    expand only when click on the sidebar toggle icon.
-sidebar: always
+sidebar: post
 #sidebar: always
 #sidebar: hide
 
