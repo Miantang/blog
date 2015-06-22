@@ -2,7 +2,7 @@
 layout: post
 title: Github的学习教程
 description: 这里罗列的是一些github的学习教程。
-category: notes
+category: 技术笔记
 tags: [github]
 ---
 

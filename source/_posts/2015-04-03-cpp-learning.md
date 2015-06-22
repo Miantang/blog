@@ -2,7 +2,7 @@
 layout: post
 title: Does C support function overloading like C++?
 description: A Variable Argument List is not Function Overloading
-category: notes
+category: 技术问题
 tags: [编程学习]
 ---
 

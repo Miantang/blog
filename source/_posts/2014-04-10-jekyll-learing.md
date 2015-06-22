@@ -2,7 +2,7 @@
 layout: post
 title: Jekyll学习笔记
 description: 这里收集了一些关于jekyll语法或者建设博客的教程
-category: notes
+category: 技术笔记
 tags: [css]
 ---
 

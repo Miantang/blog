@@ -2,7 +2,7 @@
 layout: post
 title: 理想的写作环境：Git+Github+Markdown+Jekyll
 description: 理想的写作环境：Git+Github+Markdown+Jekyll
-category: relays
+category: 技术笔记
 tags: [github]
 ---
 

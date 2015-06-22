@@ -2,7 +2,7 @@
 layout: post
 title: C++标准库算法遇到的一些问题
 description: 需要深入理解“泛型”的思想，体会标准库是如何通过算法和数据结构的分离来实现泛型，迭代器是如何在这两者之间架起的桥梁。
-category: notes
+category: 技术问题
 tags: [编程学习]
 ---
 

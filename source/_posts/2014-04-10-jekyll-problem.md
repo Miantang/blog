@@ -2,7 +2,7 @@
 layout: post
 title: Github+Jekyll博客环境的搭建遇到的问题
 description: 遇到一个jekyll的libyaml库版本过低的问题，依然无解。虽然是warning并不会一下。
-category: notes
+category: 技术问题
 tags: [css]
 ---
 

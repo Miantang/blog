@@ -2,7 +2,7 @@
 layout: post
 title: JavaScript中的创建对象的几种模式对比
 description: Object大法好
-category: notes
+category: 技术笔记
 tags: [JavaScript]
 ---
 

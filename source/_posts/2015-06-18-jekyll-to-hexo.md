@@ -2,7 +2,7 @@
 layout: post
 title: 将博客从jekyll迁移到Hexo
 description: 一切以实用为主
-category: notes
+category: 技术笔记
 tags: [Hexo]
 ---
 

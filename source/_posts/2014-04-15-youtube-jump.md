@@ -2,7 +2,7 @@
 layout: post
 title: "解决goagent下youtube飞墙视频无法播放的记录"
 description: "解决goagent下youtube飞墙视频无法播放的记录"
-category: notes
+category: 技术问题
 tags: [goagent,youtube]
 ---
 
