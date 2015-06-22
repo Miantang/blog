@@ -10,7 +10,7 @@ menu:
 # Place your favicon.ico to /source directory.
 favicon: favicon.ico
 
-avatar: /images/avatar.jpg
+avatar: /blog/images/avatar.jpg
 # Set default keywords (Use a comma to separate)
 keywords: "Hexo,next"
 
