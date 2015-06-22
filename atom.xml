@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   
-  <title><![CDATA[Blog of MiTan]]></title>
+  <title><![CDATA[Blog of MianTang]]></title>
   
   <link href="/blog/atom.xml" rel="self"/>
   <link href="http://ppii.in/blog/blog//"/>
-  <updated>2015-06-18T17:00:51.105Z</updated>
+  <updated>2015-06-22T15:13:32.742Z</updated>
   <id>http://ppii.in/blog/blog//</id>
   
   <author>
@@ -16,11 +16,36 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Ubuntu下遇到的find指令不存在的问题]]></title>
+    <link href="http://ppii.in/blog/blog/2015/06/23/ubuntu-find/"/>
+    <id>http://ppii.in/blog/blog/2015/06/23/ubuntu-find/</id>
+    <published>2015-06-22T16:00:00.000Z</published>
+    <updated>2015-06-22T15:13:32.742Z</updated>
+    <content type="html"><![CDATA[<p>最近，在我的工作机器上，不知道出于何种原因，find指令出其地不存在？！导致不能新安装任何包。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dpkg: warning: 'find' <span class="keyword">not</span> found <span class="keyword">in</span> PATH <span class="keyword">or</span> <span class="keyword">not</span> executable</span><br><span class="line">dpkg: <span class="keyword">error</span>: <span class="number">1</span> expected program <span class="keyword">not</span> found <span class="keyword">in</span> PATH <span class="keyword">or</span> <span class="keyword">not</span> executable</span><br><span class="line">Note: root's PATH should usually <span class="keyword">contain</span> /usr/<span class="keyword">local</span>/sbin, /usr/sbin <span class="keyword">and</span> /sbin</span><br><span class="line">E: Sub-process /usr/bin/dpkg returned an <span class="keyword">error</span> code (<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p>这还不是find的权限或者$PATH的问题。<a href="http://stackoverflow.com/questions/16597344/debian-aptitude-install-find-not-found-in-path-or-not-executable" target="_blank" rel="external">http://stackoverflow.com/questions/16597344/debian-aptitude-install-find-not-found-in-path-or-not-executable</a><br>搜了很多都没有找到相应的解决方案。</p>
+<p>每次使用apt-get时候，都需要依靠find指令。然而我在寻找解决方案的过程中，而无论是使用，<code>apt-get install findutils --reinstall</code>还是直接安装<br><a href="https://launchpad.net/ubuntu/wily/i386/findutils/4.4.2-9build1" target="_blank" rel="external">findutils_4.4.2-9build1_i386.deb</a>都绕不开用到自身的find指令。要安装自己却要用到自己，这不是悖论吗？</p>
+<p>就在我打算想办法用source code自行编译的时候，我无意中看到了这个指令”oldfind”，输入了，这个指令还真存在。。于是一句<code>ln -s /usr/bin/oldfind /usr/bin/find</code>死马当作活马医。</p>
+<p>没想到，问题就这么解决了。。长时间受此煎熬，到现在我只想说一句：wpcap！</p>
+<p>到底，还是太嫩。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[oldfind和find的区别]]>
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://ppii.in/blog/blog/tags/JavaScript/"/>
+    
+      <category term="技术问题" scheme="http://ppii.in/blog/blog/categories/%E6%8A%80%E6%9C%AF%E9%97%AE%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[将博客从jekyll迁移到Hexo]]></title>
     <link href="http://ppii.in/blog/blog/2015/06/18/jekyll-to-hexo/"/>
     <id>http://ppii.in/blog/blog/2015/06/18/jekyll-to-hexo/</id>
     <published>2015-06-17T16:00:00.000Z</published>
-    <updated>2015-06-18T17:00:51.105Z</updated>
+    <updated>2015-06-22T15:13:32.742Z</updated>
     <content type="html"><![CDATA[<p>本博客建立之初，也只是能让自己能有一个合适的地方保存自己的学习笔记。并且Github天然地支持Markdown渲染，于是十分乐意地按照官方的教程基于jekyll搭建了这个博客。虽然很多时候没有阶段性地整理自己的学习历程（大部分笔记都放在了对应的repository里），不过免费不限流量的github博客也满足了我DIY的兴趣，所以也常不定期地写下一下学习笔记和文章。</p>
 <p>具体迁移过程就不详述了，较为简单，以后有机会再自定义一些内容吧！</p>
 <p>比较喜欢的两个主题<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">nexT</a> , <a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">yilia</a></p>
@@ -39,7 +64,7 @@
     
       <category term="Hexo" scheme="http://ppii.in/blog/blog/tags/Hexo/"/>
     
-      <category term="notes" scheme="http://ppii.in/blog/blog/categories/notes/"/>
+      <category term="技术笔记" scheme="http://ppii.in/blog/blog/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -48,7 +73,7 @@
     <link href="http://ppii.in/blog/blog/2015/05/23/generic-algorithm/"/>
     <id>http://ppii.in/blog/blog/2015/05/23/generic-algorithm/</id>
     <published>2015-05-22T16:00:00.000Z</published>
-    <updated>2015-06-19T14:17:29.867Z</updated>
+    <updated>2015-06-22T15:13:32.742Z</updated>
     <content type="html"><![CDATA[<p>什么是<strong>泛型编程</strong>：</p>
 <p>简而言之，就是 <strong>用不变的代码实现可变的算法</strong>。</p>
 <p>一般有以下几种应用：</p>
@@ -85,7 +110,7 @@
     
       <category term="编程学习" scheme="http://ppii.in/blog/blog/tags/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="notes" scheme="http://ppii.in/blog/blog/categories/notes/"/>
+      <category term="技术问题" scheme="http://ppii.in/blog/blog/categories/%E6%8A%80%E6%9C%AF%E9%97%AE%E9%A2%98/"/>
     
   </entry>
   
@@ -94,7 +119,7 @@
     <link href="http://ppii.in/blog/blog/2015/04/23/iot-origin/"/>
     <id>http://ppii.in/blog/blog/2015/04/23/iot-origin/</id>
     <published>2015-04-22T16:00:00.000Z</published>
-    <updated>2015-06-19T14:17:29.867Z</updated>
+    <updated>2015-06-22T15:13:32.742Z</updated>
     <content type="html"><![CDATA[<h2 id="1-_硬件平台">1. 硬件平台</h2><p>物联网系统设计现如今已经有着众多的技术方案，各有各的特色/优点和使用场景。</p>
 <p>假如以成本来考虑，可能有以下一些方案：</p>
 <ul>
@@ -130,7 +155,7 @@
     
       <category term="物联网" scheme="http://ppii.in/blog/blog/tags/%E7%89%A9%E8%81%94%E7%BD%91/"/>
     
-      <category term="notes" scheme="http://ppii.in/blog/blog/categories/notes/"/>
+      <category term="物联网" scheme="http://ppii.in/blog/blog/categories/%E7%89%A9%E8%81%94%E7%BD%91/"/>
     
   </entry>
   
@@ -139,7 +164,7 @@
     <link href="http://ppii.in/blog/blog/2015/04/03/cpp-learning/"/>
     <id>http://ppii.in/blog/blog/2015/04/03/cpp-learning/</id>
     <published>2015-04-02T16:00:00.000Z</published>
-    <updated>2015-06-18T16:26:42.055Z</updated>
+    <updated>2015-06-22T15:13:32.742Z</updated>
     <content type="html"><![CDATA[<p>If you consider theprintf() function in C, that may lead you to think that C supports function overloading. Because, in C you can have <code>printf(&quot;%d&quot;, aDecimal)</code> and <code>printf(&quot;%f&quot;, aFloat)</code>. This looks a lot like function overloading, because we are using the same function name, but the function is accepting different parameter types – which is one of the ways we can overload functions.</p>
 <h3 id="A_Variable_Argument_List_is_not_Function_Overloading">A Variable Argument List is not Function Overloading</h3><p>Actually, this is not a case of function overloading – the printf function is just using a feature of C known as variable argument lists. This should not be confused with function overloading. So, to answer the question, Standard C does not support function overloading.</p>
 <p>As an interesting side note, C++ doesn’t really have function overloading. What it does have is a means of faking it: the C++ compiler actually ‘mangles’ (or changes) function names according to the function’s parameters. So, functions that share the same name but have different numbers or types of parameters can be differentiated when invoked. Also, since the ‘mangling’ of function names is not standardized, it’s usually difficult to link object files compiled by different C++ compilers.</p>
@@ -152,7 +177,7 @@
     
       <category term="编程学习" scheme="http://ppii.in/blog/blog/tags/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="notes" scheme="http://ppii.in/blog/blog/categories/notes/"/>
+      <category term="技术问题" scheme="http://ppii.in/blog/blog/categories/%E6%8A%80%E6%9C%AF%E9%97%AE%E9%A2%98/"/>
     
   </entry>
   
@@ -161,7 +186,7 @@
     <link href="http://ppii.in/blog/blog/2015/01/03/bintree-postoder/"/>
     <id>http://ppii.in/blog/blog/2015/01/03/bintree-postoder/</id>
     <published>2015-01-02T16:00:00.000Z</published>
-    <updated>2015-06-18T16:26:42.055Z</updated>
+    <updated>2015-06-22T15:13:32.742Z</updated>
     <content type="html"><![CDATA[<p>二叉树是一种非常重要的数据结构，很多其它数据结构都是基于二叉树的基础演变而来的。对于二叉树，有前序、中序以及后序三种遍历方法。因为树的定义本身就是递归定义，因此采用递归的方法去实现树的三种遍历不仅容易理解而且代码很简洁。而对于树的遍历若采用非递归的方法，就要采用栈去模拟实现。在三种遍历中，前序和中序遍历的非递归算法都很容易实现，非递归后序遍历实现起来相对来说要难一点。</p>
 <h3 id="后序遍历">后序遍历</h3><h4 id="后序遍历按照“左孩子-右孩子-根结点”的顺序进行访问。">后序遍历按照“左孩子-右孩子-根结点”的顺序进行访问。</h4><ul>
 <li>递归实现</li>
@@ -183,7 +208,7 @@
     
       <category term="编程学习" scheme="http://ppii.in/blog/blog/tags/%E7%BC%96%E7%A8%8B%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="notes" scheme="http://ppii.in/blog/blog/categories/notes/"/>
+      <category term="技术笔记" scheme="http://ppii.in/blog/blog/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -192,7 +217,7 @@
     <link href="http://ppii.in/blog/blog/2014/12/20/diary10/"/>
     <id>http://ppii.in/blog/blog/2014/12/20/diary10/</id>
     <published>2014-12-19T16:00:00.000Z</published>
-    <updated>2015-06-18T16:26:42.054Z</updated>
+    <updated>2015-06-22T15:13:32.742Z</updated>
     <content type="html"><![CDATA[<p>虽然说，最近因为考试也好，各种杂事也好。但这些都不能是我作为暂停写日志的因素。有的时候会看书，学MOOC坚持到很晚将近一点。困了累了就不想打开记事本写下这个每日的总结和感想，包括对李笑来老师的《把时间当朋友》的认真研读也被搁置了。</p>
 <p>果然还是自己的执行力上，养成这样一个习惯，并不是很简单。有的时候只是一念之间。应该还是认识不够。要是我再不写下，也许多少个月就过去了。</p>
 <p>26号，30号两门专业课的考试。不能再吐槽它们的作用，以及研究生的专业课是否对自己的研究方向有作用。该遇到的，总是要解决。不能质疑任何知识的作用。即使这辈子十分大的可能不再用上。但是这是毕业必需的。所以还是要好好准备考试。</p>
@@ -208,7 +233,7 @@
     
       <category term="日记" scheme="http://ppii.in/blog/blog/tags/%E6%97%A5%E8%AE%B0/"/>
     
-      <category term="mood" scheme="http://ppii.in/blog/blog/categories/mood/"/>
+      <category term="心情笔记" scheme="http://ppii.in/blog/blog/categories/%E5%BF%83%E6%83%85%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -217,7 +242,7 @@
     <link href="http://ppii.in/blog/blog/2014/12/10/diary8/"/>
     <id>http://ppii.in/blog/blog/2014/12/10/diary8/</id>
     <published>2014-12-09T16:00:00.000Z</published>
-    <updated>2015-06-18T16:26:42.054Z</updated>
+    <updated>2015-06-22T15:13:32.742Z</updated>
     <content type="html"><![CDATA[<p>现代信号处理，这门课还好去了，课堂上考了一个试。题目虽然只有两道，还是不太会做啊。某种程度上还是自己根本没有好好复习。要考试了，考前焦虑又来了。大约会在12月27号考试，看来这个很需要好好计划一番啊。</p>
 <p>明天开始尝试写下自己的时间账本。寻找一种更好，更一目了然可以回溯查看的方法。</p>
 <p>特别是MOOC的内容，还是有一个好规划才行。不然每天挺盲目的。</p>
@@ -231,7 +256,7 @@
     
       <category term="日记" scheme="http://ppii.in/blog/blog/tags/%E6%97%A5%E8%AE%B0/"/>
     
-      <category term="mood" scheme="http://ppii.in/blog/blog/categories/mood/"/>
+      <category term="心情笔记" scheme="http://ppii.in/blog/blog/categories/%E5%BF%83%E6%83%85%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -240,7 +265,7 @@
     <link href="http://ppii.in/blog/blog/2014/12/09/diary7/"/>
     <id>http://ppii.in/blog/blog/2014/12/09/diary7/</id>
     <published>2014-12-08T16:00:00.000Z</published>
-    <updated>2015-06-18T16:26:42.054Z</updated>
+    <updated>2015-06-22T15:13:32.742Z</updated>
     <content type="html"><![CDATA[<p>开启了你的梦想吗。阅读了新东方李笑来老师的《把时间当朋友》，里面提到了一种关于时间记录的方法，Event-log。把我一天的时间消耗全部记录下来，不写感想不写结果，只写做了什么。一目了然，等一段时间之后，就会发现，自己无意义的事情会越来越少。以后做的事情也是越来越有意义的。这一点，跟<a href="http://www.zhihu.com/question/21438053" target="_blank" rel="external">学习编程用什么做笔记比较好？</a>,<a href="http://www.zhihu.com/question/23427617" target="_blank" rel="external">如何构建你的笔记系统？</a>。有着异曲同工的相同之处。</p>
 <p><strong>关键还是好记性不如烂笔头啊。。你要记住你所浪费的时间！你浪费了多少时间！</strong></p>
 <p>最近学习JAVA和安卓，倒是想能在明年4月之前，看能不能开发出这样一个APP。</p>
@@ -253,7 +278,7 @@
     
       <category term="日记" scheme="http://ppii.in/blog/blog/tags/%E6%97%A5%E8%AE%B0/"/>
     
-      <category term="mood" scheme="http://ppii.in/blog/blog/categories/mood/"/>
+      <category term="心情笔记" scheme="http://ppii.in/blog/blog/categories/%E5%BF%83%E6%83%85%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -262,7 +287,7 @@
     <link href="http://ppii.in/blog/blog/2014/12/08/diary6/"/>
     <id>http://ppii.in/blog/blog/2014/12/08/diary6/</id>
     <published>2014-12-07T16:00:00.000Z</published>
-    <updated>2015-06-18T16:26:42.053Z</updated>
+    <updated>2015-06-22T15:13:32.742Z</updated>
     <content type="html"><![CDATA[<p>确定要开始考试了！12月20日。信号检测与估计。</p>
 <p>时间管理！现在一周过去已经感觉到一点吃力了。</p>
 <p>北理工那门《面向对象编程实训》有点吃力。毕竟Winform控件还没入门。很多东西都不太会写。作业虽然基本功能实现了。但是代码实在，，难看啊。</p>
@@ -278,7 +303,7 @@
     
       <category term="日记" scheme="http://ppii.in/blog/blog/tags/%E6%97%A5%E8%AE%B0/"/>
     
-      <category term="mood" scheme="http://ppii.in/blog/blog/categories/mood/"/>
+      <category term="心情笔记" scheme="http://ppii.in/blog/blog/categories/%E5%BF%83%E6%83%85%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -287,7 +312,7 @@
     <link href="http://ppii.in/blog/blog/2014/12/07/diary5/"/>
     <id>http://ppii.in/blog/blog/2014/12/07/diary5/</id>
     <published>2014-12-06T16:00:00.000Z</published>
-    <updated>2015-06-18T16:26:42.053Z</updated>
+    <updated>2015-06-22T15:13:32.726Z</updated>
     <content type="html"><![CDATA[<p>整理了一下网易云课堂的内容，十门课啊。后期可能会很吃力。。看来时间管理很重要。。想看看自己的极限在哪里。我希望可以全部拿到证书（有可能是一个奢望）。</p>
 <p>导师又再次强调了理论的重要性。智能家居这个项目的投标阶段将要结束。下一个项目“干扰性能评估系统”要到来了！需要好好准备C++，MFC和MATLAB吧，可能主要还是理论算法上的积淀。等今后老师的交接吧。</p>
 <p>今天还把明天《科研信息获取与利用》这门课的PPT做完了。80多页。。作为组长伤不起啊。组员很多都比较敷衍了事，虽然整个内容不是很重要，主要在检索的过程。漏洞太多，我也不能全部修复，只能在明天做presention的时候现场发挥了。加油！</p>
@@ -301,7 +326,7 @@
     
       <category term="日记" scheme="http://ppii.in/blog/blog/tags/%E6%97%A5%E8%AE%B0/"/>
     
-      <category term="mood" scheme="http://ppii.in/blog/blog/categories/mood/"/>
+      <category term="心情笔记" scheme="http://ppii.in/blog/blog/categories/%E5%BF%83%E6%83%85%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -310,7 +335,7 @@
     <link href="http://ppii.in/blog/blog/2014/12/06/diary4/"/>
     <id>http://ppii.in/blog/blog/2014/12/06/diary4/</id>
     <published>2014-12-05T16:00:00.000Z</published>
-    <updated>2015-06-18T16:26:42.052Z</updated>
+    <updated>2015-06-22T15:13:32.726Z</updated>
     <content type="html"><![CDATA[<p>今天算是修复了github的blog上一点css的错乱问题。</p>
 <p>整理了一下印象笔记的内容。把网易云课堂的课程进度同步在印象笔记。<br>为知笔记出乎意料的好，保存网页十分保真。这一点可能有道云笔记感觉逊色一些。<br>三个笔记配合着使用吧！</p>
 ]]></content>
@@ -323,7 +348,7 @@
     
       <category term="日记" scheme="http://ppii.in/blog/blog/tags/%E6%97%A5%E8%AE%B0/"/>
     
-      <category term="mood" scheme="http://ppii.in/blog/blog/categories/mood/"/>
+      <category term="心情笔记" scheme="http://ppii.in/blog/blog/categories/%E5%BF%83%E6%83%85%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -332,7 +357,7 @@
     <link href="http://ppii.in/blog/blog/2014/12/05/diary3/"/>
     <id>http://ppii.in/blog/blog/2014/12/05/diary3/</id>
     <published>2014-12-04T16:00:00.000Z</published>
-    <updated>2015-06-18T16:26:42.052Z</updated>
+    <updated>2015-06-22T15:13:32.726Z</updated>
     <content type="html"><![CDATA[<p>今晚刷了好几门课程。包括，编译原理，C、Python，做了相关的课后习题。太晚了，今天的留在明天早上来总结吧。晚安先~</p>
 <p>上午上的学术英语课，我争取到机会，终于可以上讲台进行自己的presentation。好几周之前已经准备好的PPT了。对一篇国际会议论文进行阐述。同时陈述自己的看法。<br>我选择的课题是，统计分析下认提对可穿戴天线的影响。TODO</p>
 <p>当然说最后留下的感受吧。<br>自己还是有演讲焦虑，在没有充分准备的情况下（因为ppt很久之前做的，很多忘了），说话会磕巴，紧张。有的时候并不能表述清楚自己的观点。演讲还是需要有一个明晰的脉络才不至于手忙脚乱语无伦次。当然，有的情况下，我的自我发挥还是有可取之处。包括中途提到的一些例子，都是临时想的。<br>在台下也“臆想”了自己怎么讲讲讲，会讲成什么样，到头来很多都没有达到预期。也给自己太大的压力了。</p>
@@ -351,7 +376,7 @@
     
       <category term="网易云课堂" scheme="http://ppii.in/blog/blog/tags/%E7%BD%91%E6%98%93%E4%BA%91%E8%AF%BE%E5%A0%82/"/>
     
-      <category term="mood" scheme="http://ppii.in/blog/blog/categories/mood/"/>
+      <category term="心情笔记" scheme="http://ppii.in/blog/blog/categories/%E5%BF%83%E6%83%85%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -360,7 +385,7 @@
     <link href="http://ppii.in/blog/blog/2014/12/04/diary2/"/>
     <id>http://ppii.in/blog/blog/2014/12/04/diary2/</id>
     <published>2014-12-03T16:00:00.000Z</published>
-    <updated>2015-06-18T16:26:42.051Z</updated>
+    <updated>2015-06-22T15:13:32.726Z</updated>
     <content type="html"><![CDATA[<p><strong>坚持不可谓不是一件考验毅力的事情。</strong></p>
 <p>今天《现代信号处理》的冯老师出差，这节课就没有上。一天的时间可以说是泡在实验室。继续与同门小伙伴一起探讨关于导师项目的方案，头脑风暴多次，也只是得出一些简单的结论。今天也求助了网络上的软件工程专业的朋友，关于写这个项目的安卓app的难度。其实自己对整个框架和实现方法还是有一个大致的雏形。只是苦于入门不深，还是不够自信。导师还请了计算机系的外援，到后来经过一番讨论确立了一个大致的方案发现，其实难度上并不是在安卓app端的控制，而是中心服务器的架构上。导师笑称，我们给他造成了一个困难局面的假象。到头来还请了外援，不上不下的。</p>
 <p>总结今天这个事情来说，还是需要多多涉猎各方面的知识啊。才能做出合理的判断。（不过，后期懂得更多的时候，也许现在的判断也会被推翻。螺旋式上升的过程~）</p>
@@ -378,7 +403,7 @@
     
       <category term="网易云课堂" scheme="http://ppii.in/blog/blog/tags/%E7%BD%91%E6%98%93%E4%BA%91%E8%AF%BE%E5%A0%82/"/>
     
-      <category term="mood" scheme="http://ppii.in/blog/blog/categories/mood/"/>
+      <category term="心情笔记" scheme="http://ppii.in/blog/blog/categories/%E5%BF%83%E6%83%85%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -387,8 +412,8 @@
     <link href="http://ppii.in/blog/blog/2014/12/03/diary1/"/>
     <id>http://ppii.in/blog/blog/2014/12/03/diary1/</id>
     <published>2014-12-02T16:00:00.000Z</published>
-    <updated>2015-06-18T16:26:42.051Z</updated>
-    <content type="html"><![CDATA[<p>今天是写日志的第一天，尝试看一下自己能坚持多久吧。<br>在这里先给自己一些简单的要求：（以后可以继续补充）</p>
+    <updated>2015-06-22T15:13:32.726Z</updated>
+    <content type="html"><![CDATA[<p>今天是写日志的第一天。<br>在这里先给自己一些简单的要求：（以后可以继续补充）</p>
 <blockquote>
 <ul>
 <li>尝试之后的git，push上我的jekyll博客。<ul>
@@ -417,7 +442,7 @@
     
       <category term="网易云课堂" scheme="http://ppii.in/blog/blog/tags/%E7%BD%91%E6%98%93%E4%BA%91%E8%AF%BE%E5%A0%82/"/>
     
-      <category term="mood" scheme="http://ppii.in/blog/blog/categories/mood/"/>
+      <category term="心情笔记" scheme="http://ppii.in/blog/blog/categories/%E5%BF%83%E6%83%85%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -426,7 +451,7 @@
     <link href="http://ppii.in/blog/blog/2014/09/07/andreas/"/>
     <id>http://ppii.in/blog/blog/2014/09/07/andreas/</id>
     <published>2014-09-06T16:00:00.000Z</published>
-    <updated>2015-06-18T16:26:42.050Z</updated>
+    <updated>2015-06-22T15:13:32.726Z</updated>
     <content type="html"><![CDATA[<p>人生，其实像一条从宽阔的平原走进森林的路。在平原上同伴可以结伙而行，欢乐地前推后挤、相濡以沫；一旦进入森林，草丛和荆棘挡路，各人专心走各人的路，寻找各人的方向，那推推挤挤的群体情感，那无忧无虑无猜忌的同侪深情，在人的一生中也只有少年期有。离开这段纯洁而明亮的阶段，路其实可能愈走愈孤独。你将被家庭羁绊，被责任捆绑，被自己的野心套牢，被人生的复杂和矛盾压抑，你往丛林深处走去，愈走愈深，不复再有阳光似的伙伴。到了熟透的年龄，即使在群众的怀抱中，你都可能觉得寂寞无比</p>
 <p>……</p>
 ]]></content>
@@ -437,7 +462,7 @@
     
       <category term="书评" scheme="http://ppii.in/blog/blog/tags/%E4%B9%A6%E8%AF%84/"/>
     
-      <category term="notes" scheme="http://ppii.in/blog/blog/categories/notes/"/>
+      <category term="人文笔记" scheme="http://ppii.in/blog/blog/categories/%E4%BA%BA%E6%96%87%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -446,7 +471,7 @@
     <link href="http://ppii.in/blog/blog/2014/07/26/vimtutor/"/>
     <id>http://ppii.in/blog/blog/2014/07/26/vimtutor/</id>
     <published>2014-07-25T16:00:00.000Z</published>
-    <updated>2015-06-18T16:26:42.050Z</updated>
+    <updated>2015-06-22T15:13:32.726Z</updated>
     <content type="html"><![CDATA[<p>最近整理了VIM的配置，换上插件管理的神器——-<a href="https://github.com/gmarik/vundle" target="_blank" rel="external">Vundle</a>，由他引发的VIM生态环境的改善，堪称完美。遂打算写一份简单的教程，分享Git时代VIM新世界的美丽动人之处。<strong>对VIM有基础的同学，可直接跳至插件管理部分。</strong></p>
 <h2 id="VIM的模式">VIM的模式</h2><p>第一次使用VIM，会觉得无所适从，他并不像记事本，你敲什么键就显示什么，理解VIM的需要明白他的两种模式：</p>
 <ul>
@@ -646,7 +671,74 @@ Bundle <span class="string">'Valloric/YouCompleteMe'</span>
     
       <category term="vim" scheme="http://ppii.in/blog/blog/tags/vim/"/>
     
-      <category term="relays" scheme="http://ppii.in/blog/blog/categories/relays/"/>
+      <category term="技术笔记" scheme="http://ppii.in/blog/blog/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[JavaScript中的函数式编程]]></title>
+    <link href="http://ppii.in/blog/blog/2014/05/23/lambda-javascript/"/>
+    <id>http://ppii.in/blog/blog/2014/05/23/lambda-javascript/</id>
+    <published>2014-05-22T16:00:00.000Z</published>
+    <updated>2015-06-22T15:13:32.726Z</updated>
+    <content type="html"><![CDATA[<h2 id="函数表达式">函数表达式</h2><h4 id="一些简单的概念：">一些简单的概念：</h4><h5 id="1-_函数声明提升：指在执行函数之前会读取函数声明，意味着可以把函数声明放在调用它的语句之后。">1. <strong>函数声明提升</strong>：指在执行函数之前会读取函数声明，意味着可以把函数声明放在调用它的语句之后。</h5><p>然而，lambda函数却不是这样。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">EPM(); <span class="comment">// 导致错误，函数不存在。</span></span><br><span class="line"><span class="keyword">var</span> EPM = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">"God!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="2-_递归。">2. 递归。</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span> (<span class="params">num</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (num &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">        reuturn <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> num * factorial(num-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> anotherFactorial = factorial;</span><br><span class="line">factorial = <span class="literal">null</span>;</span><br><span class="line">alert(anotherFactorial(<span class="number">4</span>));  <span class="comment">//error</span></span><br></pre></td></tr></table></figure>
+<p><strong>TypeError: factorial is not a function</strong></p>
+<p><strong>arguments.calee 指向正在执行的函数指针</strong>。可以代替实现函数的递归调用。</p>
+<p>问题待研究：在严格模式下，arguments.callee，访问这个属性却会失效导致错误，为什么？<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode" target="_blank" rel="external">参考文档</a></p>
+<p>另外，可以对lambda函数创建命名来解决严格模式下的问题。</p>
+<h5 id="3-_闭包_：_指有权访问另一个函数作用域（外部？）中的变量的函数。一些其他解释：">3. 闭包 ： 指有权访问另一个函数作用域（外部？）中的变量的函数。一些其他解释：</h5><p>是由函数和与其相关的参照环境组合而成的实体。閉包只需有擴充變量的作用範圍即可，而無需有其它函數存在。</p>
+<p>闭包是一种捕获了环境中自由变量的引用的函数，同时这个自由变量同函数一起存在。</p>
+<p>换言之，使用闭包创建的函数可以「记住」它被创建时所处的环境。</p>
+<p>闭包就是打入敌人内部的间谍，通过他你可以接触敌人对外封锁的信息。 </p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/A_re-introduction_to_JavaScript#.E9.97.AD.E5.8C.85" target="_blank" rel="external">MDN上的官方解释</a></p>
+<p><a href="http://stackoverflow.com/questions/111102/how-do-javascript-closures-work" target="_blank" rel="external">stackoverflow上关于闭包的介绍</a></p>
+<p>一些可供参考的博文/问答：</p>
+<p><a href="http://www.zhihu.com/question/20963006" target="_blank" rel="external">http://www.zhihu.com/question/20963006</a>  : setTimeout 的参数用了字符串的形式，它最终会在全局作用域下运行?</p>
+<p><a href="http://zora.ghost.io/tan-tan-bi-bao-yu-lambda/" target="_blank" rel="external">http://zora.ghost.io/tan-tan-bi-bao-yu-lambda/</a></p>
+<p><a href="http://www.zhihu.com/question/19554716" target="_blank" rel="external">http://www.zhihu.com/question/19554716</a></p>
+<p><a href="https://blog.mozilla.org/luke/2012/10/02/optimizing-javascript-variable-access/" target="_blank" rel="external">https://blog.mozilla.org/luke/2012/10/02/optimizing-javascript-variable-access/</a></p>
+<h5 id="4-_内存泄露_，使用闭包可能会导致的坏处">4. 内存泄露 ，使用闭包可能会导致的坏处</h5><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/A_re-introduction_to_JavaScript#.E5.86.85.E5.AD.98.E6.B3.84.E9.9C.B2" target="_blank" rel="external">MDN上的解释</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Memory_Management" target="_blank" rel="external">内存管理</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[函数表达式的特征，JavaScript特有的概念，闭包定义私有变量]]>
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://ppii.in/blog/blog/tags/JavaScript/"/>
+    
+      <category term="技术笔记" scheme="http://ppii.in/blog/blog/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[JavaScript中的创建对象的几种模式对比]]></title>
+    <link href="http://ppii.in/blog/blog/2014/05/23/javascript-createobject/"/>
+    <id>http://ppii.in/blog/blog/2014/05/23/javascript-createobject/</id>
+    <published>2014-05-22T16:00:00.000Z</published>
+    <updated>2015-06-22T15:13:32.726Z</updated>
+    <content type="html"><![CDATA[<h2 id="创建对象">创建对象</h2><h4 id="1-_工厂模式">1. 工厂模式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createShape</span>(<span class="params">x, func</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">    o.x = x;</span><br><span class="line">    o.func = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">    <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> shape = createShape(x, func);</span><br></pre></td></tr></table></figure>
+<p>无法进行对象识别（识别对象的类型）</p>
+<h4 id="2-_构造函数模式">2. 构造函数模式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Shape</span>(<span class="params">x, func</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.x = x;</span><br><span class="line">    <span class="keyword">this</span>.func = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> shape = <span class="keyword">new</span> Shape(x, func);</span><br></pre></td></tr></table></figure>
+<p>经历的步骤：</p>
+<p>1) 创建一个新对象</p>
+<p>2) 将构造函数的作用域赋给新对象（this指向这个新对象）</p>
+<p>3) 执行构造函数中代码。</p>
+<p>4) 返回新对象。</p>
+<p>特点：每个构造函数都实例化了一个新的对象。不同实例的同名方法是不相等的。</p>
+<p><code>alert(a.func == b.func); // false</code></p>
+<p>可解决方案：将方法func提出到外部作用域，然后<code>this.func = func;</code>。但是却使得自定义类失去封装性。</p>
+<h4 id="3-_原型模式">3. 原型模式</h4><h4 id="4-_组合使用构造函数模式和原型模式(recommended)">4. 组合使用构造函数模式和原型模式(recommended)</h4><h4 id="5-_动态原型模式">5. 动态原型模式</h4><h4 id="6-_寄生构造函数模式(not_recommended)_不能依赖instanceof来确定对象类型">6. 寄生构造函数模式(not recommended) 不能依赖instanceof来确定对象类型</h4><h4 id="7-_稳妥构造函数模式">7. 稳妥构造函数模式</h4>]]></content>
+    <summary type="html">
+    <![CDATA[Object大法好]]>
+    
+    </summary>
+    
+      <category term="JavaScript" scheme="http://ppii.in/blog/blog/tags/JavaScript/"/>
+    
+      <category term="技术笔记" scheme="http://ppii.in/blog/blog/categories/%E6%8A%80%E6%9C%AF%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -655,7 +747,7 @@ Bundle <span class="string">'Valloric/YouCompleteMe'</span>
     <link href="http://ppii.in/blog/blog/2014/04/15/youtube-jump/"/>
     <id>http://ppii.in/blog/blog/2014/04/15/youtube-jump/</id>
     <published>2014-04-14T16:00:00.000Z</published>
-    <updated>2015-06-18T16:26:42.049Z</updated>
+    <updated>2015-06-22T15:13:32.710Z</updated>
     <content type="html"><![CDATA[<p>在<a href="http://mooc.guokr.com/" target="_blank" rel="external">果壳MOOC学院</a>fork了一些课程。觉得自己应该利用业余时间拓展一些知识。特别是英文授课的内容。</p>
 <p>现今主要关注了CS方面、未来技能方面和English Writing方面的课程。国外各大名校的教授水平应该不低。</p>
 <p>在<a href="https://www.udacity.com/" target="_blank" rel="external">udacity</a>和<a href="https://www.edx.org/" target="_blank" rel="external">edX</a>都需要使用youtube进行视频播放。<br>遇到一个问题：<br>youtube网页能正常打开，但视频却是undefined无法播放。<br>上goagent的谷歌code处查找到了相关的解决办法：<br>SwitchySharp Options添加一条rule:<em>://</em>.googlevideo.com/*。。<br>Mission complete!</p>
@@ -670,101 +762,7 @@ Bundle <span class="string">'Valloric/YouCompleteMe'</span>
     
       <category term="youtube" scheme="http://ppii.in/blog/blog/tags/youtube/"/>
     
-      <category term="notes" scheme="http://ppii.in/blog/blog/categories/notes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[一个Javascript程序员的源代码游戏]]></title>
-    <link href="http://ppii.in/blog/blog/2014/04/13/untrust/"/>
-    <id>http://ppii.in/blog/blog/2014/04/13/untrust/</id>
-    <published>2014-04-12T16:00:00.000Z</published>
-    <updated>2015-06-18T16:26:42.049Z</updated>
-    <content type="html"><![CDATA[<p>This is a A meta-JavaScript adventure game.</p>
-<p>很有趣。只能在特定的行使用javascript修改源代码，使用自己的方法，把障碍物#或者隐形的Object(mine)移除。<br>使得绿色@(Player)能到达♢(exit)出口。<br>有相关的内部API使用。   </p>
-<p>虽然我暂时只玩到了第五关。。</p>
-<p>以下是传送地址<br><a href="http://alexnisnevich.github.io/untrusted/" target="_blank" rel="external">http://alexnisnevich.github.io/untrusted/</a>    </p>
-<p><a href="http://jayisgames.com/images/untrusted/untrusted.html" title="http://jayisgames.com/images/untrusted/untrusted.html" target="_blank" rel="external">http://jayisgames.com/images/untrusted/untrusted.html</a>   </p>
-<p> 包括Github下的源代码<br><a href="https://github.com/AlexNisnevich/untrusted" title="https://github.com/AlexNisnevich/untrusted" target="_blank" rel="external">https://github.com/AlexNisnevich/untrusted</a>    </p>
-<p><iframe frameborder="0" height="700" marginheight="0px" marginwidth="0px" scrolling="no" src="http://jayisgames.com/images/untrusted/untrusted.html" width="1230"></iframe></p>]]></content>
-    <summary type="html">
-    <![CDATA[This is a A meta-JavaScript adventure game.The game presents you with a roguelike-like playing environment and a console window with the JavaScript code generating each level. As loaded, each level is unbeatable, and most of the JavaScript is blocked from editing. The challenge is to open a path to the next level using only the limited tools left open to you.]]>
-    
-    </summary>
-    
-      <category term="game" scheme="http://ppii.in/blog/blog/tags/game/"/>
-    
-      <category term="relays" scheme="http://ppii.in/blog/blog/categories/relays/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Github的学习教程]]></title>
-    <link href="http://ppii.in/blog/blog/2014/04/10/writing/"/>
-    <id>http://ppii.in/blog/blog/2014/04/10/writing/</id>
-    <published>2014-04-09T16:00:00.000Z</published>
-    <updated>2015-06-18T16:26:42.048Z</updated>
-    <content type="html"><![CDATA[<p>理想的写作环境，受各类干扰小、清理废话及版本管理容易。曾花费较长时间寻找，最后还是到了。</p>
-<p>2010年开始，采取Git+Github+Markdown+Jekyll，完成一些作品。暖色调灯光，黑暗的背景色，全屏的写作状态，很有氛围。</p>
-<p>这种搭配，符合心理学原理，背后有着相应理念。分享如下：</p>
-<p>Git<br>让人不再担心写废，想到哪里，写到哪里。</p>
-<h3 id="背后理念">背后理念</h3><p><a href="http://zh-cn.whygitisbetterthanx.com/" target="_blank" rel="external">http://zh-cn.whygitisbetterthanx.com/</a><br>Github<br>让人不再担心备份与远程协作，一切提交，均有记录。</p>
-<h3 id="补充介绍">补充介绍</h3><p>购买一个Github的私人账户，用于托管个人”不适合公开”的项目。 零散的思考，随时写在Jekyll的_drafts目录下。当思考成熟，予以发布。较系统的思考，尤其需要远程协作，则参考Github中成功的开源图书项目，单独整理为Jekyll的子目录或独立项目。</p>
-<h3 id="背后理念-1">背后理念</h3><p><a href="http://tom.preston-werner.com/2008/10/18/how-i-turned-down-300k.html" target="_blank" rel="external">How I Turned Down $300,000 from Microsoft to go Full-Time on GitHub<br>Markdown </a><br>不再忧虑排版，专注写作。</p>
-<h3 id="背后理念-2">背后理念</h3><p><a href="http://markdown.tw/" target="_blank" rel="external">Markdown语法中译</a><br><a href="http://jianshu.io/p/q81RER" target="_blank" rel="external">献给写作者的 Markdown 新手指南</a>   </p>
-<h2 id="Jekyll">Jekyll</h2><p>Octopress出来之后，也向人推荐。但自己不用。之所以用Jekyll，是希望专注于写作而非版式、图片等。如果用Octopress，又回归老路了。 Octopress有两点细节不能接受： </p>
-<ul>
-<li>无法支持Github在线编辑；  </li>
-<li>分源码与生成两个分支，违背简洁原则。<h3 id="背后理念-3">背后理念</h3><a href="http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html" target="_blank" rel="external">Blogging Like a Hacker</a><h3 id="相关参考">相关参考</h3><a href="http://www.yangzhiping.com/psy/flow.html" target="_blank" rel="external">如何提高创作型任务的效率？</a><br><a href="http://www.yangzhiping.com/psy/mac.html" target="_blank" rel="external">如何提高创作型任务的效率？（MAC版）</a><br><a href="http://www.yangzhiping.com/tech/github.html" target="_blank" rel="external">如何高效利用Github</a><br><a href="http://www.yangzhiping.com/tech/r-markdown-knitr.html" target="_blank" rel="external">Markdown写作浅谈</a><br><a href="http://www.yangzhiping.com/psy/writers-model.html" target="_blank" rel="external">快速写作模式谈</a>   </li>
-</ul>
-<p><em>声明: 本文采用 BY-NC-SA授权。微信号Mindnote，欢迎订阅。扫码请点击</em><br><em>转载自<a href="http://www.yangzhiping.com/tech/writing-space.html" target="_blank" rel="external">http://www.yangzhiping.com/tech/writing-space.html</a></em></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[理想的写作环境：Git+Github+Markdown+Jekyll]]>
-    
-    </summary>
-    
-      <category term="github" scheme="http://ppii.in/blog/blog/tags/github/"/>
-    
-      <category term="relays" scheme="http://ppii.in/blog/blog/categories/relays/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Github+Jekyll博客环境的搭建遇到的问题]]></title>
-    <link href="http://ppii.in/blog/blog/2014/04/10/jekyll-problem/"/>
-    <id>http://ppii.in/blog/blog/2014/04/10/jekyll-problem/</id>
-    <published>2014-04-09T16:00:00.000Z</published>
-    <updated>2015-06-18T16:26:42.048Z</updated>
-    <content type="html"><![CDATA[<ul>
-<li><strong>1.git简易指南</strong></li>
-</ul>
-<p><a href="http://www.bootcss.com/p/git-guide/" title="http://www.bootcss.com/p/git-guide/" target="_blank" rel="external">http://www.bootcss.com/p/git-guide/</a></p>
-<p><strong>2.git简单实用教程</strong></p>
-<p><a href="http://wuyuans.com/2012/05/github-simple-tutorial/" title="http://wuyuans.com/2012/05/github-simple-tutorial/" target="_blank" rel="external">http://wuyuans.com/2012/05/github-simple-tutorial/</a></p>
-<p><strong>3.使用github+jekyll搭建blog环境，完美替代wordpress</strong><br><a href="http://www.heiniuhaha.com/lessons/2012/08/09/use-jekyll-build-blog/" title="http://www.heiniuhaha.com/lessons/2012/08/09/use-jekyll-build-blog/" target="_blank" rel="external">http://www.heiniuhaha.com/lessons/2012/08/09/use-jekyll-build-blog/</a>     </p>
-<p>   在进行jekyll serve(按提示—server指令已经过时，需要使用serve)这一步时，<br>遇到的情况是，libyaml版本低于0.1.5，需要升级成0.1.6。可以参考<br><a href="https://www.ruby-lang.org/en/news/2014/03/29/heap-overflow-in-yaml-uri-escape-parsing-cve-2014-2525/" title="https://www.ruby-lang.org/en/news/2014/03/29/heap-overflow-in-yaml-uri-escape-parsing-cve-2014-2525/" target="_blank" rel="external">https://www.ruby-lang.org/en/news/2014/03/29/heap-overflow-in-yaml-uri-escape-parsing-cve-2014-2525/</a><br>我安装的是ruby193版本。（考虑到稳定性等因素，没有搭建2.1.1版本及以上，这也是官网推荐的稳定版本）</p>
-<pre><code>  SafeYAML Warning   
-
-You appear <span class="keyword">to</span> have an outdated version <span class="keyword">of</span> libyaml (<span class="number">0.1</span>.<span class="number">5</span>) installed <span class="keyword">on</span> your system.   
-Prior <span class="keyword">to</span> <span class="number">0.1</span>.<span class="number">6</span>, libyaml <span class="keyword">is</span> vulnerable <span class="keyword">to</span> a heap overflow exploit <span class="keyword">from</span> malicious YAML payloads.
-<span class="keyword">For</span> more info, see:  
-  *https:<span class="comment">//www.ruby-lang.org/en/news/2014/03/29/heap-overflow-in-yaml-uri-escape-parsing-cve-2014-2525/*   </span>
-
-  The easiest thing <span class="keyword">to</span> <span class="keyword">do</span> right now <span class="keyword">is</span> probably <span class="keyword">to</span> update Psych <span class="keyword">to</span> the  latest version <span class="keyword">and</span> enable the <span class="string">'bundled-libyaml'</span> option, which will  install a vendored libyaml <span class="keyword">with</span> the vulnerability patched:   
-
-  **gem install psych -- --enable-bundled-libyaml**
-</code></pre><p>这里提到gem install psych — —enable-bundled-libyaml这一步，提交指令之后依然是此问题不能解决。<br>然后参考了<br><a href="http://jonforums.github.io/ruby/2012/02/24/hacking-a-gem.html" title="http://jonforums.github.io/ruby/2012/02/24/hacking-a-gem.html " target="_blank" rel="external">http://jonforums.github.io/ruby/2012/02/24/hacking-a-gem.html </a><br>均无解。。。<br>最后发现这是warning。。暂时放弃解决。<br>同时发现了另外一个bug，关于中文GBK文字无法显示的bug。<br>终于在这找到了答案：<br><a href="http://changfengmingzhi.blog.163.com/blog/static/16710528820131013103511364/" title="http://changfengmingzhi.blog.163.com/blog/static/16710528820131013103511364/" target="_blank" rel="external">http://changfengmingzhi.blog.163.com/blog/static/16710528820131013103511364/</a></p>
-<h5 id="Jekyll_本地调试之若干问题">Jekyll 本地调试之若干问题</h5><p><a href="http://chxt6896.github.io/blog/2012/02/13/blog-jekyll-native.html" title="http://chxt6896.github.io/blog/2012/02/13/blog-jekyll-native.html" target="_blank" rel="external">http://chxt6896.github.io/blog/2012/02/13/blog-jekyll-native.html</a></p>
-<h6 id="http://beiyuu-com/"><a href="http://beiyuu.com/" target="_blank" rel="external">http://beiyuu.com/</a></h6><h4 id="http://blog-fens-me/jekyll-bootstarp-github/"><a href="http://blog.fens.me/jekyll-bootstarp-github/" target="_blank" rel="external">http://blog.fens.me/jekyll-bootstarp-github/</a></h4>]]></content>
-    <summary type="html">
-    <![CDATA[遇到一个jekyll的libyaml库版本过低的问题，依然无解。虽然是warning并不会一下。]]>
-    
-    </summary>
-    
-      <category term="css" scheme="http://ppii.in/blog/blog/tags/css/"/>
-    
-      <category term="notes" scheme="http://ppii.in/blog/blog/categories/notes/"/>
+      <category term="技术问题" scheme="http://ppii.in/blog/blog/categories/%E6%8A%80%E6%9C%AF%E9%97%AE%E9%A2%98/"/>
     
   </entry>
   
