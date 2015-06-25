@@ -45,10 +45,11 @@
     <link href="http://ppii.in/blog/blog/2015/06/18/jekyll-to-hexo/"/>
     <id>http://ppii.in/blog/blog/2015/06/18/jekyll-to-hexo/</id>
     <published>2015-06-17T16:00:00.000Z</published>
-    <updated>2015-06-22T15:13:32.742Z</updated>
+    <updated>2015-06-25T14:44:10.808Z</updated>
     <content type="html"><![CDATA[<p>本博客建立之初，也只是能让自己能有一个合适的地方保存自己的学习笔记。并且Github天然地支持Markdown渲染，于是十分乐意地按照官方的教程基于jekyll搭建了这个博客。虽然很多时候没有阶段性地整理自己的学习历程（大部分笔记都放在了对应的repository里），不过免费不限流量的github博客也满足了我DIY的兴趣，所以也常不定期地写下一下学习笔记和文章。</p>
 <p>具体迁移过程就不详述了，较为简单，以后有机会再自定义一些内容吧！</p>
 <p>比较喜欢的两个主题<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">nexT</a> , <a href="https://github.com/litten/hexo-theme-yilia" target="_blank" rel="external">yilia</a></p>
+<p>有一个缺点就是，由于域名url的改变，以前的评论都不能对应起来了。</p>
 <p><em>nexT的字色默认是#555显得有些泛白，阅读困难</em></p>
 <p><a href="http://www.zhihu.com/question/24422335/answer/46357100" target="_blank" rel="external">参考资料</a></p>
 <p><a href="http://zipperary.com/2013/05/30/hexo-guide-4/" target="_blank" rel="external">http://zipperary.com/2013/05/30/hexo-guide-4/</a></p>
@@ -471,7 +472,7 @@
     <link href="http://ppii.in/blog/blog/2014/07/26/vimtutor/"/>
     <id>http://ppii.in/blog/blog/2014/07/26/vimtutor/</id>
     <published>2014-07-25T16:00:00.000Z</published>
-    <updated>2015-06-22T15:13:32.726Z</updated>
+    <updated>2015-06-23T15:39:57.902Z</updated>
     <content type="html"><![CDATA[<p>最近整理了VIM的配置，换上插件管理的神器——-<a href="https://github.com/gmarik/vundle" target="_blank" rel="external">Vundle</a>，由他引发的VIM生态环境的改善，堪称完美。遂打算写一份简单的教程，分享Git时代VIM新世界的美丽动人之处。<strong>对VIM有基础的同学，可直接跳至插件管理部分。</strong></p>
 <h2 id="VIM的模式">VIM的模式</h2><p>第一次使用VIM，会觉得无所适从，他并不像记事本，你敲什么键就显示什么，理解VIM的需要明白他的两种模式：</p>
 <ul>
@@ -607,7 +608,7 @@ Bundle <span class="string">'vim-plugin-bar'</span>
 :BundleClean
 </code></pre><p>现在大部分的插件都已经从<a href="http://www.vim.org/scripts/index.php" target="_blank" rel="external">Vim.org</a>迁移到了<a href="http://vim-scripts.org/vim/scripts.html" target="_blank" rel="external">Vim-Script.org</a>，而且很多作者也认领了自己的插件，直接在这个Github的项目下更新，一个比Vim.org更科学更有效的生态环境，就这样完美的形成了。</p>
 <p>在此非常严重的感谢vim-scripts.org的创建者<a href="https://github.com/bronson" target="_blank" rel="external">Scott Bronson</a>，和<a href="https://github.com/gmarik/vundle" target="_blank" rel="external">Vundle</a>的作者<a href="https://github.com/gmarik" target="_blank" rel="external">gmarik</a>。他们的创新和分享精神，让这个世界又美好了一些。</p>
-<p>也感谢业界良心<a href="https://github.com/" target="_blank" rel="external">Github</a>。Vim-Scripts.org整站就是用<a href="https://pages.github.com/" target="_blank" rel="external">Github Pages</a>建立维护的，对于个人来说，这是很好的选择，有兴趣的同学可以参看我之前的博客：<a href="http://beiyuu.com/github-pages/" target="_blank" rel="external">使用Github Pages建独立博客</a>。</p>
+<p>也感谢业界良心<a href="https://github.com/" target="_blank" rel="external">Github</a>。Vim-Scripts.org整站就是用<a href="https://pages.github.com/" target="_blank" rel="external">Github Pages</a>建立维护的，对于个人来说，这是很好的选择，有兴趣的同学可以参看我之前的博客：[使用Github Pages建独立博客][9]。</p>
 <h2 id="插件介绍">插件介绍</h2><p>有了Vundle，再装插件就是件享受的事情了。我常用的插件有：</p>
 <pre><code><span class="preprocessor">#相较于Command-T等查找文件的插件，ctrlp.vim最大的好处在于没有依赖，干净利落</span>
 Bundle <span class="string">'ctrlp.vim'</span>
@@ -649,7 +650,7 @@ Bundle <span class="string">'Tabular'</span>
 <span class="preprocessor">#Vundle的这个写法，是直接取该插件在Github上的repo</span>
 Bundle <span class="string">'Valloric/YouCompleteMe'</span>
 </code></pre><p>以上插件可以在<a href="http://vim-scripts.org/vim/scripts.html" target="_blank" rel="external">vim-script.org</a>找到源码和文档，<a href="http://mattn.github.com/zencoding-vim/" target="_blank" rel="external">ZenCoding</a>和<a href="http://net.tutsplus.com/tutorials/other/vim-essential-plugin-easymotion/" target="_blank" rel="external">EasyMotion</a>演示点链接,你会心动的。</p>
-<h2 id="-vimrc配置">.vimrc配置</h2><p>因为配置不断在更新，所以放上我的配置的链接：<a href="https://github.com/beiyuu/vimfiles/blob/master/_vimrc" target="_blank" rel="external">.vimrc配置</a></p>
+<h2 id="-vimrc配置">.vimrc配置</h2><p>因为配置不断在更新，所以放上我的配置的链接：[.vimrc配置][vimrc]</p>
 <h2 id="更多">更多</h2><p>VIM在一开始会觉得非常不习惯，一定要坚持下去，收获的会更多，不仅仅是在装大侠方面的哦~</p>
 <p>关于VIM的使用，这篇博客仅仅介绍了很小的一部分，网络上还有大量朋友总结的心得，常学常有收获：</p>
 <ul>
