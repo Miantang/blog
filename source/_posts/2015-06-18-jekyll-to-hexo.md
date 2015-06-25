@@ -12,6 +12,8 @@ tags: [Hexo]
 
 比较喜欢的两个主题[nexT](https://github.com/iissnan/hexo-theme-next) , [yilia](https://github.com/litten/hexo-theme-yilia)
 
+有一个缺点就是，由于域名url的改变，以前的评论都不能对应起来了。
+
 *nexT的字色默认是\#555显得有些泛白，阅读困难*
 
 [参考资料](http://www.zhihu.com/question/24422335/answer/46357100)
