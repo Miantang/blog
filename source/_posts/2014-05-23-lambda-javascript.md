@@ -2,7 +2,7 @@
 layout: post
 title: JavaScript中的函数式编程
 description: 函数表达式的特征，JavaScript特有的概念，闭包定义私有变量
-category: 技术笔记
+category: 前端笔记
 tags: [JavaScript]
 ---
 

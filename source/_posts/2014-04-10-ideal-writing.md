@@ -28,7 +28,6 @@ Github
 Markdown ](http://tom.preston-werner.com/2008/10/18/how-i-turned-down-300k.html)    
 不再忧虑排版，专注写作。
 
-### 背后理念 ###
 [Markdown语法中译](http://markdown.tw/)   
 [献给写作者的 Markdown 新手指南](http://jianshu.io/p/q81RER)   
 ##Jekyll 
@@ -37,9 +36,9 @@ Octopress出来之后，也向人推荐。但自己不用。之所以用Jekyll�
 
 - 无法支持Github在线编辑；  
 - 分源码与生成两个分支，违背简洁原则。
-###背后理念
-[Blogging Like a Hacker](http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html)
+
 ###相关参考
+[Blogging Like a Hacker](http://tom.preston-werner.com/2008/11/17/blogging-like-a-hacker.html)
 [如何提高创作型任务的效率？](http://www.yangzhiping.com/psy/flow.html)   
 [如何提高创作型任务的效率？（MAC版）](http://www.yangzhiping.com/psy/mac.html)   
 [如何高效利用Github](http://www.yangzhiping.com/tech/github.html)   

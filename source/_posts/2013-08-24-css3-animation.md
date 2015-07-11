@@ -1,16 +1,16 @@
 ---
 layout: post
 title: CSS3动画详解
-description: 随着低版本IE份额下降，以及移动端流量的增长，在项目中也可以大胆使用CSS3动画来增强体验和提高产品的优雅程度，对那些不支持的浏览器也不用再费心去做更多兼容，所以，我们来研究下CSS3动画，到底应该怎么用。
-category: 技术笔记
+description: 假如抛弃考虑IE低版本的兼容适配，CSS3是一种十分方便的手段去做动画。对动画特效有着天然的喜爱，这里总结了一些动画特性，以供查阅。
+category: 前端笔记
 tags: [css]
 ---
 
 ##CSS3动画
 
-有人认为CSS动画是做了js的事情，较真起来也算，只是已经抢占许多年了，早些年要实现鼠标滑过链接变色的基本效果，需要动用Java Applet，后来只需给HTML元素加事件`onclick=changecolor()`，再之后正如你所知，只要写`:hover`、`:focus`这样的伪类即可，同样的，现在有了CSS3动画。
+查阅[MSDN文档][1]，可以知道：与传统的 JavaScript 驱动的动画实践比较，它可提供更好的呈现性能。
 
-####CSS3动画的优势：
+####CSS3动画有什么优势：
 <ul>
     <li>写起来非常方便，不会js也没问题</li>
     <li>有些动画js也不能很好的胜任，比如让一个元素在二维、三维空间旋转</li>
@@ -22,7 +22,10 @@ tags: [css]
 <ul>
     <li>CSS3动画应用的范围还是有限</li>
     <li>兼容性：对于增强体验的Feature来说，可以无视</li>
+    <li>在动画控制上，还不够灵活</li>
 </ul>
+
+**对于一些复杂控制的动画，使用javascript更为靠谱。而在实现一些小的交互动效的时候，多考虑CSS动画**
 
 ###可以做动画效果的属性
 理论上来说，任何单独的CSS属性都可以做动画的效果，比如：
@@ -36,7 +39,7 @@ tags: [css]
     <li><code>transform</code>：rotate(0deg) 到 ratate(45deg)</li>
 </ul>
 
-你也可以给`red`、`blue`这样的赋值的颜色属性加transition或animation，它会被自动转化为对应的RGB值。
+也可以给`red`、`blue`这样的赋值的颜色属性加transition或animation，它会被自动转化为对应的RGB值。
 
 ###不可以做动画效果的属性
 
@@ -786,5 +789,5 @@ js代码如下：
 <button id="car-next">Next &gt;</button>
 </div>
 
-##结语
-终于完成了这篇，梳理的过程对我自己很有提高，希望对你也能有些帮助，有兴趣可以关注我，期待下以后的博客~
+
+[1]: https://msdn.microsoft.com/zh-cn/library/jj680076%28v=vs.85%29.aspx 
