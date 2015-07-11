@@ -1,3 +1,10 @@
+---
+layout: post
+title: 我所理解的弹幕艺术(Comment Art)
+description: 弹幕艺术，即以弹幕丰富的内容与变化为主要形式，以弹幕视频为载体，依托Niconico动画、bilibili、ACFUN等弹幕视频网站的一种新兴的艺术形式。
+category: 弹幕艺术
+tags: [弹幕, Comment Art]
+---
 
 [原是在知乎的答帖](http://www.zhihu.com/question/30274886/answer/54683454)
 
