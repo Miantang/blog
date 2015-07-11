@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 将博客从jekyll迁移到Hexo
-description: 一切以实用为主
+description: 博客系统，一切以实用为主。以呈现内容为主要目的
 category: 技术笔记
 tags: [Hexo]
 ---
@@ -24,6 +24,6 @@ tags: [Hexo]
 
 过去的样式，截图留念。
 
-![1](/blog/images/1.jpg)
+![1](/blog/images/jekyll-to-hexo/1.jpg)
 
-![2](/blog/images/2.jpg)
+![2](/blog/images/jekyll-to-hexo/2.jpg)
