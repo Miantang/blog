@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next use-motion theme-next-mist">
 <head>
   
 
@@ -36,7 +36,7 @@
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
-    scheme: '',
+    scheme: 'Mist',
     analytics: {
       google: ''
     },
@@ -183,7 +183,7 @@
           <span class="post-category">
             &nbsp; | &nbsp; 分类于
             
-              <a href="/blog/categories/技术笔记/">技术笔记</a>
+              <a href="/blog/categories/前端笔记/">前端笔记</a>
 
               
               
@@ -211,15 +211,16 @@
       
 
       
-        <h2 id="CSS3动画">CSS3动画</h2><p>有人认为CSS动画是做了js的事情，较真起来也算，只是已经抢占许多年了，早些年要实现鼠标滑过链接变色的基本效果，需要动用Java Applet，后来只需给HTML元素加事件<code>onclick=changecolor()</code>，再之后正如你所知，只要写<code>:hover</code>、<code>:focus</code>这样的伪类即可，同样的，现在有了CSS3动画。</p>
-<h4 id="CSS3动画的优势：">CSS3动画的优势：</h4><ul><br>    <li>写起来非常方便，不会js也没问题</li><br>    <li>有些动画js也不能很好的胜任，比如让一个元素在二维、三维空间旋转</li><br>    <li>运行效果流畅，让浏览器去优化性能</li><br>    <li>浏览器从底层优化动画序列，例如当tab不可见的时候，降低更新的频率提高整体性能</li><br></ul>
+        <h2 id="CSS3动画">CSS3动画</h2><p>查阅<a href="https://msdn.microsoft.com/zh-cn/library/jj680076%28v=vs.85%29.aspx" target="_blank" rel="external">MSDN文档</a>，可以知道：与传统的 JavaScript 驱动的动画实践比较，它可提供更好的呈现性能。</p>
+<h4 id="CSS3动画有什么优势：">CSS3动画有什么优势：</h4><ul><br>    <li>写起来非常方便，不会js也没问题</li><br>    <li>有些动画js也不能很好的胜任，比如让一个元素在二维、三维空间旋转</li><br>    <li>运行效果流畅，让浏览器去优化性能</li><br>    <li>浏览器从底层优化动画序列，例如当tab不可见的时候，降低更新的频率提高整体性能</li><br></ul>
 
-<h4 id="劣势：">劣势：</h4><ul><br>    <li>CSS3动画应用的范围还是有限</li><br>    <li>兼容性：对于增强体验的Feature来说，可以无视</li><br></ul>
+<h4 id="劣势：">劣势：</h4><ul><br>    <li>CSS3动画应用的范围还是有限</li><br>    <li>兼容性：对于增强体验的Feature来说，可以无视</li><br>    <li>在动画控制上，还不够灵活</li><br></ul>
 
+<p><strong>对于一些复杂控制的动画，使用javascript更为靠谱。而在实现一些小的交互动效的时候，多考虑CSS动画</strong></p>
 <h3 id="可以做动画效果的属性">可以做动画效果的属性</h3><p>理论上来说，任何单独的CSS属性都可以做动画的效果，比如：</p>
 <ul><br>    <li><code>width</code>：10px 到 100px</li><br>    <li><code>padding</code>：0px 到 20px</li><br>    <li><code>color</code>：#F00 到 #00F</li><br>    <li><code>top</code>：0px 到 10px</li><br>    <li><code>border-radius</code>：3px 到 8px</li><br>    <li><code>transform</code>：rotate(0deg) 到 ratate(45deg)</li><br></ul>
 
-<p>你也可以给<code>red</code>、<code>blue</code>这样的赋值的颜色属性加transition或animation，它会被自动转化为对应的RGB值。</p>
+<p>也可以给<code>red</code>、<code>blue</code>这样的赋值的颜色属性加transition或animation，它会被自动转化为对应的RGB值。</p>
 <h3 id="不可以做动画效果的属性">不可以做动画效果的属性</h3><p>看下面这些例子：</p>
 <pre><code><span class="id">#container</span> <span class="tag">p</span> <span class="rules">{
     <span class="rule"><span class="attribute">display</span>:<span class="value"> none</span></span>;
@@ -676,7 +677,7 @@ var tz = Math.<span class="built_in">round</span><span class="params">( <span cl
 </code></pre><p><section id="caro-con"><div id="carousel"><figure>1</figure><figure>2</figure><figure>3</figure><figure>4</figure><figure>5</figure><figure>6</figure><figure>7</figure><figure>8</figure><figure>9</figure></div></section></p>
 <div id="car-btn"><br><button id="car-pre">&lt; Prev</button><br><button id="car-next">Next &gt;</button><br></div>
 
-<h2 id="结语">结语</h2><p>终于完成了这篇，梳理的过程对我自己很有提高，希望对你也能有些帮助，有兴趣可以关注我，期待下以后的博客~</p>
+
 
       
     </div>
@@ -789,14 +790,14 @@ var tz = Math.<span class="built_in">round</span><span class="params">( <span cl
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/blog/categories">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
@@ -858,7 +859,7 @@ var tz = Math.<span class="built_in">round</span><span class="params">( <span cl
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3动画"><span class="nav-number">1.</span> <span class="nav-text">CSS3动画</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS3动画的优势："><span class="nav-number">1.0.1.</span> <span class="nav-text">CSS3动画的优势：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#劣势："><span class="nav-number">1.0.2.</span> <span class="nav-text">劣势：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可以做动画效果的属性"><span class="nav-number">1.1.</span> <span class="nav-text">可以做动画效果的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不可以做动画效果的属性"><span class="nav-number">1.2.</span> <span class="nav-text">不可以做动画效果的属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3_Transition"><span class="nav-number">2.</span> <span class="nav-text">CSS3 Transition</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#transition的属性"><span class="nav-number">2.1.</span> <span class="nav-text">transition的属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#transition-property"><span class="nav-number">2.1.1.</span> <span class="nav-text">transition-property</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#transition-duration"><span class="nav-number">2.1.2.</span> <span class="nav-text">transition-duration</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#transition-timing-function"><span class="nav-number">2.1.3.</span> <span class="nav-text">transition-timing-function</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#transition-delay"><span class="nav-number">2.1.4.</span> <span class="nav-text">transition-delay</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transition简写"><span class="nav-number">2.2.</span> <span class="nav-text">transition简写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transition的高级用法"><span class="nav-number">2.3.</span> <span class="nav-text">transition的高级用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#不同的transition效果"><span class="nav-number">2.3.1.</span> <span class="nav-text">不同的transition效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多个transition"><span class="nav-number">2.3.2.</span> <span class="nav-text">多个transition</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transition示例"><span class="nav-number">2.4.</span> <span class="nav-text">transition示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3_Animation"><span class="nav-number">3.</span> <span class="nav-text">CSS3 Animation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Animation和Transition的不同"><span class="nav-number">3.1.</span> <span class="nav-text">Animation和Transition的不同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义keyframes"><span class="nav-number">3.2.</span> <span class="nav-text">定义keyframes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用到元素"><span class="nav-number">3.3.</span> <span class="nav-text">应用到元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Animation示例"><span class="nav-number">3.4.</span> <span class="nav-text">Animation示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3_Transform"><span class="nav-number">4.</span> <span class="nav-text">CSS3 Transform</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS3_2D_Transform"><span class="nav-number">4.1.</span> <span class="nav-text">CSS3 2D Transform</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Translate"><span class="nav-number">4.1.1.</span> <span class="nav-text">Translate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Rotate"><span class="nav-number">4.1.2.</span> <span class="nav-text">Rotate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Scale"><span class="nav-number">4.1.3.</span> <span class="nav-text">Scale</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Skew"><span class="nav-number">4.1.4.</span> <span class="nav-text">Skew</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Matrix"><span class="nav-number">4.1.5.</span> <span class="nav-text">Matrix</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS3_3D_Transform"><span class="nav-number">4.2.</span> <span class="nav-text">CSS3 3D Transform</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Perspective"><span class="nav-number">4.3.</span> <span class="nav-text">Perspective</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#perspective-orgin"><span class="nav-number">4.3.1.</span> <span class="nav-text">perspective-orgin</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#transform-style"><span class="nav-number">4.3.2.</span> <span class="nav-text">transform-style</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#backface-visibility"><span class="nav-number">4.3.3.</span> <span class="nav-text">backface-visibility</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3_动画实例"><span class="nav-number">5.</span> <span class="nav-text">CSS3 动画实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS3_翻纸牌"><span class="nav-number">5.1.</span> <span class="nav-text">CSS3 翻纸牌</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS3_立方体"><span class="nav-number">5.2.</span> <span class="nav-text">CSS3 立方体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3D_旋转跑马灯"><span class="nav-number">5.3.</span> <span class="nav-text">3D 旋转跑马灯</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">6.</span> <span class="nav-text">结语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3动画"><span class="nav-number">1.</span> <span class="nav-text">CSS3动画</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS3动画有什么优势："><span class="nav-number">1.0.1.</span> <span class="nav-text">CSS3动画有什么优势：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#劣势："><span class="nav-number">1.0.2.</span> <span class="nav-text">劣势：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可以做动画效果的属性"><span class="nav-number">1.1.</span> <span class="nav-text">可以做动画效果的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不可以做动画效果的属性"><span class="nav-number">1.2.</span> <span class="nav-text">不可以做动画效果的属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3_Transition"><span class="nav-number">2.</span> <span class="nav-text">CSS3 Transition</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#transition的属性"><span class="nav-number">2.1.</span> <span class="nav-text">transition的属性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#transition-property"><span class="nav-number">2.1.1.</span> <span class="nav-text">transition-property</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#transition-duration"><span class="nav-number">2.1.2.</span> <span class="nav-text">transition-duration</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#transition-timing-function"><span class="nav-number">2.1.3.</span> <span class="nav-text">transition-timing-function</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#transition-delay"><span class="nav-number">2.1.4.</span> <span class="nav-text">transition-delay</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transition简写"><span class="nav-number">2.2.</span> <span class="nav-text">transition简写</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transition的高级用法"><span class="nav-number">2.3.</span> <span class="nav-text">transition的高级用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#不同的transition效果"><span class="nav-number">2.3.1.</span> <span class="nav-text">不同的transition效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多个transition"><span class="nav-number">2.3.2.</span> <span class="nav-text">多个transition</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transition示例"><span class="nav-number">2.4.</span> <span class="nav-text">transition示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3_Animation"><span class="nav-number">3.</span> <span class="nav-text">CSS3 Animation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Animation和Transition的不同"><span class="nav-number">3.1.</span> <span class="nav-text">Animation和Transition的不同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义keyframes"><span class="nav-number">3.2.</span> <span class="nav-text">定义keyframes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用到元素"><span class="nav-number">3.3.</span> <span class="nav-text">应用到元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Animation示例"><span class="nav-number">3.4.</span> <span class="nav-text">Animation示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3_Transform"><span class="nav-number">4.</span> <span class="nav-text">CSS3 Transform</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS3_2D_Transform"><span class="nav-number">4.1.</span> <span class="nav-text">CSS3 2D Transform</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Translate"><span class="nav-number">4.1.1.</span> <span class="nav-text">Translate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Rotate"><span class="nav-number">4.1.2.</span> <span class="nav-text">Rotate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Scale"><span class="nav-number">4.1.3.</span> <span class="nav-text">Scale</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Skew"><span class="nav-number">4.1.4.</span> <span class="nav-text">Skew</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Matrix"><span class="nav-number">4.1.5.</span> <span class="nav-text">Matrix</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS3_3D_Transform"><span class="nav-number">4.2.</span> <span class="nav-text">CSS3 3D Transform</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Perspective"><span class="nav-number">4.3.</span> <span class="nav-text">Perspective</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#perspective-orgin"><span class="nav-number">4.3.1.</span> <span class="nav-text">perspective-orgin</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#transform-style"><span class="nav-number">4.3.2.</span> <span class="nav-text">transform-style</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#backface-visibility"><span class="nav-number">4.3.3.</span> <span class="nav-text">backface-visibility</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3_动画实例"><span class="nav-number">5.</span> <span class="nav-text">CSS3 动画实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS3_翻纸牌"><span class="nav-number">5.1.</span> <span class="nav-text">CSS3 翻纸牌</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS3_立方体"><span class="nav-number">5.2.</span> <span class="nav-text">CSS3 立方体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3D_旋转跑马灯"><span class="nav-number">5.3.</span> <span class="nav-text">3D 旋转跑马灯</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -890,7 +891,7 @@ var tz = Math.<span class="built_in">round</span><span class="params">( <span cl
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT
+    NexT.Mist
   </a>
 </div>
 

@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next use-motion theme-next-mist">
 <head>
   
 
@@ -36,7 +36,7 @@
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
-    scheme: '',
+    scheme: 'Mist',
     analytics: {
       google: ''
     },
@@ -212,18 +212,13 @@
 
       
         <p>二叉树是一种非常重要的数据结构，很多其它数据结构都是基于二叉树的基础演变而来的。对于二叉树，有前序、中序以及后序三种遍历方法。因为树的定义本身就是递归定义，因此采用递归的方法去实现树的三种遍历不仅容易理解而且代码很简洁。而对于树的遍历若采用非递归的方法，就要采用栈去模拟实现。在三种遍历中，前序和中序遍历的非递归算法都很容易实现，非递归后序遍历实现起来相对来说要难一点。</p>
-<h3 id="后序遍历">后序遍历</h3><h4 id="后序遍历按照“左孩子-右孩子-根结点”的顺序进行访问。">后序遍历按照“左孩子-右孩子-根结点”的顺序进行访问。</h4><ul>
-<li>递归实现</li>
-</ul>
-<p>···<br>    void postOrder1(BinTree *root)    //递归后序遍历<br>    {<br>        if(root!=NULL)<br>        {<br>            postOrder1(root-&gt;lchild);<br>            postOrder1(root-&gt;rchild);<br>            cout&lt;<root->data&lt;&lt;” “;<br>        }<br>    }<br>···</root-></p>
-<ul>
-<li>非递归实现</li>
-</ul>
-<p>这里要保证左子和右子都已经被访问之后，并且左子在右子前访问，才能访问根节点。就这对流程有较大的影响。</p>
+<h3 id="后序遍历">后序遍历</h3><p><strong>后序遍历按照“左孩子-右孩子-根结点”的顺序进行访问。</strong></p>
+<h4 id="递归实现">递归实现</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">postOrder1</span><span class="params">(BinTree *root)</span>    <span class="comment">//递归后序遍历</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root!=NULL)</span><br><span class="line">    &#123;</span><br><span class="line">        postOrder1(root-&gt;lchild);</span><br><span class="line">        postOrder1(root-&gt;rchild);</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;root-&gt;data&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="非递归实现">非递归实现</h4><p>这里要保证左子和右子都已经被访问之后，并且左子在右子前访问，才能访问根节点。就这对流程有较大的影响。</p>
 <p>这里根据查阅资料提供两个思路：</p>
 <p> 第一种思路：对于任一结点P，将其入栈，然后沿其左子树一直往下搜索，直到搜索到没有左孩子的结点，此时该结点出现在栈顶，但是此时不能将其出栈并访问，因此其右孩子还为被访问。所以接下来按照相同的规则对其右子树进行相同的处理，当访问完其右孩子时，该结点又出现在栈顶，此时可以将其出栈并访问。这样就保证了正确的访问顺序。可以看出，在这个过程中，每个结点都两次出现在栈顶，只有在第二次出现在栈顶时，才能访问它。因此需要多设置一个变量标识该结点是否是第一次出现在栈顶。</p>
 <p> 第二种思路：要保证根结点在左孩子和右孩子访问之后才能访问，因此对于任一结点P，先将其入栈。如果P不存在左孩子和右孩子，则可以直接访问它；或者P存在左孩子或者右孩子，但是其左孩子和右孩子都已被访问过了，则同样可以直接访问该结点。若非上述两种情况，则将P的右孩子和左孩子依次入栈，这样就保证了每次取栈顶元素的时候，左孩子在右孩子前面被访问，左孩子和右孩子都在根结点前面被访问。</p>
-<p>[参考文献][<a href="http://www.cnblogs.com/dolphin0520/archive/2011/08/25/2153720.html" target="_blank" rel="external">http://www.cnblogs.com/dolphin0520/archive/2011/08/25/2153720.html</a>]</p>
+<p><a href="http://www.cnblogs.com/dolphin0520/archive/2011/08/25/2153720.html" target="_blank" rel="external">`</a></p>
 
       
     </div>
@@ -338,14 +333,14 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/blog/categories">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
@@ -407,7 +402,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#后序遍历"><span class="nav-number">1.</span> <span class="nav-text">后序遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#后序遍历按照“左孩子-右孩子-根结点”的顺序进行访问。"><span class="nav-number">1.1.</span> <span class="nav-text">后序遍历按照“左孩子-右孩子-根结点”的顺序进行访问。</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#后序遍历"><span class="nav-number">1.</span> <span class="nav-text">后序遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#递归实现"><span class="nav-number">1.1.</span> <span class="nav-text">递归实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非递归实现"><span class="nav-number">1.2.</span> <span class="nav-text">非递归实现</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -439,7 +434,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT
+    NexT.Mist
   </a>
 </div>
 

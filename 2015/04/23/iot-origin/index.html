@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="theme-next use-motion ">
+<html class="theme-next use-motion theme-next-mist">
 <head>
   
 
@@ -36,7 +36,7 @@
 
 <script type="text/javascript" id="hexo.configuration">
   var CONFIG = {
-    scheme: '',
+    scheme: 'Mist',
     analytics: {
       google: ''
     },
@@ -223,22 +223,16 @@
 <li><p>……</p>
 </li>
 </ul>
-<h2 id="2-_协议选型">2. 协议选型</h2><p>1) HTTP</p>
-<p>采用HTTP方案，向HTTP服务器发送HTTP请求，能从服务器接收到响应，假如对实时响应要求高，那么采用这种方案并不科学。建立一次HTTP请求需要在下位机和服务器之间建立好几个来回的交互（三次握手），对于Arduino来说，当前的以太网在建立http连接时，会阻塞其他操作，这意味着在这段时间内，处理器不能做其他操作（尽管用硬件中断可以相应解决这个问题，但这使问题复杂化并且加入了一些不必要的限制）。鉴于此，对于一些对实时性要求不高的系统，比如长时监控，可以考虑这种解决方案。</p>
-<p>2）长轮询。</p>
-<p>这意味服务器必须周期性地向客户端发送keep-alive消息，防止物联网下级装置认为服务器超时无响应，并且，最大的缺点还是，单向通信。</p>
-<p>3）WebSockets</p>
-<p>在HTML5标准提出后，很有效地解决了一部分HTTP协议的缺点。优势就是可以双向通信，在Arduino中有一个（部分）实现的WebSockets库.<a href="https://github.com/krohling/ArduinoWebsocketClient" target="_blank" rel="external">https://github.com/krohling/ArduinoWebsocketClient</a></p>
+<h2 id="2-_协议选型">2. 协议选型</h2><h3 id="1)_HTTP">1) HTTP</h3><p>采用HTTP方案，向HTTP服务器发送HTTP请求，能从服务器接收到响应，假如对实时响应要求高，那么采用这种方案并不科学。建立一次HTTP请求需要在下位机和服务器之间建立好几个来回的交互（三次握手），对于Arduino来说，当前的以太网在建立http连接时，会阻塞其他操作，这意味着在这段时间内，处理器不能做其他操作（尽管用硬件中断可以相应解决这个问题，但这使问题复杂化并且加入了一些不必要的限制）。鉴于此，对于一些对实时性要求不高的系统，比如长时监控，可以考虑这种解决方案。</p>
+<h3 id="2）长轮询。">2）长轮询。</h3><p>这意味服务器必须周期性地向客户端发送keep-alive消息，防止物联网下级装置认为服务器超时无响应，并且，最大的缺点还是，单向通信。</p>
+<h3 id="3）WebSockets">3）WebSockets</h3><p>在HTML5标准提出后，很有效地解决了一部分HTTP协议的缺点。优势就是可以双向通信，在Arduino中有一个（部分）实现的WebSockets库.<a href="https://github.com/krohling/ArduinoWebsocketClient" target="_blank" rel="external">https://github.com/krohling/ArduinoWebsocketClient</a></p>
 <p>但是由于技术方案较新，实现上有待商榷。</p>
-<p>4）MQTT</p>
-<p>消息队列遥测传输，是一种轻量级的消息传输协议，专门针对网络带宽受限或者代码的内存占有量有限的应用场景设计而成。</p>
+<h3 id="4）MQTT">4）MQTT</h3><p>消息队列遥测传输，是一种轻量级的消息传输协议，专门针对网络带宽受限或者代码的内存占有量有限的应用场景设计而成。</p>
 <p>不同于HTTP采用客户端/服务器模型，MQTT使用的是发布/订阅机制，实现了经由消息代理的消息交换。发送者与接收者通信依靠的是相应的消息主题。在及时性和双向通信上有着很不错的表现。同时，它消除了存在于HTTP中客户端和服务器的紧密耦合。</p>
 <p>同时MQTT可以运用与许多非常受限的平台和网络环境，诸如zigbee等传感器网络。</p>
-<p>5）XMPP</p>
-<p>是另一种消息传输的解决方案。可扩展通讯和表示协议。是因特网上一种较为通用的协议，采用XML作为消息格式。由于消息可能相对冗长，可能不太适用于内存受限的微处理器。</p>
-<p>6）CoAP</p>
-<p>设计受限应用协议。旨在解决适用于HTTP的同类问题。类似与MQTT-S，可以用于没有TCP的网络。</p>
-<h4 id="TODO">TODO</h4>
+<h3 id="5）XMPP">5）XMPP</h3><p>是另一种消息传输的解决方案。可扩展通讯和表示协议。是因特网上一种较为通用的协议，采用XML作为消息格式。由于消息可能相对冗长，可能不太适用于内存受限的微处理器。</p>
+<h3 id="6）CoAP">6）CoAP</h3><p>设计受限应用协议。旨在解决适用于HTTP的同类问题。类似与MQTT-S，可以用于没有TCP的网络。</p>
+
       
     </div>
 
@@ -352,14 +346,14 @@
         <div class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/blog/archives">
-              <span class="site-state-item-count">27</span>
+              <span class="site-state-item-count">28</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           <div class="site-state-item site-state-categories">
             <a href="/blog/categories">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">分类</span>
               </a>
           </div>
@@ -421,7 +415,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-_硬件平台"><span class="nav-number">1.</span> <span class="nav-text">1. 硬件平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-_协议选型"><span class="nav-number">2.</span> <span class="nav-text">2. 协议选型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TODO"><span class="nav-number">2.0.1.</span> <span class="nav-text">TODO</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-_硬件平台"><span class="nav-number">1.</span> <span class="nav-text">1. 硬件平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-_协议选型"><span class="nav-number">2.</span> <span class="nav-text">2. 协议选型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1)_HTTP"><span class="nav-number">2.1.</span> <span class="nav-text">1) HTTP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2）长轮询。"><span class="nav-number">2.2.</span> <span class="nav-text">2）长轮询。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3）WebSockets"><span class="nav-number">2.3.</span> <span class="nav-text">3）WebSockets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4）MQTT"><span class="nav-number">2.4.</span> <span class="nav-text">4）MQTT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5）XMPP"><span class="nav-number">2.5.</span> <span class="nav-text">5）XMPP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6）CoAP"><span class="nav-number">2.6.</span> <span class="nav-text">6）CoAP</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
@@ -453,7 +447,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT
+    NexT.Mist
   </a>
 </div>
 
