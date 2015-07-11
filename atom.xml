@@ -5,7 +5,7 @@
   
   <link href="/blog/atom.xml" rel="self"/>
   <link href="http://ppii.in/blog/blog//"/>
-  <updated>2015-07-11T14:26:00.637Z</updated>
+  <updated>2015-07-11T14:31:44.139Z</updated>
   <id>http://ppii.in/blog/blog//</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
+    <title><![CDATA[我所理解的弹幕艺术(Comment Art)]]></title>
     <link href="http://ppii.in/blog/blog/2015/07/11/what-about-comment-art/"/>
     <id>http://ppii.in/blog/blog/2015/07/11/what-about-comment-art/</id>
     <published>2015-07-10T16:00:00.000Z</published>
-    <updated>2015-07-11T14:26:00.637Z</updated>
+    <updated>2015-07-11T14:31:44.139Z</updated>
     <content type="html"><![CDATA[<p><a href="http://www.zhihu.com/question/30274886/answer/54683454" target="_blank" rel="external">原是在知乎的答帖</a></p>
 <p>个人身份：哔哩哔哩职人弹幕君，弹幕艺术布道者。2012年B站拜年祭弹幕作品作者，第二届蓝白弹幕合战参与者，第三届蓝白弹幕祭主催。</p>
 <pre><code>自从b站引入了高级弹幕,提供类似ECMAScript的脚本语言以及对播放器和弹幕进行控制的能力,弹幕本身理论上跟AE之类的工具能达到同样的效果<span class="comment">(不考虑性能消耗)</span>,那么选择弹幕艺术而不是制作视频的原因是什么?
@@ -89,18 +89,24 @@
 <p><a href="http://www.bilibili.com/sp/NICO%E5%BC%B9%E5%B9%95%E8%89%BA%E6%9C%AF" target="_blank" rel="external">NICO弹幕艺术<em>专题_bilibili</em>哔哩哔哩弹幕视频网</a></p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p><a href="http://www.zhihu.com/question/30274886/answer/54683454" target="_blank" rel="external">原是在知乎的答帖</a></p>
-<p>个人身份：哔哩哔哩职人弹幕君，弹幕艺术布道]]>
+    <![CDATA[弹幕艺术，即以弹幕丰富的内容与变化为主要形式，以弹幕视频为载体，依托Niconico动画、bilibili、ACFUN等弹幕视频网站的一种新兴的艺术形式。]]>
+    
     </summary>
+    
+      <category term="Comment Art" scheme="http://ppii.in/blog/blog/tags/Comment-Art/"/>
+    
+      <category term="弹幕" scheme="http://ppii.in/blog/blog/tags/%E5%BC%B9%E5%B9%95/"/>
+    
+      <category term="弹幕艺术" scheme="http://ppii.in/blog/blog/categories/%E5%BC%B9%E5%B9%95%E8%89%BA%E6%9C%AF/"/>
     
   </entry>
   
   <entry>
-    <title></title>
+    <title><![CDATA[普通弹幕滚动变换的原理解析]]></title>
     <link href="http://ppii.in/blog/blog/2015/06/26/roll-change/"/>
     <id>http://ppii.in/blog/blog/2015/06/26/roll-change/</id>
     <published>2015-06-25T16:00:00.000Z</published>
-    <updated>2015-07-11T14:25:44.470Z</updated>
+    <updated>2015-07-11T14:31:52.742Z</updated>
     <content type="html"><![CDATA[<h2 id="一、基础原理">一、基础原理</h2><p>滚动MIKU的实现是以<strong>不同长度的弹幕</strong>所造成的<strong>速度差</strong>实现的。<br><img src="/blog/images/roll-change/1.jpg" alt="1"></p>
 <p>如图所示，其中所谓不同长度是指，相邻的长度差为5个字符。<br>而这就造成了以下的结果：</p>
 <div class="red"><br>移动每间隔4s/5即0.8秒，相邻长度差的弹幕有相对1个字符长度的位移。<br>正因为有了这1个字符长度的位移，我们就可以使用这个位移来进行遮盖，以达到变换的效果。而进行展示的时间点，则是0.8秒/1.6秒/2.4秒/3.2秒这四个时间点。<br></div>
@@ -258,8 +264,15 @@
 <p>谨以本文纪念我去年的三个通宵。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h2 id="一、基础原理">一、基础原理</h2><p>滚动MIKU的实现是以<strong>不同长度的弹幕</strong>所造成的<strong>速度差</strong>实现的。<br><img src="/blog/images/roll-change/1.jpg" a]]>
+    <![CDATA[早期的弹幕制作，有一个让人比较头疼的特效，就是普通弹幕滚动变换，这是关于其具体制作的原理。]]>
+    
     </summary>
+    
+      <category term="Comment Art" scheme="http://ppii.in/blog/blog/tags/Comment-Art/"/>
+    
+      <category term="弹幕" scheme="http://ppii.in/blog/blog/tags/%E5%BC%B9%E5%B9%95/"/>
+    
+      <category term="弹幕艺术" scheme="http://ppii.in/blog/blog/categories/%E5%BC%B9%E5%B9%95%E8%89%BA%E6%9C%AF/"/>
     
   </entry>
   
