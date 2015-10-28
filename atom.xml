@@ -107,7 +107,7 @@
     <link href="http://ppii.in/blog/blog/2015/06/26/roll-change/"/>
     <id>http://ppii.in/blog/blog/2015/06/26/roll-change/</id>
     <published>2015-06-25T16:00:00.000Z</published>
-    <updated>2015-07-11T14:31:52.742Z</updated>
+    <updated>2015-10-28T08:42:38.251Z</updated>
     <content type="html"><![CDATA[<h2 id="一、基础原理">一、基础原理</h2><p>滚动MIKU的实现是以<strong>不同长度的弹幕</strong>所造成的<strong>速度差</strong>实现的。<br><img src="/blog/images/roll-change/1.jpg" alt="1"></p>
 <p>如图所示，其中所谓不同长度是指，相邻的长度差为5个字符。<br>而这就造成了以下的结果：</p>
 <div class="red"><br>移动每间隔4s/5即0.8秒，相邻长度差的弹幕有相对1个字符长度的位移。<br>正因为有了这1个字符长度的位移，我们就可以使用这个位移来进行遮盖，以达到变换的效果。而进行展示的时间点，则是0.8秒/1.6秒/2.4秒/3.2秒这四个时间点。<br></div>
@@ -261,7 +261,7 @@
 第五：合并所有行的弹幕并优化。
 第结束：生成弹幕内容。
 </code></pre><p>还有，刚才我所说的汉字的限制，请自行体会w</p>
-<p>By Azure22 静之籁 2011/05/29</p>
+<h4 id="本文系转载">本文系转载</h4><p>By Azure22 静之籁 2011/05/29</p>
 <p>谨以本文纪念我去年的三个通宵。</p>
 ]]></content>
     <summary type="html">
@@ -940,25 +940,34 @@ Bundle <span class="string">'Valloric/YouCompleteMe'</span>
   </entry>
   
   <entry>
-    <title><![CDATA[JavaScript中的创建对象的几种模式对比]]></title>
-    <link href="http://ppii.in/blog/blog/2014/05/23/javascript-createobject/"/>
-    <id>http://ppii.in/blog/blog/2014/05/23/javascript-createobject/</id>
+    <title><![CDATA[JavaScript中的函数式编程]]></title>
+    <link href="http://ppii.in/blog/blog/2014/05/23/lambda-javascript/"/>
+    <id>http://ppii.in/blog/blog/2014/05/23/lambda-javascript/</id>
     <published>2014-05-22T16:00:00.000Z</published>
-    <updated>2015-07-11T14:27:53.413Z</updated>
-    <content type="html"><![CDATA[<h2 id="创建对象">创建对象</h2><h4 id="1-_工厂模式">1. 工厂模式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createShape</span>(<span class="params">x, func</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">    o.x = x;</span><br><span class="line">    o.func = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;&#125;;</span><br><span class="line">    <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> shape = createShape(x, func);</span><br></pre></td></tr></table></figure>
-<p>无法进行对象识别（识别对象的类型）</p>
-<h4 id="2-_构造函数模式">2. 构造函数模式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Shape</span>(<span class="params">x, func</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.x = x;</span><br><span class="line">    <span class="keyword">this</span>.func = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> shape = <span class="keyword">new</span> Shape(x, func);</span><br></pre></td></tr></table></figure>
-<p>经历的步骤：</p>
-<p>1) 创建一个新对象</p>
-<p>2) 将构造函数的作用域赋给新对象（this指向这个新对象）</p>
-<p>3) 执行构造函数中代码。</p>
-<p>4) 返回新对象。</p>
-<p>特点：每个构造函数都实例化了一个新的对象。不同实例的同名方法是不相等的。</p>
-<p><code>alert(a.func == b.func); // false</code></p>
-<p>可解决方案：将方法func提出到外部作用域，然后<code>this.func = func;</code>。但是却使得自定义类失去封装性。</p>
-<h4 id="3-_原型模式">3. 原型模式</h4><h4 id="4-_组合使用构造函数模式和原型模式(recommended)">4. 组合使用构造函数模式和原型模式(recommended)</h4><h4 id="5-_动态原型模式">5. 动态原型模式</h4><h4 id="6-_寄生构造函数模式(not_recommended)_不能依赖instanceof来确定对象类型">6. 寄生构造函数模式(not recommended) 不能依赖instanceof来确定对象类型</h4><h4 id="7-_稳妥构造函数模式">7. 稳妥构造函数模式</h4>]]></content>
+    <updated>2015-07-11T14:27:53.414Z</updated>
+    <content type="html"><![CDATA[<h2 id="函数表达式">函数表达式</h2><h4 id="一些简单的概念：">一些简单的概念：</h4><h5 id="1-_函数声明提升：指在执行函数之前会读取函数声明，意味着可以把函数声明放在调用它的语句之后。">1. <strong>函数声明提升</strong>：指在执行函数之前会读取函数声明，意味着可以把函数声明放在调用它的语句之后。</h5><p>然而，lambda函数却不是这样。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">EPM(); <span class="comment">// 导致错误，函数不存在。</span></span><br><span class="line"><span class="keyword">var</span> EPM = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">"God!"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="2-_递归。">2. 递归。</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span> (<span class="params">num</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (num &lt;= <span class="number">1</span>) &#123;</span><br><span class="line">        reuturn <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> num * factorial(num-<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> anotherFactorial = factorial;</span><br><span class="line">factorial = <span class="literal">null</span>;</span><br><span class="line">alert(anotherFactorial(<span class="number">4</span>));  <span class="comment">//error</span></span><br></pre></td></tr></table></figure>
+<p><strong>TypeError: factorial is not a function</strong></p>
+<p><strong>arguments.calee 指向正在执行的函数指针</strong>。可以代替实现函数的递归调用。</p>
+<p>问题待研究：在严格模式下，arguments.callee，访问这个属性却会失效导致错误，为什么？<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Strict_mode" target="_blank" rel="external">参考文档</a></p>
+<p>另外，可以对lambda函数创建命名来解决严格模式下的问题。</p>
+<h5 id="3-_闭包_：_指有权访问另一个函数作用域（外部？）中的变量的函数。一些其他解释：">3. 闭包 ： 指有权访问另一个函数作用域（外部？）中的变量的函数。一些其他解释：</h5><p>是由函数和与其相关的参照环境组合而成的实体。閉包只需有擴充變量的作用範圍即可，而無需有其它函數存在。</p>
+<p>闭包是一种捕获了环境中自由变量的引用的函数，同时这个自由变量同函数一起存在。</p>
+<p>换言之，使用闭包创建的函数可以「记住」它被创建时所处的环境。</p>
+<p>闭包就是打入敌人内部的间谍，通过他你可以接触敌人对外封锁的信息。 </p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/A_re-introduction_to_JavaScript#.E9.97.AD.E5.8C.85" target="_blank" rel="external">MDN上的官方解释</a></p>
+<p><a href="http://stackoverflow.com/questions/111102/how-do-javascript-closures-work" target="_blank" rel="external">stackoverflow上关于闭包的介绍</a></p>
+<p>一些可供参考的博文/问答：</p>
+<p><a href="http://www.zhihu.com/question/20963006" target="_blank" rel="external">http://www.zhihu.com/question/20963006</a>  : setTimeout 的参数用了字符串的形式，它最终会在全局作用域下运行?</p>
+<p><a href="http://zora.ghost.io/tan-tan-bi-bao-yu-lambda/" target="_blank" rel="external">http://zora.ghost.io/tan-tan-bi-bao-yu-lambda/</a></p>
+<p><a href="http://www.zhihu.com/question/19554716" target="_blank" rel="external">http://www.zhihu.com/question/19554716</a></p>
+<p><a href="https://blog.mozilla.org/luke/2012/10/02/optimizing-javascript-variable-access/" target="_blank" rel="external">https://blog.mozilla.org/luke/2012/10/02/optimizing-javascript-variable-access/</a></p>
+<h5 id="4-_内存泄露_，使用闭包可能会导致的坏处">4. 内存泄露 ，使用闭包可能会导致的坏处</h5><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/A_re-introduction_to_JavaScript#.E5.86.85.E5.AD.98.E6.B3.84.E9.9C.B2" target="_blank" rel="external">MDN上的解释</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Memory_Management" target="_blank" rel="external">内存管理</a></p>
+]]></content>
     <summary type="html">
-    <![CDATA[Object大法好]]>
+    <![CDATA[函数表达式的特征，JavaScript特有的概念，闭包定义私有变量]]>
     
     </summary>
     
