@@ -1,7 +1,7 @@
-#Blog of MianTang
+# MianTang's Blog
 
 
-**Blog WebSite:** <a href="http://ppii.in/blog" target="_blank">http://ppii.in/blog</a>
+**Blog WebSite:** <a href="http://miantang.net/blog" target="_blank">http://miantang.net/blog</a>
 
 **Deploy branch:** [gh-pages](https://github.com/Miantang/blog/tree/gh-pages)
 
@@ -14,7 +14,7 @@
     
 Blog posts: BY-NC-3.0
 
-You must reference Author: <a href="http://ppii.in/">MianTang</a> explictly along with this license note if you want to re-post the content, either completely or partially.
+You must reference Author: <a href="http://miantang.net/">MianTang</a> explictly along with this license note if you want to re-post the content, either completely or partially.
 
 Website theme: MIT
 
